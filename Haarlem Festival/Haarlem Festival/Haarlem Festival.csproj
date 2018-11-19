@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -151,6 +157,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811192054547_InitialDatabase.cs" />
+    <Compile Include="Migrations\201811192054547_InitialDatabase.Designer.cs">
+      <DependentUpon>201811192054547_InitialDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Database Connection\HFContext.cs" />
+    <Compile Include="Models\Domain Models\Food\Cuisine.cs" />
+    <Compile Include="Models\Domain Models\Food\FoodTicket.cs" />
+    <Compile Include="Models\Domain Models\Food\Restaurant.cs" />
+    <Compile Include="Models\Domain Models\General\Order.cs" />
+    <Compile Include="Models\Domain Models\General\OrderItem.cs" />
+    <Compile Include="Models\Domain Models\General\Stock.cs" />
+    <Compile Include="Models\Domain Models\General\Ticket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -195,7 +214,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Models\Domain Models\Dance\" />
+    <Folder Include="Models\Domain Models\Historic\" />
+    <Folder Include="Models\Domain Models\Jazz\" />
+    <Folder Include="Models\Input Models\" />
+    <Folder Include="Models\View Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -209,6 +232,11 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201811192054547_InitialDatabase.resx">
+      <DependentUpon>201811192054547_InitialDatabase.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
