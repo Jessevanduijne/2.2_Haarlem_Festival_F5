@@ -1,0 +1,51 @@
+﻿body {
+    background-image: url("img/bg.jpg");
+}
+
+#shortintro {
+    margin: 40px 20% 40px 20%;
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+#foodintro {
+    border: solid 1px #56D8CE;
+    margin: 0 20px 0 20px;
+}
+
+    #foodintro img, #foodintro article {
+        display: inline-block;
+        margin: 20px 5px 20px 5px;
+        height: 280px;
+        width: 370px;
+        font-size: 20px;
+        vertical-align: top
+    }
+
+
+.tickettable {
+    margin-top: 40px;
+}
+
+    .tickettable span {
+        letter-spacing: -2px;
+        font-size: 15px;
+        color: #56D8CE;
+        margin: 0 20px 0 20px;
+    }
+
+    .tickettable h1 {
+        display: inline;
+        font-weight: bolder;
+    }
+
+.table-bordered {
+    margin: 0 auto 0 auto;
+    
+}
+
+    .table-bordered th {
+        padding: 5px;
+        text-align: center;
+    }
+

@@ -1,31 +1,67 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home ";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<head>
+    @Styles.Render("~/Content/Home/HomeStyle.css")
+</head>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
+<section class="intro">
+    <h1>Welcome to Haarlem Festival • July 26-29, 2019</h1>
+    <span>---------------------------------------------------</span>
+    <img src="@Url.Content("~/Content/Home/img/centerbutton.png")" />
+    <span>---------------------------------------------------</span>
+
+    <p class="heading">
+        Haarlem is one of the oldest cities in The Netherlands. At this festival you will find more about the city, the things only locals know. 
+        Discover Haarlem through many festival each located at a different part of the city.
+        Discover Haarlem with a historic walk and combine it with a nice dinner at one of many restaurants. 
+        Enjoy dance parties from popular Dj's like Afrojack, Hardwell and Martin Garrix. You could also attend one of the nicest jazz performances.
+    </p>
+
+    <img id="banner" src="@Url.Content("~/Content/Home/img/banner.png")" />
+</section>
+
+<section id="events">
+    <span>---------------------------------------------------</span>
+    <h1>The Events</h1>
+    <span>---------------------------------------------------</span>
+    <br />
+
+    <section class="eventtile yellow">
+        <h2><u>DANCE</u></h2>
+        <img src="~/Content/Home/img/dance.png" />
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            Date: July 27-29 <br />
+            With Haarlem Dance you have the most unique dance parties in Haarlem
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+    </section>
+
+    <section class="eventtile green">
+        <h2><u>FOOD</u></h2>
+        <img src="~/Content/Home/img/food.png" />
+        <p>
+            Date: July 26-29 <br />
+            Eat in the best restaurants Haarlem has to offer
+        </p>
+    </section>
+
+    <section class="eventtile blue">
+        <h2><u>HISTORIC</u></h2>
+        <img src="~/Content/Home/img/historic.png" />
+        <p>
+            Date: July 26-29 <br />
+            Explore old parts of Haarlem with a professional tour guide
+        </p>
+    </section>
+
+    <section class="eventtile red">
+        <h2><u>JAZZ</u></h2>
+        <img src="~/Content/Home/img/jazz.png" />
+        <p>
+            Date: July 26-29 <br />
+            Listen to the smoothest Jazz sounds at one of the Haarlem Jazz events
+        </p>
+    </section>
+
+</section>

@@ -3,37 +3,38 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Haarlem Festival</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
+    <section id="whitepanel">
+        <nav class="navbar navbar-default">
+            <section class="navbar-header">
+                <img src="@Url.Content("~/Content/General/img/logo.png")"  />    
+            </section>            
+            <ul class="nav navbar-nav">
+                <li><span>------------------</span></li>
+                <li>@Html.ActionLink("HOME", "Index", "Home")</li>
+                <li>@Html.ActionLink("JAZZ", "Index", "Jazz")</li>
+                <li>@Html.ActionLink("DANCE", "Index", "Dance")</li>
+                <li>@Html.ActionLink("FOOD", "Index", "Food")</li>
+                <li>@Html.ActionLink("HISTORIC", "Index", "Historic")</li>
+                <li>@Html.ActionLink("TICKETS", "Index", "Ticket")</li>
+                <li><span>------------------</span></li>
+            </ul>
+        </nav>
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <img class="footerimg" src="@Url.Content("~/Content/General/img/fb.png")" />
+            <img class="footerimg" src="@Url.Content("~/Content/General/img/twitter.png")" />
+            <img class="footerimg" src="@Url.Content("~/Content/General/img/insta.png")" />
+            <p>
+                ALL CONTENTS &copy; COPYRIGHT @DateTime.Now.Year FINAL DRAFT <br /> CREATED BY TEAM F5
+            </p>
         </footer>
-    </div>
+    </section>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

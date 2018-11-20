@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Haarlem_Festival.Models.Domain_Models.Food.Restaurant>
+
+@{
+    ViewBag.Title = "Food";
+}
+
+<head>
+    @Styles.Render("~/Content/Food/FoodStyle.css")
+</head>
+
+<section>
+    <h1>Visit Haarlem Restaurants</h1>
+    <p id="shortintro">
+        Although Haarlem had not all particular well known culinary tradition there are lots of restaurants that are worth your while.
+        Some of them created a special Haarlem festival menu at a reduced price. It is a great way to enjoy the posibilities of Haarlem. <br /><br />
+        See the restaurants below for locations, prices and the type of food the restaurant serves. A reservation is mandatory.
+    </p>
+</section>
+
+<section id="foodintro">
+    <article>        
+         Scroll down to the restaurant section, look at the various restaurants and choose the one that appeals you the most.
+         For French, you should check out Ratatouille! But if you want to try out some Dutch food, Restaurant ML, Restaurant Fris, Grand Café Brinkman and Urban Frenchy Bistro are a good idea!
+         Pick a restaurant and add it to your cart!        
+    </article>
+    <img src="~/Content/Food/img/food.png" />
+    <img src="~/Content/Food/img/people.png" />
+</section>
+
+<section class="tickettable">
+    <span>---------------------------------------------------</span>
+    <h1>Tickets</h1>
+    <span>---------------------------------------------------</span>
+    <table class="table-bordered">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RestaurantName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceAdults)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceChildren)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cuisines)
+            </th>
+            <th>
+                Order a ticket**
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RestaurantName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PriceAdults)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PriceChildren)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cuisines)
+                </td>
+                <td>
+                    <button><img class="cart" src="~/Content/General/img/cart.png" /></button>
+                </td>
+            </tr>
+        }
+    </table>
+</section>

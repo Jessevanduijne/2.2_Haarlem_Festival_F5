@@ -153,7 +153,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DanceController.cs" />
+    <Compile Include="Controllers\FoodController.cs" />
+    <Compile Include="Controllers\HistoricController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JazzController.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -171,16 +176,49 @@
     <Compile Include="Models\Domain Models\General\Stock.cs" />
     <Compile Include="Models\Domain Models\General\Ticket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Food\FoodRepository.cs" />
+    <Compile Include="Repositories\Food\IFoodRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Bootstrap\bootstrap-theme.css" />
+    <Content Include="Content\Bootstrap\bootstrap-theme.min.css" />
+    <Content Include="Content\Bootstrap\bootstrap.css" />
+    <Content Include="Content\Bootstrap\bootstrap.min.css" />
+    <Content Include="Content\Dance\DanceStyle.css" />
+    <Content Include="Content\Food\FoodStyle.css" />
+    <Content Include="Content\Food\img\bg.jpg" />
+    <Content Include="Content\Food\img\food.png" />
+    <Content Include="Content\Food\img\fris.png" />
+    <Content Include="Content\Food\img\gcbrinkmann.png" />
+    <Content Include="Content\Food\img\goldenbull.png" />
+    <Content Include="Content\Food\img\ML.png" />
+    <Content Include="Content\Food\img\mr&amp;mrs.png" />
+    <Content Include="Content\Food\img\people.png" />
+    <Content Include="Content\Food\img\ratatouille.png" />
+    <Content Include="Content\Food\img\route.png" />
+    <Content Include="Content\Food\img\specktakel.png" />
+    <Content Include="Content\Food\img\star.png" />
+    <Content Include="Content\Food\img\toujours.png" />
+    <Content Include="Content\Food\img\www.png" />
+    <Content Include="Content\General\GeneralStyle.css" />
+    <Content Include="Content\General\img\cart.png" />
+    <Content Include="Content\General\img\fb.png" />
+    <Content Include="Content\General\img\insta.png" />
+    <Content Include="Content\General\img\logo.png" />
+    <Content Include="Content\General\img\twitter.png" />
+    <Content Include="Content\Historic\HistoricStyle.css" />
+    <Content Include="Content\Home\HomeStyle.css" />
+    <Content Include="Content\Home\img\banner.png" />
+    <Content Include="Content\Home\img\bg.png" />
+    <Content Include="Content\Home\img\centerbutton.png" />
+    <Content Include="Content\Home\img\dance.png" />
+    <Content Include="Content\Home\img\food.png" />
+    <Content Include="Content\Home\img\historic.png" />
+    <Content Include="Content\Home\img\jazz.png" />
+    <Content Include="Content\Jazz\JazzStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -208,27 +246,37 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Food\Index.cshtml" />
+    <Content Include="Views\Historic\Index.cshtml" />
+    <Content Include="Views\Jazz\Index.cshtml" />
+    <Content Include="Views\Dance\Index.cshtml" />
+    <Content Include="Views\Ticket\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Dance\img\" />
+    <Folder Include="Content\Historic\img\" />
+    <Folder Include="Content\Jazz\img\" />
     <Folder Include="Models\Domain Models\Dance\" />
     <Folder Include="Models\Domain Models\Historic\" />
     <Folder Include="Models\Domain Models\Jazz\" />
     <Folder Include="Models\Input Models\" />
     <Folder Include="Models\View Models\" />
+    <Folder Include="Repositories\Dance\" />
+    <Folder Include="Repositories\Historic\" />
+    <Folder Include="Repositories\Jazz\" />
+    <Folder Include="Repositories\Tickets\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\Bootstrap\bootstrap.min.css.map" />
+    <Content Include="Content\Bootstrap\bootstrap.css.map" />
+    <Content Include="Content\Bootstrap\bootstrap-theme.min.css.map" />
+    <Content Include="Content\Bootstrap\bootstrap-theme.css.map" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />

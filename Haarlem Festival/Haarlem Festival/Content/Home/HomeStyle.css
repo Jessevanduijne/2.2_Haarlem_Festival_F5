@@ -1,0 +1,63 @@
+﻿body {
+    background-image: url("img/bg.png");
+}
+
+.intro h1, .events h1 {
+    margin-bottom: 40px;
+}
+
+#intro span, #events span {
+    letter-spacing: -2px;
+    font-size: 15px;
+    color: lightgreen;
+    margin: 0 20px 0 20px;
+}
+
+.heading {
+    font-family: Bahnschrift;
+    font-size: 25px;
+    padding: 40px 12% 40px 12%;
+}
+
+#banner {
+    height: 282px;
+    width: 1080px;
+}
+
+#events h1{
+    display: inline;
+}
+
+#events {
+    margin: 50px 0 30px 0;
+}
+
+.eventtile {
+    width: 480px;
+    height: 500px;
+    font-size: 24px;
+    display: inline-block;
+    margin: 50px 30px 50px 30px; 
+    box-shadow: 10px 10px 5px grey;
+}
+
+.eventtile img {
+    width: 480px;
+    height: 300px;
+}
+
+    .eventtile.yellow {
+        background-color: #F1D80E;
+    }
+
+    .eventtile.red {
+        background-color: #FFCC99;
+    }
+
+    .eventtile.blue {
+        background-color: #56D8CE;
+    }
+
+    .eventtile.green {
+        background-color: #C3E395;
+    }

@@ -23,8 +23,8 @@ namespace Haarlem_Festival
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                "~/Content/Bootstrap/bootstrap.css",
+                "~/Content/General/GeneralStyle.css"));
         }
     }
 }
