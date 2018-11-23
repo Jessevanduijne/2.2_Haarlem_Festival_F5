@@ -175,6 +175,7 @@
     <Compile Include="Models\Domain Models\General\OrderItem.cs" />
     <Compile Include="Models\Domain Models\General\Stock.cs" />
     <Compile Include="Models\Domain Models\General\Ticket.cs" />
+    <Compile Include="Models\Domain Models\Jazz\Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Food\FoodRepository.cs" />
     <Compile Include="Repositories\Food\IFoodRepository.cs" />
@@ -260,7 +261,6 @@
     <Folder Include="Content\Jazz\img\" />
     <Folder Include="Models\Domain Models\Dance\" />
     <Folder Include="Models\Domain Models\Historic\" />
-    <Folder Include="Models\Domain Models\Jazz\" />
     <Folder Include="Models\Input Models\" />
     <Folder Include="Models\View Models\" />
     <Folder Include="Repositories\Dance\" />
