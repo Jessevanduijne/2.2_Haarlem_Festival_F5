@@ -7,5 +7,6 @@ namespace Haarlem_Festival.Models.Domain_Models.Jazz
 {
     public class Test
     {
+        public int hallo { get; set; }
     }
 }
