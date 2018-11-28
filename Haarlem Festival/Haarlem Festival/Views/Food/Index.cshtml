@@ -18,19 +18,21 @@
 </section>
 
 <section id="foodintro">
-    <article>        
-         Scroll down to the restaurant section, look at the various restaurants and choose the one that appeals you the most.
-         For French, you should check out Ratatouille! But if you want to try out some Dutch food, Restaurant ML, Restaurant Fris, Grand Café Brinkman and Urban Frenchy Bistro are a good idea!
-         Pick a restaurant and add it to your cart!        
+    <article>
+        Scroll down to the restaurant section, look at the various restaurants and choose the one that appeals you the most.
+        For French, you should check out Ratatouille! But if you want to try out some Dutch food, Restaurant ML, Restaurant Fris, Grand Café Brinkman and Urban Frenchy Bistro are a good idea!
+        Pick a restaurant and add it to your cart!
     </article>
     <img src="~/Content/Food/img/food.png" />
     <img src="~/Content/Food/img/people.png" />
 </section>
 
-<section class="tickettable">
-    <span>---------------------------------------------------</span>
-    <h1>Tickets</h1>
-    <span>---------------------------------------------------</span>
+<section>
+    <section class="title">
+        <span>---------------------------------------------------</span>
+        <h1>Tickets</h1>
+        <span>---------------------------------------------------</span>
+    </section>
     <table class="table-bordered">
         <tr>
             <th>
@@ -71,4 +73,39 @@
             </tr>
         }
     </table>
+    <section class="ticketcaption">
+        * Reservation is mandatory.  A reservation fee of €10,- per person wil be charged when a reservation is made on the Haarlem Festival site.
+        This fee will be deducted from the final check on visiting the restaurant.
+
+        ** When ordering a ticket there will be an option to inform the restaurant for special requests regarding the food or service (allergies, wheelchair etc.)
+    </section>
 </section>
+
+
+<section>
+    <section class="title">
+        <span>---------------------------------------------------</span>
+        <h1>Restaurants</h1>
+        <span>---------------------------------------------------</span>
+    </section>
+
+    @foreach(var item in Model)
+    {
+    <section class="restaurantTile">
+        <h2>@item.RestaurantName</h2>
+        <section class="stars">Stars: @item.Stars</section>
+        <section class="googleReview">[Google review link input] @item.GoogleReviewLink</section>
+        <img src="@Url.Content("~/Content/Food/img/" + item.ImageLink)" />
+        <p>@item.Address</p>
+
+        <section id="restauranticons">
+            <img src="@Url.Content("~/Content/Food/img/route.png")" />
+            <img src="@Url.Content("~/Content/Food/img/www.png")" />
+        </section>
+
+    </section>
+    }
+
+</section>
+
+

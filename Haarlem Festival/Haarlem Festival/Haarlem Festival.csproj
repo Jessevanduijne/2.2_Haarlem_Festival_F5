@@ -162,20 +162,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811192054547_InitialDatabase.cs" />
-    <Compile Include="Migrations\201811192054547_InitialDatabase.Designer.cs">
-      <DependentUpon>201811192054547_InitialDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201811281552261_newInitialDatabase.cs" />
+    <Compile Include="Migrations\201811281552261_newInitialDatabase.Designer.cs">
+      <DependentUpon>201811281552261_newInitialDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database Connection\HFContext.cs" />
+    <Compile Include="Models\Domain Models\Dance\DanceEvent.cs" />
     <Compile Include="Models\Domain Models\Food\Cuisine.cs" />
-    <Compile Include="Models\Domain Models\Food\FoodTicket.cs" />
+    <Compile Include="Models\Domain Models\Food\FoodEvent.cs" />
     <Compile Include="Models\Domain Models\Food\Restaurant.cs" />
+    <Compile Include="Models\Domain Models\General\Event.cs" />
     <Compile Include="Models\Domain Models\General\Order.cs" />
-    <Compile Include="Models\Domain Models\General\OrderItem.cs" />
-    <Compile Include="Models\Domain Models\General\Stock.cs" />
+    <Compile Include="Models\Domain Models\General\Venue.cs" />
     <Compile Include="Models\Domain Models\General\Ticket.cs" />
-    <Compile Include="Models\Domain Models\Jazz\Test.cs" />
+    <Compile Include="Models\Domain Models\Historic\HistoricEvent.cs" />
+    <Compile Include="Models\Domain Models\Jazz\JazzEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Food\FoodRepository.cs" />
     <Compile Include="Repositories\Food\IFoodRepository.cs" />
@@ -259,8 +261,6 @@
     <Folder Include="Content\Dance\img\" />
     <Folder Include="Content\Historic\img\" />
     <Folder Include="Content\Jazz\img\" />
-    <Folder Include="Models\Domain Models\Dance\" />
-    <Folder Include="Models\Domain Models\Historic\" />
     <Folder Include="Models\Input Models\" />
     <Folder Include="Models\View Models\" />
     <Folder Include="Repositories\Dance\" />
@@ -282,8 +282,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811192054547_InitialDatabase.resx">
-      <DependentUpon>201811192054547_InitialDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811281552261_newInitialDatabase.resx">
+      <DependentUpon>201811281552261_newInitialDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

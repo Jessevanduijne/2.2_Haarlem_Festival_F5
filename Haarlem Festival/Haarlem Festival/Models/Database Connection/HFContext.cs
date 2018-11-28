@@ -1,5 +1,8 @@
 ﻿using Haarlem_Festival.Models.Domain_Models.General;
 using Haarlem_Festival.Models.Domain_Models.Food;
+using Haarlem_Festival.Models.Domain_Models.Dance;
+using Haarlem_Festival.Models.Domain_Models.Jazz;
+using Haarlem_Festival.Models.Domain_Models.Historic;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,19 +13,25 @@ namespace Haarlem_Festival.Models.Database_Connection
 {
     public class HFContext : DbContext
     {
-        public HFContext() : base("name=HFContext")
-        {
-
-        }
+        public HFContext() : base("name=HFContext") { }
 
         // General:
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderItem> OrderItems { get; set; }
-        public DbSet<Stock> Stock { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
-
+        public DbSet<Event> Events { get; set; }
+        public DbSet<Venue> Venues { get; set; }
+ 
         // Food:
-        public DbSet<FoodTicket> FoodTickets { get; set; }
-        public DbSet<Restaurant> Restaurants { get; set; } 
+        public DbSet<FoodEvent> FoodEvents { get; set; }
+        public DbSet<Restaurant> Restaurants { get; set; }
+
+        // Dance:
+        public DbSet<DanceEvent> DanceEvents { get; set; }
+
+        // Jazz:
+        public DbSet<JazzEvent> JazzEvents { get; set; }
+
+        // Historic:
+        public DbSet<HistoricEvent> HistoricEvents { get; set; }
     }
 }
