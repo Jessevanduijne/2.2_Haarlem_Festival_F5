@@ -7,16 +7,10 @@ using System.Web;
 
 namespace Haarlem_Festival.Models.Domain_Models.Food
 {
-    public class FoodTicket : Ticket
-    {        
+    public class FoodEvent : Event
+    {
         [ForeignKey("Restaurant")]
         public int RestaurantID { get; set; }
         public virtual Restaurant Restaurant { get; set; }
-
-        public int AdultTicketAmount { get; set; }
-        public int ChildTicketAmount { get; set; }
-
-        // Optional: (virtual makes it optional)
-        public virtual string SpecialRequests { get; set;  }
     }
 }
