@@ -1,5 +1,6 @@
 ﻿using Haarlem_Festival.Models.Database_Connection;
 using Haarlem_Festival.Models.Domain_Models.Food;
+using Haarlem_Festival.Models.Domain_Models.General;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,12 @@ namespace Haarlem_Festival.Repositories.Food
         {
             IEnumerable<Restaurant> restaurants = db.Restaurants;
             return restaurants;
+        }
+
+        public IEnumerable<FoodEvent> GetAllFoodEvents()
+        {
+            IEnumerable<FoodEvent> events = db.FoodEvents;
+            return events;
         }
     }
 }

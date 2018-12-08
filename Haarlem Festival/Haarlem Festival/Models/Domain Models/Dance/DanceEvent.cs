@@ -11,14 +11,14 @@ namespace Haarlem_Festival.Models.Domain_Models.Dance
     public class DanceEvent : Event
     {
         // Properties:
-        public string Artist { get; set; }
+        public string DanceArtist { get; set; } // DJ
         public string Session { get; set; }
 
         // Foreign Key        
-        [ForeignKey("Venue")]
-        public int VenueId { get; set; }
+        [ForeignKey("DanceVenue")]
+        public int DanceVenueId { get; set; }
 
         // Navigation Properties:
-        public Venue Venue { get; set; }
+        public Venue DanceVenue { get; set; }
     }
 }

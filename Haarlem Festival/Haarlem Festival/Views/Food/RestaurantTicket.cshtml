@@ -1,0 +1,40 @@
+﻿@model Haarlem_Festival.Models.View_Models.RestaurantTicket
+
+<section id="ticketselect">
+    <h2>Choose your food ticket</h2>
+
+    <hr />
+
+    <section>
+        <label>Date:</label>
+        @Html.DropDownListFor(item => item.SelectedEvent,
+        new SelectList(Model.Events, "EventId", "StartTime"),
+        new { selectedEvent = Model.SelectedEvent })
+
+        <p>The approximate time you have at this restaurant is XXXX hours</p>
+
+    </section>
+
+    <hr />
+
+    <section>
+        <label>Amount of adults: </label>
+        @Html.TextBoxFor(item => item.AdultTickets)
+
+        <label>Amount of children:</label>
+        @Html.TextBoxFor(item => item.ChildTickets)
+    </section>
+
+    <hr />
+
+    <section>
+        <label>Special Request:</label>
+        @Html.TextBoxFor(item => item.SpecialRequest)
+    </section>
+
+    <section>
+        <button>Close</button>
+        <button>Add to Shoppingcart</button>
+    </section>
+
+</section>

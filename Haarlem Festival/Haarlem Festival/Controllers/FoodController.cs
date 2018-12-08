@@ -1,4 +1,5 @@
 ﻿using Haarlem_Festival.Models.Domain_Models.Food;
+using Haarlem_Festival.Models.View_Models;
 using Haarlem_Festival.Repositories.Food;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,15 @@ namespace Haarlem_Festival.Controllers
         {
             IEnumerable<Restaurant> restaurants = foodRepository.GetAllRestaurants();
             return View(restaurants);
+        }
+
+        [HttpGet]
+        public ActionResult RestaurantTicket()
+        {
+            RestaurantTicket ticket = new RestaurantTicket();
+            ticket.Events = foodRepository.GetAllFoodEvents();            
+
+            return View(ticket);
         }
     }
 }

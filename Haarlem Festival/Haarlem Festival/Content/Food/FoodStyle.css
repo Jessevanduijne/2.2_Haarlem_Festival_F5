@@ -71,3 +71,13 @@
     width: 40px;
     height: 40px;
 }
+
+/* Ticket-part: */
+#ticketselect {
+    width: 700px;
+    height: 400px;
+}
+
+#ticketselect h2 {
+    color: red;
+}
