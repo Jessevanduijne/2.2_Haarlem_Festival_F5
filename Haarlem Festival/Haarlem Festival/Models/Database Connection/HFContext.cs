@@ -24,6 +24,7 @@ namespace Haarlem_Festival.Models.Database_Connection
         // Food:
         public DbSet<FoodEvent> FoodEvents { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet<Cuisine> Cuisines { get; set; }
 
         // Dance:
         public DbSet<DanceEvent> DanceEvents { get; set; }

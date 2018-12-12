@@ -72,6 +72,11 @@
     height: 40px;
 }
 
+.stars img {
+    width: 25px; 
+    height: 25px;
+}
+
 /* Ticket-part: */
 #ticketselect {
     width: 700px;

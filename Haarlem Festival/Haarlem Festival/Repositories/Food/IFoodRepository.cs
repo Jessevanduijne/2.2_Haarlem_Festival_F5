@@ -12,5 +12,6 @@ namespace Haarlem_Festival.Repositories.Food
     {
         IEnumerable<Restaurant> GetAllRestaurants();
         IEnumerable<FoodEvent> GetAllFoodEvents();
+        ICollection<Cuisine> GetAllCuisinesForRestaurant(int restuarantId);
     }
 }

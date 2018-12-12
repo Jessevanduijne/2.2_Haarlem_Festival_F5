@@ -65,7 +65,10 @@
                     @Html.DisplayFor(modelItem => item.PriceChildren)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Cuisines)
+                    @foreach (var cuisine in item.Cuisines)
+                    {
+                        @String.Format("{0}, ", cuisine.Category) 
+                    }
                 </td>
                 <td>
                     <button><img class="cart" src="~/Content/General/img/cart.png" /></button>
@@ -93,7 +96,12 @@
     {
     <section class="restaurantTile">
         <h2>@item.RestaurantName</h2>
-        <section class="stars">Stars: @item.Stars</section>
+        <section class="stars">Stars: 
+        @for(int i = 1; i <= item.Stars; i++)
+        {
+            <img src="@Url.Content("~/Content/Food/img/star.png")" />
+        }
+        </section>
         <section class="googleReview">[Google review link input] @item.GoogleReviewLink</section>
         <img src="@Url.Content("~/Content/Food/img/" + item.ImageLink)" />
         <p>@item.Address</p>
@@ -102,7 +110,6 @@
             <img src="@Url.Content("~/Content/Food/img/route.png")" />
             <img src="@Url.Content("~/Content/Food/img/www.png")" />
         </section>
-
     </section>
     }
 

@@ -17,6 +17,12 @@ namespace Haarlem_Festival.Controllers
         public ActionResult Index()
         {
             IEnumerable<Restaurant> restaurants = foodRepository.GetAllRestaurants();
+
+            foreach(Restaurant restaurant in restaurants)
+            {
+                restaurant.Cuisines = foodRepository.GetAllCuisinesForRestaurant(restaurant.RestaurantID);             
+            }
+
             return View(restaurants);
         }
 

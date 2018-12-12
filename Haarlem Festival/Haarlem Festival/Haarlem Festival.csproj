@@ -166,6 +166,10 @@
     <Compile Include="Migrations\201812081245493_initialDatabase.Designer.cs">
       <DependentUpon>201812081245493_initialDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812121946061_cuisineupdate.cs" />
+    <Compile Include="Migrations\201812121946061_cuisineupdate.Designer.cs">
+      <DependentUpon>201812121946061_cuisineupdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database Connection\HFContext.cs" />
     <Compile Include="Models\Domain Models\Dance\DanceEvent.cs" />
@@ -285,6 +289,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201812081245493_initialDatabase.resx">
       <DependentUpon>201812081245493_initialDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812121946061_cuisineupdate.resx">
+      <DependentUpon>201812121946061_cuisineupdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
