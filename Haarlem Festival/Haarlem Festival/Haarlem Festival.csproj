@@ -162,13 +162,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812081245493_initialDatabase.cs" />
-    <Compile Include="Migrations\201812081245493_initialDatabase.Designer.cs">
-      <DependentUpon>201812081245493_initialDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812121946061_cuisineupdate.cs" />
-    <Compile Include="Migrations\201812121946061_cuisineupdate.Designer.cs">
-      <DependentUpon>201812121946061_cuisineupdate.cs</DependentUpon>
+    <Compile Include="Migrations\201811281552261_newInitialDatabase.cs" />
+    <Compile Include="Migrations\201811281552261_newInitialDatabase.Designer.cs">
+      <DependentUpon>201811281552261_newInitialDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database Connection\HFContext.cs" />
@@ -182,7 +178,9 @@
     <Compile Include="Models\Domain Models\General\Ticket.cs" />
     <Compile Include="Models\Domain Models\Historic\HistoricEvent.cs" />
     <Compile Include="Models\Domain Models\Jazz\JazzEvent.cs" />
-    <Compile Include="Models\View Models\RestaurantBooking.cs" />
+    <Compile Include="Models\View Models\Dance\ArtistView.cs" />
+    <Compile Include="Models\View Models\Dance\TicketdayView.cs" />
+    <Compile Include="Models\View Models\Dance\Ticketview.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Food\FoodRepository.cs" />
     <Compile Include="Repositories\Food\IFoodRepository.cs" />
@@ -193,13 +191,15 @@
     <Content Include="Content\Bootstrap\bootstrap.css" />
     <Content Include="Content\Bootstrap\bootstrap.min.css" />
     <Content Include="Content\Dance\DanceStyle.css" />
+    <Content Include="Content\Dance\img\Headphone.PNG" />
+    <Content Include="Content\Dance\img\Party.PNG" />
+    <Content Include="Content\Dance\img\TicketBackground.PNG" />
     <Content Include="Content\Food\FoodStyle.css" />
     <Content Include="Content\Food\img\bg.jpg" />
     <Content Include="Content\Food\img\food.png" />
     <Content Include="Content\Food\img\fris.png" />
     <Content Include="Content\Food\img\gcbrinkmann.png" />
     <Content Include="Content\Food\img\goldenbull.png" />
-    <Content Include="Content\Food\img\loading.gif" />
     <Content Include="Content\Food\img\ML.png" />
     <Content Include="Content\Food\img\mr&amp;mrs.png" />
     <Content Include="Content\Food\img\people.png" />
@@ -261,11 +261,9 @@
     <Content Include="Views\Jazz\Index.cshtml" />
     <Content Include="Views\Dance\Index.cshtml" />
     <Content Include="Views\Ticket\Index.cshtml" />
-    <Content Include="Views\Food\BookEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Dance\img\" />
     <Folder Include="Content\Historic\img\" />
     <Folder Include="Content\Jazz\img\" />
     <Folder Include="Models\Input Models\" />
@@ -288,11 +286,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812081245493_initialDatabase.resx">
-      <DependentUpon>201812081245493_initialDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812121946061_cuisineupdate.resx">
-      <DependentUpon>201812121946061_cuisineupdate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811281552261_newInitialDatabase.resx">
+      <DependentUpon>201811281552261_newInitialDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
