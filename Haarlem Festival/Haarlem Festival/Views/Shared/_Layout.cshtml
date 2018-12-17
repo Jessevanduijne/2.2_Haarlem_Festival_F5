@@ -11,8 +11,8 @@
     <section id="whitepanel">
         <nav class="navbar navbar-default">
             <section class="navbar-header">
-                <img src="@Url.Content("~/Content/General/img/logo.png")"  />    
-            </section>            
+                <img src="@Url.Content("~/Content/General/img/logo.png")" />
+            </section>
             <ul class="nav navbar-nav">
                 <li><span>------------------</span></li>
                 <li>@Html.ActionLink("HOME", "Index", "Home")</li>
@@ -36,6 +36,7 @@
         </footer>
     </section>
 
+    @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

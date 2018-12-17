@@ -26,13 +26,16 @@ namespace Haarlem_Festival.Controllers
             return View(restaurants);
         }
 
-        [HttpGet]
-        public ActionResult RestaurantTicket()
+        public ActionResult FoodEvents(int restaurantId)
         {
-            RestaurantTicket ticket = new RestaurantTicket();
-            ticket.Events = foodRepository.GetAllFoodEvents();            
+            // Create Viewmodel
+            RestaurantBooking booking = new RestaurantBooking();
+            booking.Events = foodRepository.GetAllFoodEvents(restaurantId);
+            booking.Restaurant = foodRepository.GetRestaurant(restaurantId);
 
-            return View(ticket);
+
+
+            return PartialView("BookEvent", booking);
         }
     }
 }

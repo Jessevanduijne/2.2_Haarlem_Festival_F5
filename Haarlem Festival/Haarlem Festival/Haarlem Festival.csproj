@@ -182,7 +182,7 @@
     <Compile Include="Models\Domain Models\General\Ticket.cs" />
     <Compile Include="Models\Domain Models\Historic\HistoricEvent.cs" />
     <Compile Include="Models\Domain Models\Jazz\JazzEvent.cs" />
-    <Compile Include="Models\View Models\RestaurantTicket.cs" />
+    <Compile Include="Models\View Models\RestaurantBooking.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Food\FoodRepository.cs" />
     <Compile Include="Repositories\Food\IFoodRepository.cs" />
@@ -199,6 +199,7 @@
     <Content Include="Content\Food\img\fris.png" />
     <Content Include="Content\Food\img\gcbrinkmann.png" />
     <Content Include="Content\Food\img\goldenbull.png" />
+    <Content Include="Content\Food\img\loading.gif" />
     <Content Include="Content\Food\img\ML.png" />
     <Content Include="Content\Food\img\mr&amp;mrs.png" />
     <Content Include="Content\Food\img\people.png" />
@@ -260,7 +261,7 @@
     <Content Include="Views\Jazz\Index.cshtml" />
     <Content Include="Views\Dance\Index.cshtml" />
     <Content Include="Views\Ticket\Index.cshtml" />
-    <Content Include="Views\Food\RestaurantTicket.cshtml" />
+    <Content Include="Views\Food\BookEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

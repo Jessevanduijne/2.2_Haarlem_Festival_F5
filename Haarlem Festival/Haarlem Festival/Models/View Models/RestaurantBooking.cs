@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Haarlem_Festival.Models.View_Models
 {
-    public class RestaurantTicket
+    public class RestaurantBooking
     {
         public int SelectedEvent { get; set; }
         public IEnumerable<FoodEvent> Events { get; set; }
@@ -15,5 +15,7 @@ namespace Haarlem_Festival.Models.View_Models
         public int ChildTickets { get; set; }
 
         public string SpecialRequest { get; set; }
+
+        public Restaurant Restaurant { get; set; }
     }
 }

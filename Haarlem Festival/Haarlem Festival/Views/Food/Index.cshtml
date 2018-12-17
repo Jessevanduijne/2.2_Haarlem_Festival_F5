@@ -4,6 +4,15 @@
     ViewBag.Title = "Food";
 }
 
+<script>
+    var FoodEvents = function (restaurantId) {
+        var url = "/Food/FoodEvents?restaurantId=" + restaurantId;
+        $("modalBody").load(url, function () {
+            $("MyModal").modal("show");
+        })
+    }
+</script>
+
 <head>
     @Styles.Render("~/Content/Food/FoodStyle.css")
 </head>
@@ -52,26 +61,26 @@
             </th>
         </tr>
 
-        @foreach (var item in Model)
+        @foreach (var restaurant in Model)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.RestaurantName)
+                    @Html.DisplayFor(modelItem => restaurant.RestaurantName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PriceAdults)
+                    @Html.DisplayFor(modelItem => restaurant.PriceAdults)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PriceChildren)
+                    @Html.DisplayFor(modelItem => restaurant.PriceChildren)
                 </td>
                 <td>
-                    @foreach (var cuisine in item.Cuisines)
+                    @foreach (var cuisine in restaurant.Cuisines)
                     {
-                        @String.Format("{0}, ", cuisine.Category) 
+                        @String.Format("{0}, ", cuisine.Category)
                     }
                 </td>
                 <td>
-                    <button><img class="cart" src="~/Content/General/img/cart.png" /></button>
+                    <button id="loadEvents" data-toggle="modal" data-target="#MyModal" onclick="FoodEvents(@restaurant.RestaurantID)"><img class="cart" src="~/Content/General/img/cart.png" /></button>
                 </td>
             </tr>
         }
@@ -92,27 +101,43 @@
         <span>---------------------------------------------------</span>
     </section>
 
-    @foreach(var item in Model)
+    @foreach (var item in Model)
     {
-    <section class="restaurantTile">
-        <h2>@item.RestaurantName</h2>
-        <section class="stars">Stars: 
-        @for(int i = 1; i <= item.Stars; i++)
-        {
-            <img src="@Url.Content("~/Content/Food/img/star.png")" />
-        }
-        </section>
-        <section class="googleReview">[Google review link input] @item.GoogleReviewLink</section>
-        <img src="@Url.Content("~/Content/Food/img/" + item.ImageLink)" />
-        <p>@item.Address</p>
+        <section class="restaurantTile">
+            <h2>@item.RestaurantName</h2>
+            <section class="stars">
+                Stars:
+                @for (int i = 1; i <= item.Stars; i++)
+                {
+                    <img src="@Url.Content("~/Content/Food/img/star.png")" />
+                }
+            </section>
+            <section class="googleReview">[Google review link input] @item.GoogleReviewLink</section>
+            <img src="@Url.Content("~/Content/Food/img/" + item.ImageLink)" />
+            <p>@item.Address</p>
 
-        <section id="restauranticons">
-            <img src="@Url.Content("~/Content/Food/img/route.png")" />
-            <img src="@Url.Content("~/Content/Food/img/www.png")" />
+            <section id="restauranticons">
+                <img src="@Url.Content("~/Content/Food/img/route.png")" />
+                <img src="@Url.Content("~/Content/Food/img/www.png")" />
+            </section>
+        </section>
+    }
+    <br />
+</section>
+
+<section class="modal fade" id="MyModal">
+    <section class="modal-dialog">
+        <section class="modal-content">
+            <section class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Book a restaurant</h3>
+            </section>
+            <section class="modal-body" id="modalBody">
+                <!-- Filled by partial View & JS -->
+                <!-- https://www.youtube.com/watch?v=QmNtbnUfns8 -->
+            </section>
         </section>
     </section>
-    }
-
 </section>
 
 

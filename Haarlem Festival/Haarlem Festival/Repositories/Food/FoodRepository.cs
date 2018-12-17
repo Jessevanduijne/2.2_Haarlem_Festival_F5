@@ -18,9 +18,15 @@ namespace Haarlem_Festival.Repositories.Food
             return restaurants;
         }
 
-        public IEnumerable<FoodEvent> GetAllFoodEvents()
+        public Restaurant GetRestaurant(int restaurantId)
         {
-            IEnumerable<FoodEvent> events = db.FoodEvents;
+            Restaurant restaurant = db.Restaurants.Find(restaurantId);
+            return restaurant;
+        }
+
+        public IEnumerable<FoodEvent> GetAllFoodEvents(int restaurantId)
+        {
+            IEnumerable<FoodEvent> events = db.FoodEvents.Where(fe => fe.RestaurantID == restaurantId);
             return events;
         }
 
@@ -29,5 +35,11 @@ namespace Haarlem_Festival.Repositories.Food
             ICollection<Cuisine> cuisines = db.Cuisines.Where(c => c.Restaurants.Any(r => r.RestaurantID == restaurantId)).ToList();
             return cuisines;
         }
+
+        //public FoodEvent GetFoodEvent(int restaurantId)
+        //{
+        //    FoodEvent foodEvent = db.FoodEvents.Find(restaurantId);
+        //    return foodEvent;
+        //}
     }
 }

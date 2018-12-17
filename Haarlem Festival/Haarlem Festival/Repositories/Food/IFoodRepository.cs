@@ -11,7 +11,9 @@ namespace Haarlem_Festival.Repositories.Food
     interface IFoodRepository
     {
         IEnumerable<Restaurant> GetAllRestaurants();
-        IEnumerable<FoodEvent> GetAllFoodEvents();
+        Restaurant GetRestaurant(int restaurantId);
+        IEnumerable<FoodEvent> GetAllFoodEvents(int restaurantId);
         ICollection<Cuisine> GetAllCuisinesForRestaurant(int restuarantId);
+        //FoodEvent GetFoodEvent(int restaurantId);
     }
 }
