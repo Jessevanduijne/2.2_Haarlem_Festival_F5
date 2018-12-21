@@ -33,6 +33,8 @@ namespace Haarlem_Festival.Controllers
             booking.Events = foodRepository.GetAllFoodEvents(restaurantId);
             booking.Restaurant = foodRepository.GetRestaurant(restaurantId);
 
+            // Fix the datetime issue:
+            booking.TimeAvailable = booking.Events.First().EndTime.Subtract(booking.Events.First().StartTime);
 
 
             return PartialView("BookEvent", booking);

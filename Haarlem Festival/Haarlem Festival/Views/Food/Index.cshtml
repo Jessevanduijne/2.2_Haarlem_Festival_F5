@@ -7,9 +7,9 @@
 <script>
     var FoodEvents = function (restaurantId) {
         var url = "/Food/FoodEvents?restaurantId=" + restaurantId;
-        $("modalBody").load(url, function () {
-            $("MyModal").modal("show");
-        })
+        $("#modalBody").load(url, function () {
+            $("#MyModal").modal("show");
+        }) 
     }
 </script>
 
@@ -125,16 +125,12 @@
     <br />
 </section>
 
+<!-- Modal screen: -->
 <section class="modal fade" id="MyModal">
     <section class="modal-dialog">
-        <section class="modal-content">
-            <section class="modal-header">
-                <a href="#" class="close" data-dismiss="modal">&times;</a>
-                <h3 class="modal-title">Book a restaurant</h3>
-            </section>
+        <section class="modal-content">           
             <section class="modal-body" id="modalBody">
-                <!-- Filled by partial View & JS -->
-                <!-- https://www.youtube.com/watch?v=QmNtbnUfns8 -->
+                <!-- Filled by partial View, see JS at top of this file -->
             </section>
         </section>
     </section>

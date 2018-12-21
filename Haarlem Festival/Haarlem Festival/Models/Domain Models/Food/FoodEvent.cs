@@ -7,6 +7,8 @@ using System.Web;
 
 namespace Haarlem_Festival.Models.Domain_Models.Food
 {
+    // Table per type
+    [Table("FoodEvents")]
     public class FoodEvent : Event
     {
         [ForeignKey("Restaurant")]

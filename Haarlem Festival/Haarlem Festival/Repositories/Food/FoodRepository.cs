@@ -26,7 +26,7 @@ namespace Haarlem_Festival.Repositories.Food
 
         public IEnumerable<FoodEvent> GetAllFoodEvents(int restaurantId)
         {
-            IEnumerable<FoodEvent> events = db.FoodEvents.Where(fe => fe.RestaurantID == restaurantId);
+            IEnumerable<FoodEvent> events = db.Events.OfType<FoodEvent>().Where(x => x.RestaurantID == restaurantId);
             return events;
         }
 

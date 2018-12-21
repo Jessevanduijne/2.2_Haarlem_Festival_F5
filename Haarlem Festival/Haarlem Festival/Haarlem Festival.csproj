@@ -170,6 +170,10 @@
     <Compile Include="Migrations\201812121946061_cuisineupdate.Designer.cs">
       <DependentUpon>201812121946061_cuisineupdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812212018509_TPT-test.cs" />
+    <Compile Include="Migrations\201812212018509_TPT-test.Designer.cs">
+      <DependentUpon>201812212018509_TPT-test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database Connection\HFContext.cs" />
     <Compile Include="Models\Domain Models\Dance\DanceEvent.cs" />
@@ -297,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812121946061_cuisineupdate.resx">
       <DependentUpon>201812121946061_cuisineupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812212018509_TPT-test.resx">
+      <DependentUpon>201812212018509_TPT-test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
