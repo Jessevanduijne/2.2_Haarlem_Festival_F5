@@ -29,7 +29,8 @@
 </section>
 
 <section id="ticketselect">
-    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "bookTicketForm" }))
+    @*@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "bookTicketForm" }))*@
+    @using (Html.BeginForm())
     {
         <section class="container-fluid">
             <section class="row" id="dateSelect">
@@ -37,8 +38,8 @@
                 <label class="col-sm-offset-2 col-sm-4">Date:</label>
                 <section class="col-sm-4">
                     @Html.DropDownListFor(item => item.SelectedEvent,
-     new SelectList(Model.Events, "EventId", "StartTime"),
-     new { selectedEvent = Model.SelectedEvent })
+                      new SelectList(Model.Events, "EventId", "StartTime"),
+                      new { selectedEvent = Model.SelectedEvent })
                 </section>
             </section>
             <section class="row" id="dateSelectSubtext">
@@ -64,14 +65,14 @@
             <section class="row" id="specialwishes">
                 <label>Special Request:</label><br />
                 <section class="col-sm-offset-1 col-sm-10">
-                    @Html.TextAreaFor(item => item.SpecialRequest, new { @placeholder = "Optional" })
+                    @Html.TextAreaFor(item => item.SpecialRequest, new { @placeholder = "E.G.: Allergies, special vegan wishes or 'do you have that particular wine?'" })
                 </section>
             </section>
 
             <br />
 
             <section class="row">
-                <button class="col-sm-offset-1 col-sm-10 btn btn-primary">Add to Shoppingcart</button>
+                <button type="submit" class="col-sm-offset-1 col-sm-10 btn btn-primary">Add to Shoppingcart</button>
             </section>
         </section>
     }

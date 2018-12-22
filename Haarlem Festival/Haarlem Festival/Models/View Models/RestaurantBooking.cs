@@ -12,10 +12,9 @@ namespace Haarlem_Festival.Models.View_Models
     {
         public int SelectedEvent { get; set; }
         public IEnumerable<Event> Events { get; set; }
-
-
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
-        public TimeSpan TimeAvailable { get; set; }
+        
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
+        public string TimeAvailable { get; set; }
 
         public int AdultTickets { get; set; }
         public int ChildTickets { get; set; }
@@ -23,5 +22,7 @@ namespace Haarlem_Festival.Models.View_Models
         public string SpecialRequest { get; set; }
 
         public Restaurant Restaurant { get; set; }
+
+        
     }
 }

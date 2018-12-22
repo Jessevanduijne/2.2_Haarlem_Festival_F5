@@ -43,9 +43,17 @@
     margin: 0 auto 0 auto;
 }
 
-    .table-bordered th {
-        padding: 5px;
+    .table-bordered th, .table-bordered td {
+        padding: 5px !important;
         text-align: center;
+    }
+
+    .table-bordered button {
+        border: none;
+        width: 100%;
+        height: 100%;
+        background-color: none;
+        color: none;
     }
 
 .ticketcaption {
@@ -110,9 +118,8 @@
 
 #ticketselect select, #ticketselect input, #specialwishes textarea {
     width: 100%;
+    resize: none;
 }
-
-
 
 #dateSelectSubtext p {
     font-size: 10px;

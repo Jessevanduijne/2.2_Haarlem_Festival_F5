@@ -1,4 +1,5 @@
 ﻿using Haarlem_Festival.Models.Domain_Models.Food;
+using Haarlem_Festival.Models.Domain_Models.General;
 using Haarlem_Festival.Models.View_Models;
 using Haarlem_Festival.Repositories.Food;
 using System;
@@ -26,7 +27,7 @@ namespace Haarlem_Festival.Controllers
             return View(restaurants);
         }
 
-        public ActionResult FoodEvents(int restaurantId)
+        public ActionResult BookRestaurant(int restaurantId)
         {
             // Create Viewmodel
             RestaurantBooking booking = new RestaurantBooking();
@@ -34,10 +35,31 @@ namespace Haarlem_Festival.Controllers
             booking.Restaurant = foodRepository.GetRestaurant(restaurantId);
 
             // Fix the datetime issue:
-            booking.TimeAvailable = booking.Events.First().EndTime.Subtract(booking.Events.First().StartTime);
+            TimeSpan timeAtRestaurant = booking.Events.First().EndTime.Subtract(booking.Events.First().StartTime);
+            booking.TimeAvailable = String.Format("{0:00}:{1:00}", timeAtRestaurant.Hours, timeAtRestaurant.Minutes);
 
 
             return PartialView("BookEvent", booking);
+        }
+
+        [HttpPost]
+        public ActionResult BookRestaurant(RestaurantBooking booking)
+        {          
+            Order order = new Order();
+            Ticket ticket = new Ticket();
+
+            ticket.Amount = booking.AdultTickets + booking.ChildTickets;
+            ticket.EventId = booking.SelectedEvent;         
+
+            ticket.Price = (booking.AdultTickets * booking.Restaurant.PriceAdults) +
+                           (booking.ChildTickets * booking.Restaurant.PriceChildren);
+            ticket.OrderId = order.OrderID; // ??
+            
+            order.IsPaid = false;
+            order.Tickets.Add(ticket);
+            Session["currentOrder"] = order;
+
+            return RedirectToAction("Index", "TicketController");
         }
     }
 }
