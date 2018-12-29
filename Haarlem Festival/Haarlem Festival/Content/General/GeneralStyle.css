@@ -57,7 +57,18 @@ h1 {
     font-weight: lighter;
 }
 
+h2 {
+    font-family: Bahnschrift;
+    font-size: 32px;
+    text-decoration: underline;
+}
+
 .cart {
     width: 30px;
     height: 30px;
+}
+
+p {
+    font-family: Arial;
+    font-size: 13px;
 }

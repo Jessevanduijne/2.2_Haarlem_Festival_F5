@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Haarlem_Festival.Models.Domain_Models.General
 {
@@ -11,12 +12,14 @@ namespace Haarlem_Festival.Models.Domain_Models.General
         [Key]
         public int OrderID { get; set; }
 
-        // Properties:
-        public int GrandTotal { get; set; }
-        public int GrandAmount { get; set; }
+        // Properties
+        public string FirstName { get; set; }
+        public string LastName { get; set; } 
+        public string Email { get; set; }
+        public bool IsPaid { get; set; }
 
         // Collections:
-        public IEnumerable<OrderItem> OrderItems { get; set; }
+        public List<Ticket> Tickets { get; set; }
 
 
     }

@@ -1,0 +1,68 @@
+﻿@model Haarlem_Festival.Models.View_Models.RestaurantBooking
+
+<script>
+    $(document).ready(function () {
+
+        $('#loadEvents').click(function () {
+
+            var formdata = $("#bookTicketForm").serialize();
+            alert("success")
+            $.ajax({
+                type: "POST",
+                url: "/Food/BookEvent",
+                data: formdata,
+                success: function () {
+                    $("#loadinggif").hide();
+                    $("#MyModal").hide(); 
+                    // Mymodal refers to ID MyModal in index.html
+                }
+            })
+        });
+    }
+</script>
+
+<section id="ticketselect">
+    <hr />
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "bookTicketForm" }))
+    {
+        <section class="loadinggif">
+            <img src="~/Content/Food/img/loading.gif" />
+        </section>
+
+        <section>
+            <label>Date:</label>
+            @Html.DropDownListFor(item => item.SelectedEvent,
+         new SelectList(Model.Events, "EventId", "StartTime"),
+         new { selectedEvent = Model.SelectedEvent })
+
+            <p>The approximate time you have at this restaurant is XXXX hours</p>
+
+        </section>
+
+        <hr />
+
+        <section>
+            <label>Amount of adults: </label>
+            @Html.TextBoxFor(item => item.AdultTickets)
+
+            <label>Amount of children:</label>
+            @Html.TextBoxFor(item => item.ChildTickets)
+        </section>
+
+        <hr />
+
+        <section>
+            <label>Special Request:</label>
+            @Html.TextBoxFor(item => item.SpecialRequest)
+        </section>
+
+        <section>
+            <button>Close</button>
+            <button>Add to Shoppingcart</button>
+        </section>
+    }
+
+
+
+</section>

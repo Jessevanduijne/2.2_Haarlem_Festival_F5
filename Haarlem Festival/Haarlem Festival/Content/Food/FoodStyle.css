@@ -23,25 +23,24 @@
     }
 
 
-.tickettable {
+.title {
     margin-top: 40px;
 }
 
-    .tickettable span {
+    .title span {
         letter-spacing: -2px;
         font-size: 15px;
         color: #56D8CE;
         margin: 0 20px 0 20px;
     }
 
-    .tickettable h1 {
+    .title h1 {
         display: inline;
         font-weight: bolder;
     }
 
 .table-bordered {
     margin: 0 auto 0 auto;
-    
 }
 
     .table-bordered th {
@@ -49,3 +48,46 @@
         text-align: center;
     }
 
+.ticketcaption {
+    margin: 1% 26% 0 26%;
+    font-size: 13px;
+}
+
+.restaurantTile {
+    width: 350px;
+    height: 450px;
+    border: solid 1px #56D8CE;
+    display: inline-block;
+    margin: 1%;
+    vertical-align: top;
+}
+
+.restaurantTile img {
+    width: 350px;
+    height: 220px;
+}
+
+#restauranticons img {
+    width: 40px;
+    height: 40px;
+}
+
+.stars img {
+    width: 25px; 
+    height: 25px;
+}
+
+/* Ticket-part: */
+#ticketselect {
+    width: 700px;
+    height: 400px;
+}
+
+#ticketselect h2 {
+    color: red;
+}
+
+.loadinggif {
+    width: 150px;
+    
+}

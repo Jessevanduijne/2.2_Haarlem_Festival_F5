@@ -6,17 +6,13 @@ using System.Web;
 
 namespace Haarlem_Festival.Models.Domain_Models.Food
 {
-    public enum Cuisine
-    {
-        Dutch = 1, 
-        [Display(Name ="Fish and Seafood")]
-        Fish = 2,
-        European = 3,
-        French = 4,
-        International = 5,
-        Asian = 6,
-        Modern = 7,
-        Steakhouse = 8,
-        Argentinian = 9
+	public class Cuisine
+	{
+        [Key]
+        public int CuisineId { get; set; }
+
+        public string Category { get; set; }
+
+        public virtual ICollection<Restaurant> Restaurants { get; set; }
     }
 }
