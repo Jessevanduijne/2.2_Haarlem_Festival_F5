@@ -22,23 +22,6 @@
         vertical-align: top
     }
 
-
-.title {
-    margin-top: 40px;
-}
-
-    .title span {
-        letter-spacing: -2px;
-        font-size: 15px;
-        color: #56D8CE;
-        margin: 0 20px 0 20px;
-    }
-
-    .title h1 {
-        display: inline;
-        font-weight: bolder;
-    }
-
 .table-bordered {
     margin: 0 auto 0 auto;
 }

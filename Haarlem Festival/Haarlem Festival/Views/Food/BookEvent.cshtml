@@ -1,4 +1,4 @@
-﻿@model Haarlem_Festival.Models.View_Models.RestaurantBooking
+﻿@model Haarlem_Festival.Models.View_Models.Food.RestaurantBooking
 
 <script>
                     //$(document).ready(function () {
@@ -25,13 +25,14 @@
 
 <section class="modal-header">
     <a href="#" class="close" data-dismiss="modal">&times;</a>
-    <h3 class="modal-title">Book @Model.Restaurant.RestaurantName</h3>
+    <h3 class="modal-title">Book @Model.RestaurantName</h3>
 </section>
 
 <section id="ticketselect">
     @*@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "bookTicketForm" }))*@
     @using (Html.BeginForm())
     {
+        @Html.HiddenFor(item => item.RestaurantId, new { restaurantId = Model.RestaurantId })
         <section class="container-fluid">
             <section class="row" id="dateSelect">
                 <br />

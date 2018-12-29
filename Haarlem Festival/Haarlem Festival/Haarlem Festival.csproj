@@ -190,13 +190,17 @@
     <Compile Include="Models\Domain Models\General\Ticket.cs" />
     <Compile Include="Models\Domain Models\Historic\HistoricEvent.cs" />
     <Compile Include="Models\Domain Models\Jazz\JazzEvent.cs" />
-    <Compile Include="Models\View Models\RestaurantBooking.cs" />
+    <Compile Include="Models\View Models\Food\RestaurantBooking.cs" />
     <Compile Include="Models\View Models\Dance\ArtistView.cs" />
     <Compile Include="Models\View Models\Dance\TicketdayView.cs" />
     <Compile Include="Models\View Models\Dance\Ticketview.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Events\EventRepository.cs" />
     <Compile Include="Repositories\Food\FoodRepository.cs" />
     <Compile Include="Repositories\Food\IFoodRepository.cs" />
+    <Compile Include="Repositories\Events\IEventRepository.cs" />
+    <Compile Include="Repositories\Tickets\ITicketRepository.cs" />
+    <Compile Include="Repositories\Tickets\TicketRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Bootstrap\bootstrap-theme.css" />
@@ -238,6 +242,8 @@
     <Content Include="Content\Home\img\historic.png" />
     <Content Include="Content\Home\img\jazz.png" />
     <Content Include="Content\Jazz\JazzStyle.css" />
+    <Content Include="Content\Tickets\img\tickets.jpg" />
+    <Content Include="Content\Tickets\TicketStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -284,7 +290,6 @@
     <Folder Include="Repositories\Dance\" />
     <Folder Include="Repositories\Historic\" />
     <Folder Include="Repositories\Jazz\" />
-    <Folder Include="Repositories\Tickets\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
