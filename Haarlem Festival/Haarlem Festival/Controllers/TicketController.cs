@@ -13,9 +13,11 @@ namespace Haarlem_Festival.Controllers
         public ActionResult Index()
         {
             List<Ticket> tickets = (List<Ticket>)Session["CurrentTickets"];
-            
-
-            return View(tickets);
+            if (tickets != null)
+            {
+                return View(tickets);
+            }
+            else return View(new List<Ticket>());            
         }
     }
 }
