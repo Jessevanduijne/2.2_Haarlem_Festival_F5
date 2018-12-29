@@ -202,6 +202,7 @@
     <Content Include="Content\Food\img\toujours.png" />
     <Content Include="Content\Food\img\www.png" />
     <Content Include="Content\General\GeneralStyle.css" />
+    <Content Include="Content\General\img\bgTable.png" />
     <Content Include="Content\General\img\cart.png" />
     <Content Include="Content\General\img\fb.png" />
     <Content Include="Content\General\img\insta.png" />
@@ -216,7 +217,15 @@
     <Content Include="Content\Home\img\food.png" />
     <Content Include="Content\Home\img\historic.png" />
     <Content Include="Content\Home\img\jazz.png" />
+    <Content Include="Content\Jazz\img\bg.png" />
+    <Content Include="Content\Jazz\img\fb.png" />
+    <Content Include="Content\Jazz\img\insta.png" />
+    <Content Include="Content\Jazz\img\jazz.png" />
+    <Content Include="Content\Jazz\img\Logo.png" />
+    <Content Include="Content\Jazz\img\tablebg.png" />
+    <Content Include="Content\Jazz\img\twitter.png" />
     <Content Include="Content\Jazz\JazzStyle.css" />
+    <Content Include="Content\Jazz\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -258,7 +267,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Dance\img\" />
     <Folder Include="Content\Historic\img\" />
-    <Folder Include="Content\Jazz\img\" />
     <Folder Include="Models\Domain Models\Dance\" />
     <Folder Include="Models\Domain Models\Historic\" />
     <Folder Include="Models\Input Models\" />

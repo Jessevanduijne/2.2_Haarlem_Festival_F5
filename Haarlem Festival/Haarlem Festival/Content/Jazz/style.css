@@ -1,0 +1,109 @@
+.logo {
+    width: 100px;
+}
+
+.bluebox {
+    background-color: lightblue;
+    padding: 10px;
+    position: relative;
+}
+
+    .bluebox p {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-right: 0px;
+        width: 60%;
+        overflow: auto;
+    }
+
+p {
+    font-size: 20px;
+}
+
+.blueboxText {
+    width: 90%;
+}
+
+html {
+    font-family: 'Bahnschrift Light', 'Bahnschrift';
+    background-image: url("img/bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body {
+    background-color: white;
+    width: 1200px;
+    display: block;
+    margin: 2% auto 2% auto;
+    position: relative;
+    z-index: -5;
+}
+
+.title {
+    text-align: center;
+    margin-top: 40px;
+}
+
+    .title span {
+        letter-spacing: -2px;
+        font-size: 15px;
+        color: #56D8CE;
+        margin: 0 20px 0 20px;
+    }
+
+    .title h1 {
+        display: inline;
+        font-size: 30px;
+    }
+
+h1 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: lighter;
+}
+
+.BodyAlignCenter {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.jazzimg {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    bottom: 10px;
+    height: 93%;
+}
+
+.alignCenter {
+    text-align: center;
+    margin: 5px;
+}
+
+.dot {
+    height: 500px;
+    width: 800px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: -4;
+}
+
+.table {
+}
+
+.TicketsSection {
+    height: 500px;
+    background-image: url("../general/img/bgTable.png");
+    background-size: 100% 100%;
+}
+
+footer {
+    font-size: 16px !important;
+}
