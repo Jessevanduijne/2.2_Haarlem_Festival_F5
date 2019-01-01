@@ -9,7 +9,6 @@ namespace Haarlem_Festival.Controllers
 {
     public class TicketController : Controller
     {
-        // GET: Ticket
         public ActionResult Index()
         {
             List<Ticket> tickets = (List<Ticket>)Session["CurrentTickets"];

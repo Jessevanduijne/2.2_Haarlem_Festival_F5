@@ -13,6 +13,7 @@ namespace Haarlem_Festival.Models.Domain_Models.Food
     {
         [ForeignKey("Restaurant")]
         public int RestaurantID { get; set; }
+
         public virtual Restaurant Restaurant { get; set; }
     }
 }

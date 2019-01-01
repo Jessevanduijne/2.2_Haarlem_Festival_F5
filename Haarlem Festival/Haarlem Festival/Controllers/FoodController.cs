@@ -39,7 +39,7 @@ namespace Haarlem_Festival.Controllers
             TimeSpan timeAtRestaurant = booking.Events.First().EndTime.Subtract(booking.Events.First().StartTime);
             booking.TimeAvailable = String.Format("{0:00}:{1:00}", timeAtRestaurant.Hours, timeAtRestaurant.Minutes);
 
-            // Test: 
+            // Pass ID value of restaurant: 
             booking.RestaurantId = restaurantId;
 
             return PartialView("BookEvent", booking);
