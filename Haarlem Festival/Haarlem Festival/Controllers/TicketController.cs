@@ -9,6 +9,7 @@ namespace Haarlem_Festival.Controllers
 {
     public class TicketController : Controller
     {
+        [HttpGet]
         public ActionResult Index()
         {
             List<Ticket> tickets = (List<Ticket>)Session["CurrentTickets"];
@@ -17,6 +18,26 @@ namespace Haarlem_Festival.Controllers
                 return View(tickets);
             }
             else return View(new List<Ticket>());            
+        }
+
+        [HttpGet]
+        public ActionResult DeleteTicket(int eventId)
+        {
+            // EventId is passed because ticketId doesn't exist yet
+
+            List<Ticket> tickets = (List<Ticket>)Session["currentTickets"];
+            Ticket ticket = tickets.Find(x => x.EventId == eventId);
+            tickets.Remove(ticket);
+
+            return RedirectToAction("Payment");
+        }
+
+        [HttpGet]
+        public ActionResult Payment()
+        {
+
+
+            return View();
         }
     }
 }

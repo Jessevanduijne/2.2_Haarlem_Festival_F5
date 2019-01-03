@@ -52,6 +52,9 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -105,9 +108,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -159,6 +159,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JazzController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
+    <Compile Include="Data\Food\JsonRestaurantReview.cs" />
+    <Compile Include="Data\GooglePlacesApiHandler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -178,6 +180,10 @@
     <Compile Include="Migrations\201812221407559_FK_orderId_add.Designer.cs">
       <DependentUpon>201812221407559_FK_orderId_add.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901012046552_googleVarNameEdit.cs" />
+    <Compile Include="Migrations\201901012046552_googleVarNameEdit.Designer.cs">
+      <DependentUpon>201901012046552_googleVarNameEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database Connection\HFContext.cs" />
     <Compile Include="Models\Domain Models\Dance\DanceEvent.cs" />
@@ -190,10 +196,12 @@
     <Compile Include="Models\Domain Models\General\Ticket.cs" />
     <Compile Include="Models\Domain Models\Historic\HistoricEvent.cs" />
     <Compile Include="Models\Domain Models\Jazz\JazzEvent.cs" />
+    <Compile Include="Models\Input Models\Tickets\Payment.cs" />
     <Compile Include="Models\View Models\Food\RestaurantBooking.cs" />
     <Compile Include="Models\View Models\Dance\ArtistView.cs" />
     <Compile Include="Models\View Models\Dance\TicketdayView.cs" />
     <Compile Include="Models\View Models\Dance\Ticketview.cs" />
+    <Compile Include="Models\View Models\Food\RestaurantView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Events\EventRepository.cs" />
     <Compile Include="Repositories\Food\FoodRepository.cs" />
@@ -242,6 +250,7 @@
     <Content Include="Content\Home\img\historic.png" />
     <Content Include="Content\Home\img\jazz.png" />
     <Content Include="Content\Jazz\JazzStyle.css" />
+    <Content Include="Content\Tickets\img\cross.png" />
     <Content Include="Content\Tickets\img\tickets.jpg" />
     <Content Include="Content\Tickets\TicketStyle.css" />
     <Content Include="favicon.ico" />
@@ -281,12 +290,12 @@
     <Content Include="Views\Dance\Index.cshtml" />
     <Content Include="Views\Ticket\Index.cshtml" />
     <Content Include="Views\Food\BookEvent.cshtml" />
+    <Content Include="Views\Ticket\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Historic\img\" />
     <Folder Include="Content\Jazz\img\" />
-    <Folder Include="Models\Input Models\" />
     <Folder Include="Repositories\Dance\" />
     <Folder Include="Repositories\Historic\" />
     <Folder Include="Repositories\Jazz\" />
@@ -316,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812221407559_FK_orderId_add.resx">
       <DependentUpon>201812221407559_FK_orderId_add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901012046552_googleVarNameEdit.resx">
+      <DependentUpon>201901012046552_googleVarNameEdit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
