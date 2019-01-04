@@ -1,68 +1,80 @@
-﻿@model Haarlem_Festival.Models.View_Models.RestaurantBooking
+﻿@model Haarlem_Festival.Models.View_Models.Food.RestaurantBooking
 
 <script>
-    $(document).ready(function () {
+                    //$(document).ready(function () {
 
-        $('#loadEvents').click(function () {
+                    //    $('#loadEvents').click(function () {
 
-            var formdata = $("#bookTicketForm").serialize();
-            alert("success")
-            $.ajax({
-                type: "POST",
-                url: "/Food/BookEvent",
-                data: formdata,
-                success: function () {
-                    $("#loadinggif").hide();
-                    $("#MyModal").hide(); 
-                    // Mymodal refers to ID MyModal in index.html
-                }
-            })
-        });
-    }
+                    //        $("#loadinggif").show();
+
+                    //        var formdata = $("#bookTicketForm").serialize();
+                    //        alert("success")
+                    //        $.ajax({
+                    //            type: "POST",
+                    //            url: "/Food/BookEvent",
+                    //            data: formdata,
+                    //            success: function () {
+                    //                $("#loadinggif").hide();
+                    //                $("#MyModal").hide();
+                    //                // Mymodal refers to ID MyModal in index.html
+                    //            }
+                    //        })
+                    //    });
+                    //}
 </script>
 
+<section class="modal-header">
+    <a href="#" class="close" data-dismiss="modal">&times;</a>
+    <h3 class="modal-title">Book @Model.RestaurantName</h3>
+</section>
+
 <section id="ticketselect">
-    <hr />
-
-    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "bookTicketForm" }))
+    @*@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "bookTicketForm" }))*@
+    @using (Html.BeginForm())
     {
-        <section class="loadinggif">
-            <img src="~/Content/Food/img/loading.gif" />
-        </section>
+        @Html.HiddenFor(item => item.RestaurantId, new { restaurantId = Model.RestaurantId })
+        <section class="container-fluid">
+            <section class="row" id="dateSelect">
+                <br />
+                <label class="col-sm-offset-2 col-sm-4">Date:</label>
+                <section class="col-sm-4">
+                    @Html.DropDownListFor(item => item.SelectedEvent,
+                      new SelectList(Model.Events, "EventId", "StartTime"),
+                      new { selectedEvent = Model.SelectedEvent })
+                </section>
+            </section>
+            <section class="row" id="dateSelectSubtext">
+                <p class="col-sm-offset-6 col-sm-4">The approximate time you have at this restaurant is @Model.TimeAvailable hours</p>
+            </section>
 
-        <section>
-            <label>Date:</label>
-            @Html.DropDownListFor(item => item.SelectedEvent,
-         new SelectList(Model.Events, "EventId", "StartTime"),
-         new { selectedEvent = Model.SelectedEvent })
+            <hr />
 
-            <p>The approximate time you have at this restaurant is XXXX hours</p>
+            <section class="row" id="adultsorchildren">
+                <label class="col-sm-offset-2 col-sm-4">Amount of adults: </label>
+                <section class="col-sm-4">
+                    @Html.TextBoxFor(item => item.AdultTickets)
+                </section>
+                <br /><br />
+                <label class="col-sm-offset-2 col-sm-4">Amount of children:</label>
+                <section class="col-sm-4">
+                    @Html.TextBoxFor(item => item.ChildTickets)
+                </section>
+            </section>
 
-        </section>
+            <hr />
 
-        <hr />
+            <section class="row" id="specialwishes">
+                <label>Special Request:</label><br />
+                <section class="col-sm-offset-1 col-sm-10">
+                    @Html.TextAreaFor(item => item.SpecialRequest, new { @placeholder = "E.G.: Allergies, special vegan wishes or 'do you have that particular wine?'" })
+                </section>
+            </section>
 
-        <section>
-            <label>Amount of adults: </label>
-            @Html.TextBoxFor(item => item.AdultTickets)
+            <br />
 
-            <label>Amount of children:</label>
-            @Html.TextBoxFor(item => item.ChildTickets)
-        </section>
-
-        <hr />
-
-        <section>
-            <label>Special Request:</label>
-            @Html.TextBoxFor(item => item.SpecialRequest)
-        </section>
-
-        <section>
-            <button>Close</button>
-            <button>Add to Shoppingcart</button>
+            <section class="row">
+                <button type="submit" class="col-sm-offset-1 col-sm-10 btn btn-primary">Add to Shoppingcart</button>
+            </section>
         </section>
     }
-
-
-
 </section>

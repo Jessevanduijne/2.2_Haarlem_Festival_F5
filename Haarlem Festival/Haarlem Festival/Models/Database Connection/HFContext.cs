@@ -22,7 +22,7 @@ namespace Haarlem_Festival.Models.Database_Connection
         public DbSet<Venue> Venues { get; set; }
  
         // Food:
-        public DbSet<FoodEvent> FoodEvents { get; set; }
+        //public DbSet<FoodEvent> FoodEvents { get; set; }  <------ Removed, TPH to TPT
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Cuisine> Cuisines { get; set; }
 

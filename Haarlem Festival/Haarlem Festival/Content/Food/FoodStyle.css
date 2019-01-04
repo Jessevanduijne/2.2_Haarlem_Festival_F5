@@ -22,30 +22,21 @@
         vertical-align: top
     }
 
-
-.title {
-    margin-top: 40px;
-}
-
-    .title span {
-        letter-spacing: -2px;
-        font-size: 15px;
-        color: #56D8CE;
-        margin: 0 20px 0 20px;
-    }
-
-    .title h1 {
-        display: inline;
-        font-weight: bolder;
-    }
-
 .table-bordered {
     margin: 0 auto 0 auto;
 }
 
-    .table-bordered th {
-        padding: 5px;
+    .table-bordered th, .table-bordered td {
+        padding: 5px !important;
         text-align: center;
+    }
+
+    .table-bordered button {
+        border: none;
+        width: 100%;
+        height: 100%;
+        background-color: none;
+        color: none;
     }
 
 .ticketcaption {
@@ -78,16 +69,43 @@
 }
 
 /* Ticket-part: */
-#ticketselect {
-    width: 700px;
-    height: 400px;
+.modal {
+  
+    padding: 0 !important;
+}
+
+    .modal:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -4px; /* Adjusts for spacing */
+    }
+
+.modal-dialog {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#ticketselect hr {
+    width: 100%;
 }
 
 #ticketselect h2 {
     color: red;
 }
 
-.loadinggif {
-    width: 150px;
-    
+#adultsorchildren, #dateSelect {
+    text-align: left;
 }
+
+#ticketselect select, #ticketselect input, #specialwishes textarea {
+    width: 100%;
+    resize: none;
+}
+
+#dateSelectSubtext p {
+    font-size: 10px;
+    text-align: left;
+}
+

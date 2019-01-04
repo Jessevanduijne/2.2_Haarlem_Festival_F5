@@ -5,11 +5,11 @@
 }
 
 <script>
-    var FoodEvents = function (restaurantId) {
-        var url = "/Food/FoodEvents?restaurantId=" + restaurantId;
-        $("modalBody").load(url, function () {
-            $("MyModal").modal("show");
-        })
+    var BookRestaurant = function (restaurantId) {
+        var url = "/Food/BookRestaurant?restaurantId=" + restaurantId;
+        $("#modalBody").load(url, function () {
+            $("#MyModal").modal("show");
+        }) 
     }
 </script>
 
@@ -68,19 +68,16 @@
                     @Html.DisplayFor(modelItem => restaurant.RestaurantName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => restaurant.PriceAdults)
+                    @String.Format("€{0:00.00}", restaurant.PriceAdults)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => restaurant.PriceChildren)
+                    @String.Format("€{0:00.00}", restaurant.PriceChildren)
+                </td>
+                <td>           
+                    @String.Join(", ", restaurant.Cuisines.Select(x => x.Category)) 
                 </td>
                 <td>
-                    @foreach (var cuisine in restaurant.Cuisines)
-                    {
-                        @String.Format("{0}, ", cuisine.Category)
-                    }
-                </td>
-                <td>
-                    <button id="loadEvents" data-toggle="modal" data-target="#MyModal" onclick="FoodEvents(@restaurant.RestaurantID)"><img class="cart" src="~/Content/General/img/cart.png" /></button>
+                    <button id="loadEvents" data-toggle="modal" data-target="#MyModal" onclick="BookRestaurant(@restaurant.RestaurantID)"><img class="cart" src="~/Content/General/img/cart.png" /></button>
                 </td>
             </tr>
         }
@@ -125,16 +122,13 @@
     <br />
 </section>
 
+<!-- Modal screen: -->
 <section class="modal fade" id="MyModal">
     <section class="modal-dialog">
-        <section class="modal-content">
-            <section class="modal-header">
-                <a href="#" class="close" data-dismiss="modal">&times;</a>
-                <h3 class="modal-title">Book a restaurant</h3>
-            </section>
+        <section class="modal-content">           
             <section class="modal-body" id="modalBody">
-                <!-- Filled by partial View & JS -->
-                <!-- https://www.youtube.com/watch?v=QmNtbnUfns8 -->
+                <!-- Filled by partial View, see JS at top of this file -->
+                <!-- RenderPartial or Partial are no option, because they render it immediately (but we want the ticketscreen rendered after click) -->
             </section>
         </section>
     </section>

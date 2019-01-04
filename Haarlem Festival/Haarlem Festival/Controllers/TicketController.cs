@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Haarlem_Festival.Models.Domain_Models.General;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,14 @@ namespace Haarlem_Festival.Controllers
 {
     public class TicketController : Controller
     {
-        // GET: Ticket
         public ActionResult Index()
         {
-            return View();
+            List<Ticket> tickets = (List<Ticket>)Session["CurrentTickets"];
+            if (tickets != null)
+            {
+                return View(tickets);
+            }
+            else return View(new List<Ticket>());            
         }
     }
 }
