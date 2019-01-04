@@ -1,4 +1,5 @@
-﻿
+﻿@using Haarlem_Festival.Models.Domain_Models.Jazz; 
+@model IEnumerable<JazzEvent>
 @{
     ViewBag.Title = "Index";
 }
@@ -32,9 +33,26 @@
         </section>
 
         <section class="TicketsSection">
-            <section class="table">
-                <p>Table here... </p>
-            </section>
+            <table class="table">
+                <tr>
+                    <th>Time</th>
+                    <th>Location</th>
+                    <th>Band</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+
+                @foreach (JazzEvent JEvent in Model)
+                {
+                    <tr>
+                        <td>@JEvent.StartTime.TimeOfDay.ToString()</td>
+                        <td>@JEvent.JazzVenue.Name</td>
+                        <td>@JEvent.JazzArtist</td>
+                        <td>@JEvent.Price</td>
+                        <td><img class="cart" src="~/Content/General/img/cart.png" /></td>
+                    </tr>
+                }
+            </table>
         </section>
 
         <section class="title">

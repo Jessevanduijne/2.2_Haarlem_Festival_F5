@@ -20,6 +20,11 @@ p {
     font-size: 20px;
 }
 
+.cart {
+    width: 30px;
+    height: 30px;
+}
+
 .blueboxText {
     width: 90%;
 }
@@ -96,7 +101,34 @@ h1 {
 }
 
 .table {
+    border: none;
+    text-align: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    
 }
+
+    .table th {
+        text-align: center;
+        background-color: #fbfcfe;
+        border-top: none !important;
+        border-bottom: none !important;
+        border-left: 1px solid #ffc46b;
+        border-right: 1px solid #ffc46b;
+    }
+
+    .table td, th {
+        border-top: none !important;
+        border-bottom: none !important;
+        border-left: 1px solid #ffc46b;
+        border-right: 1px solid #ffc46b;
+        border-collapse: collapse;
+
+        background-color: white;
+        
+        vertical-align: middle !important;
+    }
 
 .TicketsSection {
     height: 500px;
