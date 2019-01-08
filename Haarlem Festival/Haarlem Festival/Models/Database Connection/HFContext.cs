@@ -14,7 +14,7 @@ namespace Haarlem_Festival.Models.Database_Connection
     public class HFContext : DbContext
     {
         public HFContext() : base("name=HFContext") { }
-
+        
         // General:
         public DbSet<Order> Orders { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
@@ -33,5 +33,6 @@ namespace Haarlem_Festival.Models.Database_Connection
 
         // Historic:
         public DbSet<HistoricEvent> HistoricEvents { get; set; }
+        public DbSet<Guide> Guides { get; set; }
     }
 }

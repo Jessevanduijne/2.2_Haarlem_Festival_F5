@@ -176,11 +176,14 @@
     <Compile Include="Models\Domain Models\General\Order.cs" />
     <Compile Include="Models\Domain Models\General\Venue.cs" />
     <Compile Include="Models\Domain Models\General\Ticket.cs" />
+    <Compile Include="Models\Domain Models\Historic\Guide.cs" />
     <Compile Include="Models\Domain Models\Historic\HistoricEvent.cs" />
     <Compile Include="Models\Domain Models\Jazz\JazzEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Food\FoodRepository.cs" />
     <Compile Include="Repositories\Food\IFoodRepository.cs" />
+    <Compile Include="Repositories\Historic\HistoricRepository.cs" />
+    <Compile Include="Repositories\Historic\IHistoricRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Bootstrap\bootstrap-theme.css" />
@@ -210,6 +213,10 @@
     <Content Include="Content\General\img\logo.png" />
     <Content Include="Content\General\img\twitter.png" />
     <Content Include="Content\Historic\HistoricStyle.css" />
+    <Content Include="Content\Historic\img\amsterdamgate.png" />
+    <Content Include="Content\Historic\img\historicBG.jpg" />
+    <Content Include="Content\Historic\img\stbavo.jpg" />
+    <Content Include="Content\Historic\img\tour.PNG" />
     <Content Include="Content\Home\HomeStyle.css" />
     <Content Include="Content\Home\img\banner.png" />
     <Content Include="Content\Home\img\bg.png" />
@@ -259,12 +266,10 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Dance\img\" />
-    <Folder Include="Content\Historic\img\" />
     <Folder Include="Content\Jazz\img\" />
     <Folder Include="Models\Input Models\" />
     <Folder Include="Models\View Models\" />
     <Folder Include="Repositories\Dance\" />
-    <Folder Include="Repositories\Historic\" />
     <Folder Include="Repositories\Jazz\" />
     <Folder Include="Repositories\Tickets\" />
   </ItemGroup>
