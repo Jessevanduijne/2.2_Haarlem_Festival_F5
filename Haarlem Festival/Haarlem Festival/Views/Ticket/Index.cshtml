@@ -1,7 +1,42 @@
-﻿
+﻿@model IEnumerable<Haarlem_Festival.Models.Domain_Models.General.Ticket>
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Tickets";
 }
 
-<h2>Index</h2>
+<head>
+    @Styles.Render("~/Content/Tickets/TicketStyle.css")
+</head>
 
+<section class="title">
+    <span>---------------------------------------------------</span>
+    <h1>Tickets</h1>
+    <span>---------------------------------------------------</span>
+</section>
+
+<section id="ticketSection">
+    <table class="table">
+        <tr class="row">
+            <th> Selected Event </th>
+            <th> Price </th>
+            <th> Amount </th>
+            <th></th>
+        </tr>
+        @foreach (var ticket in Model)
+        {
+            <tr class="row">
+                <td> @ticket.Event.EventName - @ticket.Event.StartTime </td>
+                <td> €@ticket.Price,- </td>
+                <td> @ticket.Amount </td>
+                <td>
+                    <a id="deleteTicket" href="@Url.Action("DeleteTicket", "Ticket", new { eventId = ticket.EventId })">
+                        <img src="@Url.Content("~/Content/Tickets/img/cross.png")" />
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+
+    <button class="btn">Shop more tickets</button>
+    <button class="btn" onclick="location.href='@Url.Action("Payment", "Ticket")'">Pay your tickets</button>
+</section>

@@ -7,10 +7,13 @@ using System.Web;
 
 namespace Haarlem_Festival.Models.Domain_Models.Food
 {
+    // Table per type
+    [Table("FoodEvents")]
     public class FoodEvent : Event
     {
         [ForeignKey("Restaurant")]
         public int RestaurantID { get; set; }
+
         public virtual Restaurant Restaurant { get; set; }
     }
 }

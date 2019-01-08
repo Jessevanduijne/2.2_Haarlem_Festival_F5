@@ -1,1 +1,7 @@
-﻿
+﻿.paragraph {
+    font-family: Arial;
+    font-size: 13px;
+    width: 900px;
+    height: 96px;
+    position: center;
+}

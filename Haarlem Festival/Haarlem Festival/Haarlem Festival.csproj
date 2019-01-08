@@ -52,6 +52,9 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -105,9 +108,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -159,12 +159,30 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JazzController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
+    <Compile Include="Data\Food\JsonRestaurantReview.cs" />
+    <Compile Include="Data\GooglePlacesApiHandler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811281552261_newInitialDatabase.cs" />
-    <Compile Include="Migrations\201811281552261_newInitialDatabase.Designer.cs">
-      <DependentUpon>201811281552261_newInitialDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201812081245493_initialDatabase.cs" />
+    <Compile Include="Migrations\201812081245493_initialDatabase.Designer.cs">
+      <DependentUpon>201812081245493_initialDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812121946061_cuisineupdate.cs" />
+    <Compile Include="Migrations\201812121946061_cuisineupdate.Designer.cs">
+      <DependentUpon>201812121946061_cuisineupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812212018509_TPT-test.cs" />
+    <Compile Include="Migrations\201812212018509_TPT-test.Designer.cs">
+      <DependentUpon>201812212018509_TPT-test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812221407559_FK_orderId_add.cs" />
+    <Compile Include="Migrations\201812221407559_FK_orderId_add.Designer.cs">
+      <DependentUpon>201812221407559_FK_orderId_add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901012046552_googleVarNameEdit.cs" />
+    <Compile Include="Migrations\201901012046552_googleVarNameEdit.Designer.cs">
+      <DependentUpon>201901012046552_googleVarNameEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database Connection\HFContext.cs" />
@@ -176,14 +194,21 @@
     <Compile Include="Models\Domain Models\General\Order.cs" />
     <Compile Include="Models\Domain Models\General\Venue.cs" />
     <Compile Include="Models\Domain Models\General\Ticket.cs" />
-    <Compile Include="Models\Domain Models\Historic\Guide.cs" />
     <Compile Include="Models\Domain Models\Historic\HistoricEvent.cs" />
     <Compile Include="Models\Domain Models\Jazz\JazzEvent.cs" />
+    <Compile Include="Models\Input Models\Tickets\Payment.cs" />
+    <Compile Include="Models\View Models\Food\RestaurantBooking.cs" />
+    <Compile Include="Models\View Models\Dance\ArtistView.cs" />
+    <Compile Include="Models\View Models\Dance\TicketdayView.cs" />
+    <Compile Include="Models\View Models\Dance\Ticketview.cs" />
+    <Compile Include="Models\View Models\Food\RestaurantView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Events\EventRepository.cs" />
     <Compile Include="Repositories\Food\FoodRepository.cs" />
     <Compile Include="Repositories\Food\IFoodRepository.cs" />
-    <Compile Include="Repositories\Historic\HistoricRepository.cs" />
-    <Compile Include="Repositories\Historic\IHistoricRepository.cs" />
+    <Compile Include="Repositories\Events\IEventRepository.cs" />
+    <Compile Include="Repositories\Tickets\ITicketRepository.cs" />
+    <Compile Include="Repositories\Tickets\TicketRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Bootstrap\bootstrap-theme.css" />
@@ -191,6 +216,9 @@
     <Content Include="Content\Bootstrap\bootstrap.css" />
     <Content Include="Content\Bootstrap\bootstrap.min.css" />
     <Content Include="Content\Dance\DanceStyle.css" />
+    <Content Include="Content\Dance\img\Headphone.PNG" />
+    <Content Include="Content\Dance\img\Party.PNG" />
+    <Content Include="Content\Dance\img\TicketBackground.PNG" />
     <Content Include="Content\Food\FoodStyle.css" />
     <Content Include="Content\Food\img\bg.jpg" />
     <Content Include="Content\Food\img\food.png" />
@@ -213,10 +241,6 @@
     <Content Include="Content\General\img\logo.png" />
     <Content Include="Content\General\img\twitter.png" />
     <Content Include="Content\Historic\HistoricStyle.css" />
-    <Content Include="Content\Historic\img\amsterdamgate.png" />
-    <Content Include="Content\Historic\img\historicBG.jpg" />
-    <Content Include="Content\Historic\img\stbavo.jpg" />
-    <Content Include="Content\Historic\img\tour.PNG" />
     <Content Include="Content\Home\HomeStyle.css" />
     <Content Include="Content\Home\img\banner.png" />
     <Content Include="Content\Home\img\bg.png" />
@@ -226,6 +250,9 @@
     <Content Include="Content\Home\img\historic.png" />
     <Content Include="Content\Home\img\jazz.png" />
     <Content Include="Content\Jazz\JazzStyle.css" />
+    <Content Include="Content\Tickets\img\cross.png" />
+    <Content Include="Content\Tickets\img\tickets.jpg" />
+    <Content Include="Content\Tickets\TicketStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -262,16 +289,16 @@
     <Content Include="Views\Jazz\Index.cshtml" />
     <Content Include="Views\Dance\Index.cshtml" />
     <Content Include="Views\Ticket\Index.cshtml" />
+    <Content Include="Views\Food\BookEvent.cshtml" />
+    <Content Include="Views\Ticket\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Dance\img\" />
+    <Folder Include="Content\Historic\img\" />
     <Folder Include="Content\Jazz\img\" />
-    <Folder Include="Models\Input Models\" />
-    <Folder Include="Models\View Models\" />
     <Folder Include="Repositories\Dance\" />
+    <Folder Include="Repositories\Historic\" />
     <Folder Include="Repositories\Jazz\" />
-    <Folder Include="Repositories\Tickets\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -287,8 +314,20 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811281552261_newInitialDatabase.resx">
-      <DependentUpon>201811281552261_newInitialDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812081245493_initialDatabase.resx">
+      <DependentUpon>201812081245493_initialDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812121946061_cuisineupdate.resx">
+      <DependentUpon>201812121946061_cuisineupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812212018509_TPT-test.resx">
+      <DependentUpon>201812212018509_TPT-test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812221407559_FK_orderId_add.resx">
+      <DependentUpon>201812221407559_FK_orderId_add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901012046552_googleVarNameEdit.resx">
+      <DependentUpon>201901012046552_googleVarNameEdit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

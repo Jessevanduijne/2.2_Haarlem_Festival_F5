@@ -3,7 +3,7 @@ namespace Haarlem_Festival.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class newInitialDatabase : DbMigration
+    public partial class initialDatabase : DbMigration
     {
         public override void Up()
         {
@@ -17,21 +17,21 @@ namespace Haarlem_Festival.Migrations
                         EndTime = c.DateTime(nullable: false),
                         MaxTickets = c.Int(nullable: false),
                         CurrentTickets = c.Int(nullable: false),
-                        Artist = c.String(),
+                        DanceArtist = c.String(),
                         Session = c.String(),
-                        VenueId = c.Int(),
+                        DanceVenueId = c.Int(),
                         RestaurantID = c.Int(),
-                        Artist1 = c.String(),
-                        VenueId1 = c.Int(),
+                        JazzArtist = c.String(),
+                        JazzVenueId = c.Int(),
                         Discriminator = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.EventId)
-                .ForeignKey("dbo.Venues", t => t.VenueId, cascadeDelete: true)
+                .ForeignKey("dbo.Venues", t => t.DanceVenueId, cascadeDelete: false)
                 .ForeignKey("dbo.Restaurants", t => t.RestaurantID, cascadeDelete: true)
-                .ForeignKey("dbo.Venues", t => t.VenueId1, cascadeDelete: true)
-                .Index(t => t.VenueId)
+                .ForeignKey("dbo.Venues", t => t.JazzVenueId, cascadeDelete: false)
+                .Index(t => t.DanceVenueId)
                 .Index(t => t.RestaurantID)
-                .Index(t => t.VenueId1);
+                .Index(t => t.JazzVenueId);
             
             CreateTable(
                 "dbo.Venues",
@@ -96,14 +96,14 @@ namespace Haarlem_Festival.Migrations
         {
             DropForeignKey("dbo.Tickets", "Order_OrderID", "dbo.Orders");
             DropForeignKey("dbo.Tickets", "EventId", "dbo.Events");
-            DropForeignKey("dbo.Events", "VenueId1", "dbo.Venues");
+            DropForeignKey("dbo.Events", "JazzVenueId", "dbo.Venues");
             DropForeignKey("dbo.Events", "RestaurantID", "dbo.Restaurants");
-            DropForeignKey("dbo.Events", "VenueId", "dbo.Venues");
+            DropForeignKey("dbo.Events", "DanceVenueId", "dbo.Venues");
             DropIndex("dbo.Tickets", new[] { "Order_OrderID" });
             DropIndex("dbo.Tickets", new[] { "EventId" });
-            DropIndex("dbo.Events", new[] { "VenueId1" });
+            DropIndex("dbo.Events", new[] { "JazzVenueId" });
             DropIndex("dbo.Events", new[] { "RestaurantID" });
-            DropIndex("dbo.Events", new[] { "VenueId" });
+            DropIndex("dbo.Events", new[] { "DanceVenueId" });
             DropTable("dbo.Tickets");
             DropTable("dbo.Orders");
             DropTable("dbo.Restaurants");

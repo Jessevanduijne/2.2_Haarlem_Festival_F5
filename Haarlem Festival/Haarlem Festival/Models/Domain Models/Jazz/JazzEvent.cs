@@ -11,13 +11,13 @@ namespace Haarlem_Festival.Models.Domain_Models.Jazz
     public class JazzEvent : Event
     {
         // Properties:
-        public string Artist { get; set; }
+        public string JazzArtist { get; set; }
 
         // Foreign Key        
-        [ForeignKey("Venue")]
-        public int VenueId { get; set; }
+        [ForeignKey("JazzVenue")]
+        public int JazzVenueId { get; set; }
         
         // Navigation Properties:
-        public Venue Venue { get; set; }
+        public Venue JazzVenue { get; set; }
     }
 }

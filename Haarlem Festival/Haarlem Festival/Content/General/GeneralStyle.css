@@ -36,7 +36,6 @@
         font-size: 10px;
         padding: 0 20px 0 20px;
         color: cornflowerblue;
-
     }
 
 footer {
@@ -46,7 +45,7 @@ footer {
 
 .footerimg {
     display: inline-block;
-    width: 64px; 
+    width: 64px;
     height: 64px;
     margin: 0 20px 10px 20px;
 }
@@ -67,3 +66,25 @@ h2 {
     width: 30px;
     height: 30px;
 }
+
+p {
+    font-family: Arial;
+    font-size: 13px;
+}
+
+/* Title with blue stripes on both sides: */
+.title {
+    margin-top: 40px;
+}
+
+    .title span {
+        letter-spacing: -2px;
+        font-size: 15px;
+        color: #56D8CE;
+        margin: 0 20px 0 20px;
+    }
+
+    .title h1 {
+        display: inline;
+        font-weight: bolder;
+    }
