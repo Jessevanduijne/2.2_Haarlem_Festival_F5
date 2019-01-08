@@ -10,6 +10,8 @@ namespace Haarlem_Festival.Repositories.Historic
 {
     interface IHistoricRepository
     {
-        IEnumerable<HistoricEvent> GenerateHistoricData();
+        IEnumerable<HistoricEvent> GetAllTours();
+        HistoricEvent GetTour(int eventID);
+
     }
 }

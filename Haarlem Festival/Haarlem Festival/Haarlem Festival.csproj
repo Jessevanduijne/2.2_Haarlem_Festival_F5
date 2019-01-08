@@ -194,6 +194,7 @@
     <Compile Include="Models\Domain Models\General\Order.cs" />
     <Compile Include="Models\Domain Models\General\Venue.cs" />
     <Compile Include="Models\Domain Models\General\Ticket.cs" />
+    <Compile Include="Models\Domain Models\Historic\Guide.cs" />
     <Compile Include="Models\Domain Models\Historic\HistoricEvent.cs" />
     <Compile Include="Models\Domain Models\Jazz\JazzEvent.cs" />
     <Compile Include="Models\Input Models\Tickets\Payment.cs" />
@@ -207,6 +208,8 @@
     <Compile Include="Repositories\Food\FoodRepository.cs" />
     <Compile Include="Repositories\Food\IFoodRepository.cs" />
     <Compile Include="Repositories\Events\IEventRepository.cs" />
+    <Compile Include="Repositories\Historic\HistoricRepository.cs" />
+    <Compile Include="Repositories\Historic\IHistoricRepository.cs" />
     <Compile Include="Repositories\Tickets\ITicketRepository.cs" />
     <Compile Include="Repositories\Tickets\TicketRepository.cs" />
   </ItemGroup>
@@ -297,7 +300,6 @@
     <Folder Include="Content\Historic\img\" />
     <Folder Include="Content\Jazz\img\" />
     <Folder Include="Repositories\Dance\" />
-    <Folder Include="Repositories\Historic\" />
     <Folder Include="Repositories\Jazz\" />
   </ItemGroup>
   <ItemGroup>
