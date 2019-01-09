@@ -26,7 +26,7 @@ namespace Haarlem_Festival.Models.Domain_Models.Food
         public virtual ICollection<Cuisine> Cuisines { get; set; } // Creates extra table
 
         // Optional
-        public string GooglePlacesID { get; set; }
+        public string GoogleReviewLink { get; set; }
 
     }
 }

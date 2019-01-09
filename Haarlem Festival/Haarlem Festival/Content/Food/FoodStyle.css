@@ -46,51 +46,26 @@
 
 .restaurantTile {
     width: 350px;
-    min-height: 500px;
+    height: 450px;
     border: solid 1px #56D8CE;
     display: inline-block;
     margin: 1%;
     vertical-align: top;
 }
 
-    #restImg {
-        width: 348px;
-        height: 220px;
-    }
-
-.alignTileContent {
-    min-height: 180px;
-    position: relative;
+.restaurantTile img {
+    width: 350px;
+    height: 220px;
 }
 
-#restaurantTileFooter img {
+#restauranticons img {
     width: 40px;
     height: 40px;
-}
-
-#restaurantTileFooter p {
-    display: inline-block;
-    vertical-align: central;
-    padding-right: 100px;
-}
-
-#restaurantTileFooter span {
-    font-size: 10px;
-    display: inline-block;
 }
 
 .stars img {
     width: 25px; 
     height: 25px;
-}
-
-.googleReview {
-    font-style: italic;
-    font-size: 12px;
-    text-align: center;
-    width: 300px;
-    padding: 0px 0 0 25px;
-
 }
 
 /* Ticket-part: */
