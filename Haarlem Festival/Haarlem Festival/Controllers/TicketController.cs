@@ -29,7 +29,7 @@ namespace Haarlem_Festival.Controllers
             Ticket ticket = tickets.Find(x => x.EventId == eventId);
             tickets.Remove(ticket);
 
-            return RedirectToAction("Payment");
+            return RedirectToAction("Index");
         }
 
         [HttpGet]

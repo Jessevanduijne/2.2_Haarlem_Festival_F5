@@ -26,13 +26,13 @@ namespace Haarlem_Festival.Controllers
             List<RestaurantView> restaurantViews = new List<RestaurantView>();
 
             foreach (Restaurant restaurant in restaurants)
-            {                             
+            {
                 // Add cuisines to restaurant
                 restaurant.Cuisines = foodRepository.GetAllCuisinesForRestaurant(restaurant.RestaurantID);
 
                 // Fill list of viewmodels (reviews aren't stored in db so vm's are necessary)
-                Review review = googlePlacesApiHandler.GetRestaurantReview(restaurant.GooglePlacesID);
-                restaurantViews.Add(new RestaurantView(restaurant, review));
+                //Review review = googlePlacesApiHandler.GetRestaurantReview(restaurant.GooglePlacesID);
+                //restaurantViews.Add(new RestaurantView(restaurant, review));
             }
 
             return View(restaurantViews);
@@ -43,6 +43,7 @@ namespace Haarlem_Festival.Controllers
             // Create Viewmodel
             RestaurantBooking booking = new RestaurantBooking();
             booking.Events = foodRepository.GetAllFoodEvents(restaurantId);
+
             booking.RestaurantName = foodRepository.GetRestaurant(restaurantId).RestaurantName;
 
             // Fix the datetime issue:
@@ -61,28 +62,37 @@ namespace Haarlem_Festival.Controllers
             // The 'booking'-parameter is filled up only with data that is being entered in the form: ticketamount (child/adult), selected event, special request & hidden restaurantID-field
             // Only a field can be passed hidden, not an entire object. That's why we pass only the restaurantId to the viewmodel
 
-            List<Ticket> tickets = new List<Ticket>();
-            Ticket ticket = new Ticket();
             Restaurant restaurant = foodRepository.GetRestaurant(booking.RestaurantId);
 
-            ticket.Amount = booking.AdultTickets + booking.ChildTickets;
-            ticket.EventId = booking.SelectedEvent;
-            ticket.Event = eventRepository.GetEvent(ticket.EventId);
-            ticket.Price = (booking.AdultTickets * restaurant.PriceAdults) + (booking.ChildTickets * restaurant.PriceChildren);            
-
-            // Create session if it doesn't exist or add ticket to existing session
-            if (Session["currentTickets"] == null)
+            if (ModelState.IsValid)
             {
-                tickets.Add(ticket);
-                Session["CurrentTickets"] = tickets;
-            }
-            else
-            {
-                List<Ticket> sessionTickets = (List<Ticket>)Session["currentTickets"];
-                sessionTickets.Add(ticket);
+                List<Ticket> tickets = new List<Ticket>();
+                Ticket ticket = new Ticket();
+
+                ticket.Amount = booking.AdultTickets + booking.ChildTickets;
+                ticket.EventId = booking.SelectedEvent;
+                ticket.Event = eventRepository.GetEvent(ticket.EventId);
+                ticket.Price = (booking.AdultTickets * restaurant.PriceAdults) + (booking.ChildTickets * restaurant.PriceChildren);
+
+                // Create session if it doesn't exist or add ticket to existing session
+                if (Session["currentTickets"] == null)
+                {
+                    tickets.Add(ticket);
+                    Session["CurrentTickets"] = tickets;
+                }
+                else
+                {
+                    List<Ticket> sessionTickets = (List<Ticket>)Session["currentTickets"];
+                    sessionTickets.Add(ticket);
+                }               
+
+                return RedirectToAction("Index", "Ticket");
+                //return Json(new { redirectTo = Url.Action("Index", "Ticket") });
             }
 
-            return RedirectToAction("Index", "Ticket");
+            
+            // Post booking
+            return PartialView("BookEvent", booking);
         }
     }
 }
