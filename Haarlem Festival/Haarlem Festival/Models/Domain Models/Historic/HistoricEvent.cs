@@ -8,12 +8,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Haarlem_Festival.Models.Domain_Models.Historic
 {
+    [Table("HistoricEvents")]
 	public class HistoricEvent : Event
     {
-        [Key]
-        public int TourID { get; set; }
-
-        //[ForeignKey("Guide")]
+        [ForeignKey("Guide")]
         public int GuideID { get; set; }
+        public virtual Guide Guide { get; set; }
+
+        [NotMapped]
+        public string GetGuideName { get { return "Alibaba"; } }
     }
 }

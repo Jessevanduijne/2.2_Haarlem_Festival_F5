@@ -35,6 +35,6 @@ namespace Haarlem_Festival.Models.Database_Connection
 
         // Historic:
         public DbSet<HistoricEvent> HistoricEvents { get; set; }
-        public DbSet<Tour> Tours { get; set; }
+        public DbSet<Guide> Guides { get; set; }
     }
 }

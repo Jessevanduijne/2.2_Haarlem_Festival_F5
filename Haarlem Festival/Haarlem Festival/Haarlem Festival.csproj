@@ -155,7 +155,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DanceController.cs" />
     <Compile Include="Controllers\FoodController.cs" />
+    <Compile Include="Controllers\GuidesController.cs" />
     <Compile Include="Controllers\HistoricController.cs" />
+    <Compile Include="Controllers\HistoricController1.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JazzController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
@@ -164,15 +166,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901091005458_initialmigration09-01.cs" />
-    <Compile Include="Migrations\201901091005458_initialmigration09-01.Designer.cs">
-      <DependentUpon>201901091005458_initialmigration09-01.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901091036100_extratables.cs" />
-    <Compile Include="Migrations\201901091036100_extratables.Designer.cs">
-      <DependentUpon>201901091036100_extratables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database Connection\HFContext.cs" />
     <Compile Include="Models\Domain Models\Dance\Artist.cs" />
     <Compile Include="Models\Domain Models\Dance\DanceEvent.cs" />
@@ -185,7 +178,6 @@
     <Compile Include="Models\Domain Models\General\Ticket.cs" />
     <Compile Include="Models\Domain Models\Historic\Guide.cs" />
     <Compile Include="Models\Domain Models\Historic\HistoricEvent.cs" />
-    <Compile Include="Models\Domain Models\Historic\Tour.cs" />
     <Compile Include="Models\Domain Models\Jazz\JazzEvent.cs" />
     <Compile Include="Models\Input Models\Tickets\Payment.cs" />
     <Compile Include="Models\View Models\Food\RestaurantBooking.cs" />
@@ -268,7 +260,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -287,6 +281,15 @@
     <Content Include="Views\Ticket\Index.cshtml" />
     <Content Include="Views\Food\BookEvent.cshtml" />
     <Content Include="Views\Ticket\Payment.cshtml" />
+    <Content Include="Views\Historic\Create.cshtml" />
+    <Content Include="Views\Historic\Delete.cshtml" />
+    <Content Include="Views\Historic\Details.cshtml" />
+    <Content Include="Views\Historic\Edit.cshtml" />
+    <Content Include="Views\Guides\Create.cshtml" />
+    <Content Include="Views\Guides\Delete.cshtml" />
+    <Content Include="Views\Guides\Details.cshtml" />
+    <Content Include="Views\Guides\Edit.cshtml" />
+    <Content Include="Views\Guides\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -307,14 +310,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901091005458_initialmigration09-01.resx">
-      <DependentUpon>201901091005458_initialmigration09-01.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901091036100_extratables.resx">
-      <DependentUpon>201901091036100_extratables.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

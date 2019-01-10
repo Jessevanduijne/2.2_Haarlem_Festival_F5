@@ -1,4 +1,9 @@
-﻿
+﻿@model IEnumerable<Haarlem_Festival.Models.Domain_Models.Historic.HistoricEvent>
+
+@{
+    ViewBag.Title = "Index";
+}
+
 @{
     ViewBag.Title = "Historic Haarlem";
 }
@@ -21,5 +26,9 @@
     <span>---------------------------------------------------</span>
     <h1>Tickets</h1>
     <span>---------------------------------------------------</span>
-</section>
 
+    @foreach (var historicEvent in Model)
+    {
+        @Html.DisplayFor(modelItem => historicEvent.EventName)
+    }
+</section>

@@ -11,111 +11,107 @@ using Haarlem_Festival.Models.Domain_Models.Historic;
 
 namespace Haarlem_Festival.Controllers
 {
-    public class HistoricController : Controller
+    public class GuidesController : Controller
     {
         private HFContext db = new HFContext();
 
-        // GET: Historic
+        // GET: Guides
         public ActionResult Index()
         {
-            return View(db.HistoricEvents.ToList());
+            return View(db.Guides.ToList());
         }
 
-        // GET: Historic/Details/5
+        // GET: Guides/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HistoricEvent historicEvent = (HistoricEvent)db.Events.Find(id);
-            if (historicEvent == null)
+            Guide guide = db.Guides.Find(id);
+            if (guide == null)
             {
                 return HttpNotFound();
             }
-            return View(historicEvent);
+            return View(guide);
         }
 
-        // GET: Historic/Create
+        // GET: Guides/Create
         public ActionResult Create()
         {
-            ViewBag.GuideID = new SelectList(db.Guides, "GuideID", "Name");
             return View();
         }
 
-        // POST: Historic/Create
+        // POST: Guides/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventId,EventName,StartTime,EndTime,MaxTickets,CurrentTickets,GuideID")] HistoricEvent historicEvent)
+        public ActionResult Create([Bind(Include = "GuideID,Name,Language")] Guide guide)
         {
             if (ModelState.IsValid)
             {
-                db.Events.Add(historicEvent);
+                db.Guides.Add(guide);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.GuideID = new SelectList(db.Guides, "GuideID", "Name", historicEvent.GuideID);
-            return View(historicEvent);
+            return View(guide);
         }
 
-        // GET: Historic/Edit/5
+        // GET: Guides/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HistoricEvent historicEvent = (HistoricEvent)db.Events.Find(id);
-            if (historicEvent == null)
+            Guide guide = db.Guides.Find(id);
+            if (guide == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.GuideID = new SelectList(db.Guides, "GuideID", "Name", historicEvent.GuideID);
-            return View(historicEvent);
+            return View(guide);
         }
 
-        // POST: Historic/Edit/5
+        // POST: Guides/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EventId,EventName,StartTime,EndTime,MaxTickets,CurrentTickets,GuideID")] HistoricEvent historicEvent)
+        public ActionResult Edit([Bind(Include = "GuideID,Name,Language")] Guide guide)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(historicEvent).State = EntityState.Modified;
+                db.Entry(guide).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.GuideID = new SelectList(db.Guides, "GuideID", "Name", historicEvent.GuideID);
-            return View(historicEvent);
+            return View(guide);
         }
 
-        // GET: Historic/Delete/5
+        // GET: Guides/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HistoricEvent historicEvent = (HistoricEvent)db.Events.Find(id);
-            if (historicEvent == null)
+            Guide guide = db.Guides.Find(id);
+            if (guide == null)
             {
                 return HttpNotFound();
             }
-            return View(historicEvent);
+            return View(guide);
         }
 
-        // POST: Historic/Delete/5
+        // POST: Guides/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            HistoricEvent historicEvent = (HistoricEvent)db.Events.Find(id);
-            db.Events.Remove(historicEvent);
+            Guide guide = db.Guides.Find(id);
+            db.Guides.Remove(guide);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
