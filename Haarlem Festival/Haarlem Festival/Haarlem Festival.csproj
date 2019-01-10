@@ -182,6 +182,8 @@
     <Compile Include="Models\View Models\Dance\TicketdayView.cs" />
     <Compile Include="Models\View Models\Dance\Ticketview.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Dance\DanceRepository.cs" />
+    <Compile Include="Repositories\Dance\IDanceRepository.cs" />
     <Compile Include="Repositories\Food\FoodRepository.cs" />
     <Compile Include="Repositories\Food\IFoodRepository.cs" />
   </ItemGroup>
@@ -267,7 +269,6 @@
     <Folder Include="Content\Historic\img\" />
     <Folder Include="Content\Jazz\img\" />
     <Folder Include="Models\Input Models\" />
-    <Folder Include="Repositories\Dance\" />
     <Folder Include="Repositories\Historic\" />
     <Folder Include="Repositories\Jazz\" />
     <Folder Include="Repositories\Tickets\" />
