@@ -4,17 +4,10 @@
     ViewBag.Title = "Food";
 }
 
-<script>
-    var BookRestaurant = function (restaurantId) {
-        var url = "/Food/BookRestaurant?restaurantId=" + restaurantId;
-        $("#modalBody").load(url, function () {
-            $("#MyModal").modal("show");
-        }) 
-    }
-</script>
 
 <head>
     @Styles.Render("~/Content/Food/FoodStyle.css")
+    @Scripts.Render("~/Scripts/jquery.validate.unobtrusive")
 </head>
 
 <section>
@@ -73,11 +66,13 @@
                 <td>
                     @String.Format("€{0:00.00}", restaurant.Restaurant.PriceChildren)
                 </td>
-                <td>           
-                    @String.Join(", ", restaurant.Restaurant.Cuisines.Select(x => x.Category)) 
+                <td>
+                    @String.Join(", ", restaurant.Restaurant.Cuisines.Select(x => x.Category))
                 </td>
                 <td>
-                    <button id="loadEvents" data-toggle="modal" data-target="#MyModal" onclick="BookRestaurant(@restaurant.Restaurant.RestaurantID)"><img class="cart" src="@Url.Content("~/Content/General/img/cart.png")" /></button>
+                    <button id="loadEvents" data-toggle="modal" data-target="#MyModal" onclick="BookRestaurant(@restaurant.Restaurant.RestaurantID)">
+                        <img class="cart" src="@Url.Content("~/Content/General/img/cart.png")" />
+                    </button>
                 </td>
             </tr>
         }
@@ -100,40 +95,41 @@
 
     @foreach (var item in Model)
     {
-    <section class="restaurantTile">
-        <section class="alignTileContent">
-            <h2>@item.Restaurant.RestaurantName</h2>
-            <section class="stars">
-                Stars:
-                @for (int i = 1; i <= item.Restaurant.Stars; i++)
-                {
-                    <img src="@Url.Content("~/Content/Food/img/star.png")" />
-                }
-            </section> <br />
-            <section class="googleReview">
-                @item.Review.text <br /> -
-                @item.Review.author_name
+        <section class="restaurantTile">
+            <section class="alignTileContent">
+                <h2>@item.Restaurant.RestaurantName</h2>
+                <section class="stars">
+                    Stars:
+                    @for (int i = 1; i <= item.Restaurant.Stars; i++)
+                    {
+                        <img src="@Url.Content("~/Content/Food/img/star.png")" />
+                    }
+                </section> <br />
+                <section class="googleReview">
+                    @item.Review.text <br /> -
+                    @item.Review.author_name
+                </section>
+            </section>
+            <img id="restImg" src="@Url.Content("~/Content/Food/img/" + item.Restaurant.ImageLink)" />
+            <br /><br />
+            <section id="restaurantTileFooter">
+                <p>
+                    @Html.DisplayNameFor(x => x.Restaurant.Address): <br />
+                    @item.Restaurant.Address
+                </p>
+                <span><img src="@Url.Content("~/Content/Food/img/route.png")" /><br /> Route</span>
+                <span><img src="@Url.Content("~/Content/Food/img/www.png")" /><br />  Website</span>
             </section>
         </section>
-        <img id="restImg" src="@Url.Content("~/Content/Food/img/" + item.Restaurant.ImageLink)" />
-        <br /><br />
-        <section id="restaurantTileFooter">
-            <p>
-                 @Html.DisplayNameFor(x => x.Restaurant.Address): <br />
-                 @item.Restaurant.Address
-            </p>
-            <span><img src="@Url.Content("~/Content/Food/img/route.png")" /><br /> Route</span>
-            <span><img src="@Url.Content("~/Content/Food/img/www.png")" /><br />  Website</span>
-        </section>
-    </section>
     }
+
     <br />
 </section>
 
 <!-- Modal screen: -->
-<section class="modal fade" id="MyModal">
+<section class="modal fade" id="MyModal" role="dialog">
     <section class="modal-dialog">
-        <section class="modal-content">           
+        <section class="modal-content">
             <section class="modal-body" id="modalBody">
                 <!-- Filled by partial View, see JS at top of this file -->
                 <!-- RenderPartial or Partial are no option, because they render it immediately (but we want the ticketscreen rendered after click) -->
@@ -142,4 +138,17 @@
     </section>
 </section>
 
+<footer>
+    <script>
 
+
+        var BookRestaurant = function (restaurantId) {
+            var url = "/Food/BookRestaurant?restaurantId=" + restaurantId;
+            $("#modalBody").load(url, function () {
+                $("#MyModal").modal("show");
+            })
+        };
+
+
+    </script>
+</footer>

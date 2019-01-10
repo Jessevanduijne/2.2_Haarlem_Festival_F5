@@ -7,13 +7,13 @@ namespace Haarlem_Festival.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class googleVarNameEdit : IMigrationMetadata
+    public sealed partial class extratables : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(googleVarNameEdit));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(extratables));
         
         string IMigrationMetadata.Id
         {
-            get { return "201901012046552_googleVarNameEdit"; }
+            get { return "201901091036100_extratables"; }
         }
         
         string IMigrationMetadata.Source
