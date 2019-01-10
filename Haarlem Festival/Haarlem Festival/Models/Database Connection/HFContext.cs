@@ -22,16 +22,19 @@ namespace Haarlem_Festival.Models.Database_Connection
         public DbSet<Venue> Venues { get; set; }
  
         // Food:
-        public DbSet<FoodEvent> FoodEvents { get; set; }
+        //public DbSet<FoodEvent> FoodEvents { get; set; }  <------ Removed, TPH to TPT
         public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet<Cuisine> Cuisines { get; set; }
 
         // Dance:
         public DbSet<DanceEvent> DanceEvents { get; set; }
+        public DbSet<Artist> Artists { get; set; }
 
         // Jazz:
-        public DbSet<JazzEvent> JazzEvents { get; set; }
+        //public DbSet<JazzEvent> JazzEvents { get; set; } <------ Removed, TPH to TPT
 
         // Historic:
         public DbSet<HistoricEvent> HistoricEvents { get; set; }
+        public DbSet<Tour> Tours { get; set; }
     }
 }

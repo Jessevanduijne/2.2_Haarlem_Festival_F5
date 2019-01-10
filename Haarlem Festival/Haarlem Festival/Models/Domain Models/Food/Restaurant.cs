@@ -23,10 +23,10 @@ namespace Haarlem_Festival.Models.Domain_Models.Food
         public float PriceChildren { get; set; }
 
         // Collections
-        public ICollection<Cuisine> Cuisines { get; set; }
+        public virtual ICollection<Cuisine> Cuisines { get; set; } // Creates extra table
 
         // Optional
-        public string GoogleReviewLink { get; set; }
+        public string GooglePlacesID { get; set; }
 
     }
 }

@@ -19,6 +19,8 @@ namespace Haarlem_Festival.Models.Domain_Models.General
         // Foreign Keys
         [ForeignKey("Event")]
         public int EventId { get; set; }
+        [ForeignKey("Order")]
+        public int OrderId { get; set; }
         
         // Navigation Properties
         public virtual Event Event { get; set; }

@@ -5,13 +5,6 @@
 .intro h1, .events h1 {
     margin-bottom: 40px;
 }
-.intro p {
-    font-family: Arial;
-    font-size: 13px;
-    width: 900px;
-    height: 96px;
-    position: center;
-}
 
 #intro span, #events span {
     letter-spacing: -2px;
