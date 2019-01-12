@@ -8,6 +8,8 @@ using Haarlem_Festival.Models.Domain_Models.General;
 
 namespace Haarlem_Festival.Models.Domain_Models.Jazz
 {
+    // Table per type
+    [Table("JazzEvents")]
     public class JazzEvent : Event
     {
         // Properties:

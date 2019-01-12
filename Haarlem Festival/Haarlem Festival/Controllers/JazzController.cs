@@ -17,6 +17,9 @@ namespace Haarlem_Festival.Controllers
             IEnumerable<JazzEvent> events = repository.GetAllJazzEvents();
             //IEnumerable<JazzEvent> events = repository.GetJazzEventsByDate(new DateTime(2019, 1, 1));
 
+            //ViewBag["time"] = String.Format("{0:00}:{1:00}", e.StartTime.Hour, e.StartTime.Minute);
+
+
             return View(events);
         }
     }

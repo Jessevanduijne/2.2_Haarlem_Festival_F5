@@ -7,13 +7,13 @@ namespace Haarlem_Festival.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class cuisineupdate : IMigrationMetadata
+    public sealed partial class help : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(cuisineupdate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(help));
         
         string IMigrationMetadata.Id
         {
-            get { return "201812121946061_cuisineupdate"; }
+            get { return "201901051132247_help"; }
         }
         
         string IMigrationMetadata.Source

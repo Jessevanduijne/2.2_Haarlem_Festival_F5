@@ -162,25 +162,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812081245493_initialDatabase.cs" />
-    <Compile Include="Migrations\201812081245493_initialDatabase.Designer.cs">
-      <DependentUpon>201812081245493_initialDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812121946061_cuisineupdate.cs" />
-    <Compile Include="Migrations\201812121946061_cuisineupdate.Designer.cs">
-      <DependentUpon>201812121946061_cuisineupdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901031458342_jazz.cs" />
-    <Compile Include="Migrations\201901031458342_jazz.Designer.cs">
-      <DependentUpon>201901031458342_jazz.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812212018509_TPT-test.cs" />
-    <Compile Include="Migrations\201812212018509_TPT-test.Designer.cs">
-      <DependentUpon>201812212018509_TPT-test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812221407559_FK_orderId_add.cs" />
-    <Compile Include="Migrations\201812221407559_FK_orderId_add.Designer.cs">
-      <DependentUpon>201812221407559_FK_orderId_add.cs</DependentUpon>
+    <Compile Include="Migrations\201901051132247_help.cs" />
+    <Compile Include="Migrations\201901051132247_help.Designer.cs">
+      <DependentUpon>201901051132247_help.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database Connection\HFContext.cs" />
@@ -303,8 +287,6 @@
     <Folder Include="Models\Input Models\" />
     <Folder Include="Repositories\Dance\" />
     <Folder Include="Repositories\Historic\" />
-    <Folder Include="Repositories\Tickets\" />
-    <Folder Include="Repositories\Jazz\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -320,20 +302,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812081245493_initialDatabase.resx">
-      <DependentUpon>201812081245493_initialDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812121946061_cuisineupdate.resx">
-      <DependentUpon>201812121946061_cuisineupdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901031458342_jazz.resx">
-      <DependentUpon>201901031458342_jazz.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812212018509_TPT-test.resx">
-      <DependentUpon>201812212018509_TPT-test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812221407559_FK_orderId_add.resx">
-      <DependentUpon>201812221407559_FK_orderId_add.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901051132247_help.resx">
+      <DependentUpon>201901051132247_help.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

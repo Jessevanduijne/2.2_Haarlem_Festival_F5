@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Web;
 using Haarlem_Festival.Models.Domain_Models.Jazz;
+using Haarlem_Festival.Models.Domain_Models.General;
 using Haarlem_Festival.Models.Database_Connection;
 
 namespace Haarlem_Festival.Repositories.Jazz
@@ -13,8 +15,9 @@ namespace Haarlem_Festival.Repositories.Jazz
 
         public IEnumerable<JazzEvent> GetAllJazzEvents()
         {
-            IEnumerable<JazzEvent> stuff = db.JazzEvents.ToList();
-            return stuff;
+            IEnumerable<JazzEvent> jazzEvents = db.JazzEvents.Include(j => j.JazzVenue).ToList();
+
+            return jazzEvents;
         }
 
         public IEnumerable<JazzEvent> GetJazzEventsByDate(DateTime date)
