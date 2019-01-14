@@ -8,17 +8,20 @@ using System.Web;
 using System.Web.Mvc;
 using Haarlem_Festival.Models.Database_Connection;
 using Haarlem_Festival.Models.Domain_Models.Historic;
+using Haarlem_Festival.Repositories.Historic;
 
 namespace Haarlem_Festival.Controllers
 {
     public class HistoricController : Controller
     {
         private HFContext db = new HFContext();
+        private IHistoricRepository historicRepository = new HistoricRepository();
 
         // GET: Historic
         public ActionResult Index()
         {
-            return View(db.HistoricEvents.ToList());
+            // IEnumerable<HistoricEvent> historicEvents = historicRepository.GetAllTours();
+            return View(db.HistoricEvents.ToList().OrderBy(x => x.EventId));
         }
 
         // GET: Historic/Details/5

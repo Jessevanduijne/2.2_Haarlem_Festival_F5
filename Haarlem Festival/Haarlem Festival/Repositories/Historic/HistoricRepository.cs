@@ -14,7 +14,7 @@ namespace Haarlem_Festival.Repositories.Historic
             IEnumerable<HistoricEvent> tours;
             using (HFContext db = new HFContext())
             {
-                tours = db.HistoricEvents;
+                tours = db.HistoricEvents.OrderBy(x => x.EventId);
             }
             return tours;
         }

@@ -10,25 +10,114 @@
 
 <head>
     @Styles.Render("~/Content/Historic/HistoricStyle.css")
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
-<h1>Visit Haarlem Historic</h1>
+<section id="historicintro">
+    <h1>Visit Haarlem Historic</h1>
 
-<article>
-    Haarlem Historic will be offered as a
-    guided tour through Haarlem, visiting historic and important places in its history.
-
-    Duration of this walking tour will be approx. 2,5 hours (with a 15 -minutebreak with refreshments).
-    Tours will be held on Thursday, Friday and Saturday.  There will be several departures a day. The tour starts near of the ‘Churchof St.Bavo’,‘Grote Markt’ in the centre of Haarlem. A giant flag marked ‘Haarlem Historic’ will mark the exact starting location.
-</article>
+    <p class="shortintro">
+        Haarlem Historic will be offered as a
+        guided tour through Haarlem, visiting historic and important places in its history.
+        <br /><br />
+        Duration of this walking tour will be approx. 2,5 hours (with a 15 -minutebreak with refreshments).
+        Tours will be held on Thursday, Friday and Saturday.  There will be several departures a day. The tour starts near of the ‘Churchof St.Bavo’,‘Grote Markt’ in the centre of Haarlem. A giant flag marked ‘Haarlem Historic’ will mark the exact starting location.
+    </p>
+</section>
 
 <section class="title">
     <span>---------------------------------------------------</span>
     <h1>Tickets</h1>
     <span>---------------------------------------------------</span>
-
-    @foreach (var historicEvent in Model)
-    {
-        @Html.DisplayFor(modelItem => historicEvent.EventName)
-    }
 </section>
+    <!-- NAVIGATIE TICKETS BEGIN -->
+    <!-- Knoppen voor navigatie verschillende dagen -->
+<section id="availabletours">
+    <table width="50%" align="center" id="day-selector">
+        <tr>
+            <th><a href="#" id="thursday" class="navigation-button active">Show tickets for Thursday July 26</a></th>
+            <th><a href="#" id="friday" class="navigation-button">Show tickets for Friday July 27</a></th>
+            <th><a href="#" id="saturday" class="navigation-button">Show tickets for Saturday July 28</a></th>
+            <th><a href="#" id="sunday" class="navigation-button">Show tickets for Sunday July 29</a></th>
+        </tr>
+    </table>
+    <!-- NAVIGATIE TICKETS EIND -->
+    <!-- TICKET TABLE BEGIN -->
+    <table width="50%" align="center" class="tourtable">
+        <tr>
+            <th><h4>Time</h4></th>
+            <th><h4>Price</h4></th>
+            <th><h4>English Tour</h4></th>
+            <th><h4>Dutch Tour</h4></th>
+            <th><h4>Chinese Tour</h4></th>
+        </tr>
+
+        @foreach (var historicEvent in Model)
+        {
+            @Html.Raw(historicEvent.GetGeneratedHtml)
+        }
+
+         <tr class="familyRow">
+            <td colspan="3">
+                    <b>Also available, family tickets!</b> For 4 persons <br />
+
+                    (For all tours, except Chinese at 10.00 o'clock)
+            </td>
+            <td>
+                Price €60,-
+            </td>
+                <td>
+                    Knop
+                </td>
+            </tr>
+    </table>
+    <!-- TICKET TABLE EIND -->
+</section>
+
+<section class="title">
+    <span>---------------------------------------------------</span>
+    <h1>Locations</h1>
+    <span>---------------------------------------------------</span>
+</section>
+
+<section id="tourlist">
+    <ol width="50%">
+        <li>Church of St. Bavo</li>
+        <li>Grote Markt</li>
+        <li>De Hallen</li>
+        <li>Proveniershof</li>
+        <li>Jopenkerk (Break location)</li>
+        <li>Waalse Kerk Haarlem</li>
+        <li>Molen de Adriaan</li>
+        <li>Amsterdamse Poort</li>
+        <li>Hof van Bakenes</li>
+    </ol>
+</section>
+
+<script>
+
+    var buttoncontainer = document.getElementById("day-selector");
+    var buttons = buttoncontainer.getElementsByClassName("navigation-button");
+
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            // Table hiden van alle rows.
+            this.className += " active";
+            // Relevante table showen.
+        });
+    }
+
+    $(document).ready(function () {
+        $(".dayOfWeek").hide();
+        $(".dayOfWeek.thursday").show();
+
+        $(".navigation-button").click(function () {
+            $(".dayOfWeek").hide();
+            var knopId = $(this).attr("id");
+            $(".dayOfWeek." + knopId).show();
+        });
+    });
+</script>

@@ -12,6 +12,12 @@
     margin: 2% auto 2% auto;
 }
 
+.shortintro {
+    margin: 40px 20% 40px 20%;
+    font-size: 20px;
+    font-weight: lighter;
+}
+
 .navbar-default {
     background-color: white;
     border: none;
@@ -32,12 +38,12 @@
     padding: 30px 0 0 30px;
 }
 
-    .nav.navbar-nav span {
-        letter-spacing: -2px;
-        font-size: 10px;
-        padding: 0 20px 0 20px;
-        color: cornflowerblue;
-    }
+.nav.navbar-nav span {
+    letter-spacing: -2px;
+    font-size: 10px;
+    padding: 0 20px 0 20px;
+    color: cornflowerblue;
+}
 
 footer {
     text-align: center;
@@ -65,4 +71,61 @@ h2 {
 .cart {
     width: 30px;
     height: 30px;
+}
+
+/* Tickets */
+.navigation-button {
+    color: darkgrey;
+}
+
+.navigation-button.active{
+    color:black;
+}
+.add-cart:hover{
+    cursor:pointer;
+}
+
+.tourtable {
+    table-layout: fixed;
+    margin-top: 20px;
+}
+
+td{
+    border-left: 2px solid orange;
+    border-right: 2px solid orange;
+}
+
+th {
+    text-align: center;
+}
+
+#availabletours {
+    margin-top: 50px;
+}
+
+.familyRow td {
+    border: none;
+    border-left: 2px solid orange;
+    border-right: 2px solid orange;
+    border-top: 2px solid deepskyblue;
+}
+
+.add-cart{
+    /* Fix naar percentage! */
+    width:40px;
+}
+.add-cart:active{
+    border:1px solid black;
+}
+
+#tourlist ol {
+    margin-top: 50px;
+    text-align: left;
+    display: inline-block;
+    margin: 40px 20% 40px 20%;
+    font-size: 20px;
+    font-weight: lighter;
+    border: 1px solid deepskyblue;
+    padding: 40px 120px 40px 120px;
+    box-shadow: 2px 2px lightgrey;
 }
