@@ -187,8 +187,8 @@
     <Compile Include="Models\Domain Models\Historic\Tour.cs" />
     <Compile Include="Models\Domain Models\Jazz\JazzEvent.cs" />
     <Compile Include="Models\Input Models\Tickets\Payment.cs" />
-    <Compile Include="Models\View Models\Food\RestaurantBooking.cs" />
     <Compile Include="Models\View Models\Dance\ArtistView.cs" />
+    <Compile Include="Models\View Models\Food\RestaurantBooking.cs" />
     <Compile Include="Models\View Models\Dance\TicketdayView.cs" />
     <Compile Include="Models\View Models\Dance\Ticketview.cs" />
     <Compile Include="Models\View Models\Food\RestaurantView.cs" />
@@ -286,12 +286,13 @@
     <Content Include="Views\Ticket\Index.cshtml" />
     <Content Include="Views\Food\BookEvent.cshtml" />
     <Content Include="Views\Ticket\Payment.cshtml" />
+    <Content Include="Views\Dance\DanceTickets.cshtml" />
+    <Content Include="Views\Dance\Artists.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Historic\img\" />
     <Folder Include="Content\Jazz\img\" />
-    <Folder Include="Repositories\Dance\" />
     <Folder Include="Repositories\Historic\" />
     <Folder Include="Repositories\Jazz\" />
   </ItemGroup>

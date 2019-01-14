@@ -1,0 +1,42 @@
+﻿@model IList<Haarlem_Festival.Models.View_Models.Dance.ArtistView>
+
+    <div class="carousel slide" id="myCarousel">
+        <div class="carousel-inner">
+            <div class="Slides active">
+                <h1>@Model[0].Name</h1>
+                <p>@Model[0].Description</p>
+                <img src="~/Content/Dance/img/@Model[0].ImgUrl" />
+            </div>
+            @for (int i = 1; i < Model.Count(); i++)
+            {
+                <div class="Slides">
+                    <h1>@Model[i].Name</h1>
+                    <p>@Model[i].Description</p>
+                    <img src="~/Content/Dance/img/@Model[i].ImgUrl" />
+                </div>
+            }
+        </div>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+    </div>
+
+<script>
+    $('#myCarousel').carousel({
+        interval: 10000
+    })
+
+    $('.carousel .Slides').each(function () {
+        var next = $(this).next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
+        }
+        next.children(':first-child').clone().appendTo($(this));
+
+        if (next.next().length > 0) {
+            next.next().children(':first-child').clone().appendTo($(this));
+        }
+        else {
+            $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+        }
+    });
+</script>

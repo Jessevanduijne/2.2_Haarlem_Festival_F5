@@ -1,11 +1,10 @@
-﻿@model Haarlem_Festival.Models.View_Models.Dance.Ticketview
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 <head>
     @Styles.Render("~/Content/Home/HomeStyle.css")
-    @Styles.Render("~/Content/Dance/DanceStyle.css")
     @Styles.Render("~/Content/General/GeneralStyle.css")
+    @Styles.Render("~/Content/Dance/DanceStyle.css")
 </head>
 
 <section class="intro">
@@ -23,14 +22,14 @@
     <h1>Tickets</h1>
     <span>---------------------------------------------------</span>
     <br />
-    <!--Section tickets-->
+    @*@Html.Action("DanceTickets", "Dance")*@
     <p>
         * The capacity of the Club sessions is very limited. Availability for All-Access pas holders can not be garanteed due to safety regulations.
         <br />** TiëstoWorld is a special session spannig his careers work. There will also be some special guests.
     </p>
 </section>
 
-<section>
+<section id="InfoTiles">
     <section>
         <p>
             Haarlem dance invites you to be part of an experience that Haarlem has never seen before.
@@ -67,7 +66,5 @@
     <h1>Line Up</h1>
     <span>---------------------------------------------------</span>
     <br />
-    <!--Section Active -middle- artist-->
-    <!--Section overlayed -left- artist-->
-    <!--Section overlayed -right- artist-->
+    @*@Html.Action("Artists", "Dance")*@
 </section>

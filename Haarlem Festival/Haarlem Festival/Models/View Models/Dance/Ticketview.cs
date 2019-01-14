@@ -38,6 +38,7 @@ namespace Haarlem_Festival.Models.View_Models.Dance
                     Sunday.Add(t.DomainToView(d));
                 }
             }
+            
             return this;
         }
     }

@@ -37,7 +37,7 @@ namespace Haarlem_Festival.Models.View_Models.Dance
             else
             {
                 Start = d.StartTime;
-                Location = d.Venue.Name;
+                Location = d.DanceVenue.Name;
                 Name = d.EventName;
                 Session = d.Session;
                 Price = d.Price;

@@ -13,17 +13,29 @@ namespace Haarlem_Festival.Controllers
     {
         readonly IDanceRepository repo = new DanceRepository();
         IEnumerable<DanceEvent> DanceEvents;
-        // IEnumerable<Artist> Artits;
-        ArtistView Artistview;
-        Ticketview Ticketview;
+        IEnumerable<Artist> Artist;
+        ArtistView a;
+        IList<ArtistView> Artistlist;
+        Ticketview Tickets;
         
-        // GET: Dance
-        [HttpGet]
+        
         public ActionResult Index()
         {
-            //DanceEvents = repo.GetAllDanceEvents();
-            //Ticketview = Ticketview.DomainToView(DanceEvents);
             return View();
+        }
+        public ActionResult DanceTickets()
+        {
+            // get dance events
+            DanceEvents = repo.GetAllDanceEvents();
+            Tickets = Tickets.DomainToView(DanceEvents);
+            return PartialView(Tickets);
+        }
+        public ActionResult Artists()
+        {
+            // get artists
+            Artist = repo.GetAllArtists();
+            Artistlist = a.DomainToView(Artist);
+            return PartialView(Artistlist);
         }
     }
 }
