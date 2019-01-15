@@ -1,0 +1,40 @@
+﻿@model Haarlem_Festival.Models.View_Models.Dance.Ticketview
+
+<table id="Friday">
+    <tr>
+        @foreach(Haarlem_Festival.Models.View_Models.Dance.TicketdayView a in Model.Friday)
+        {
+            <td>@a.Start</td>
+        }
+    </tr>
+    <tr>
+        @foreach(Haarlem_Festival.Models.View_Models.Dance.TicketdayView a in Model.Friday)
+        {
+            <td>@a.Location</td>
+        }
+    </tr>
+    <tr>
+        @foreach(Haarlem_Festival.Models.View_Models.Dance.TicketdayView a in Model.Friday)
+        {
+            <td>@a.Name</td>
+        }
+    </tr>
+    <tr>
+        @foreach (Haarlem_Festival.Models.View_Models.Dance.TicketdayView a in Model.Friday)
+        {
+            <td>@a.Session</td>
+        }
+    </tr>
+    <tr>
+        @foreach(Haarlem_Festival.Models.View_Models.Dance.TicketdayView a in Model.Friday)
+        {
+            <td>@a.Price</td>
+        }
+    </tr>
+    <tr>
+        @foreach (Haarlem_Festival.Models.View_Models.Dance.TicketdayView a in Model.Friday)
+        {
+            <td>Button</td>
+        }
+    </tr>
+</table>

@@ -10,5 +10,8 @@ namespace Haarlem_Festival.Models.Domain_Models.Dance
     {
         [Key]
         public int ArtistId { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string ImgUrl { get; set; }
     }
 }

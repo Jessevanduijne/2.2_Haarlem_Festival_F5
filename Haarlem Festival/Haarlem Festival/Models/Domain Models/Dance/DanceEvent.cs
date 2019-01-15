@@ -14,6 +14,7 @@ namespace Haarlem_Festival.Models.Domain_Models.Dance
         // Properties:
         public string DanceArtist { get; set; } // DJ
         public string Session { get; set; }
+        public float Price { get; set; }
 
         // Foreign Key        
         [ForeignKey("DanceVenue")]
