@@ -172,6 +172,10 @@
     <Compile Include="Migrations\201901091036100_extratables.Designer.cs">
       <DependentUpon>201901091036100_extratables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901152154439_AllToTPT.cs" />
+    <Compile Include="Migrations\201901152154439_AllToTPT.Designer.cs">
+      <DependentUpon>201901152154439_AllToTPT.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database Connection\HFContext.cs" />
     <Compile Include="Models\Domain Models\Dance\Artist.cs" />
@@ -183,8 +187,9 @@
     <Compile Include="Models\Domain Models\General\Order.cs" />
     <Compile Include="Models\Domain Models\General\Venue.cs" />
     <Compile Include="Models\Domain Models\General\Ticket.cs" />
+    <Compile Include="Models\Domain Models\Historic\Day.cs" />
+    <Compile Include="Models\Domain Models\Historic\Guide.cs" />
     <Compile Include="Models\Domain Models\Historic\HistoricEvent.cs" />
-    <Compile Include="Models\Domain Models\Historic\Tour.cs" />
     <Compile Include="Models\Domain Models\Jazz\JazzEvent.cs" />
     <Compile Include="Models\Input Models\Tickets\Payment.cs" />
     <Compile Include="Models\View Models\Food\RestaurantBooking.cs" />
@@ -193,10 +198,14 @@
     <Compile Include="Models\View Models\Dance\Ticketview.cs" />
     <Compile Include="Models\View Models\Food\RestaurantView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Dance\DanceRepository.cs" />
+    <Compile Include="Repositories\Dance\IDanceRepository.cs" />
     <Compile Include="Repositories\Events\EventRepository.cs" />
     <Compile Include="Repositories\Food\FoodRepository.cs" />
     <Compile Include="Repositories\Food\IFoodRepository.cs" />
     <Compile Include="Repositories\Events\IEventRepository.cs" />
+    <Compile Include="Repositories\Historic\HistoricRepository.cs" />
+    <Compile Include="Repositories\Historic\IHistoricRepository.cs" />
     <Compile Include="Repositories\Tickets\ITicketRepository.cs" />
     <Compile Include="Repositories\Tickets\TicketRepository.cs" />
   </ItemGroup>
@@ -232,6 +241,12 @@
     <Content Include="Content\General\img\logo.png" />
     <Content Include="Content\General\img\twitter.png" />
     <Content Include="Content\Historic\HistoricStyle.css" />
+    <Content Include="Content\Historic\img\addcart.png" />
+    <Content Include="Content\Historic\img\amsterdamgate.png" />
+    <Content Include="Content\Historic\img\historicBG.jpg" />
+    <Content Include="Content\Historic\img\stbavo.jpg" />
+    <Content Include="Content\Historic\img\tour.PNG" />
+    <Content Include="Content\Historic\img\cartcross.png" />
     <Content Include="Content\Home\HomeStyle.css" />
     <Content Include="Content\Home\img\banner.png" />
     <Content Include="Content\Home\img\bg.png" />
@@ -265,7 +280,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -284,13 +301,12 @@
     <Content Include="Views\Ticket\Index.cshtml" />
     <Content Include="Views\Food\BookEvent.cshtml" />
     <Content Include="Views\Ticket\Payment.cshtml" />
+    <Content Include="Views\Dance\Artists.cshtml" />
+    <Content Include="Views\Dance\DanceTickets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Historic\img\" />
     <Folder Include="Content\Jazz\img\" />
-    <Folder Include="Repositories\Dance\" />
-    <Folder Include="Repositories\Historic\" />
     <Folder Include="Repositories\Jazz\" />
   </ItemGroup>
   <ItemGroup>
@@ -312,6 +328,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901091036100_extratables.resx">
       <DependentUpon>201901091036100_extratables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901152154439_AllToTPT.resx">
+      <DependentUpon>201901152154439_AllToTPT.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

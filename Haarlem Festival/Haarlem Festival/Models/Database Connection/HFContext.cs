@@ -15,6 +15,14 @@ namespace Haarlem_Festival.Models.Database_Connection
     {
         public HFContext() : base("name=HFContext") { }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<FoodEvent>().ToTable("FoodEvents");
+            modelBuilder.Entity<HistoricEvent>().ToTable("HistoricEvents");
+            modelBuilder.Entity<DanceEvent>().ToTable("DanceEvents");
+            modelBuilder.Entity<JazzEvent>().ToTable("JazzEvents");
+        }
+
         // General:
         public DbSet<Order> Orders { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
@@ -22,19 +30,15 @@ namespace Haarlem_Festival.Models.Database_Connection
         public DbSet<Venue> Venues { get; set; }
  
         // Food:
-        //public DbSet<FoodEvent> FoodEvents { get; set; }  <------ Removed, TPH to TPT
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Cuisine> Cuisines { get; set; }
 
         // Dance:
-        public DbSet<DanceEvent> DanceEvents { get; set; }
         public DbSet<Artist> Artists { get; set; }
 
         // Jazz:
-        //public DbSet<JazzEvent> JazzEvents { get; set; } <------ Removed, TPH to TPT
 
         // Historic:
-        public DbSet<HistoricEvent> HistoricEvents { get; set; }
-        public DbSet<Tour> Tours { get; set; }
+        public DbSet<Guide> Guides { get; set; }
     }
 }
