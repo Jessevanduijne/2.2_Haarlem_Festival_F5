@@ -36,10 +36,10 @@
 <section id="availabletours">
     <table width="50%" align="center" id="day-selector">
         <tr>
-            <th><a href="#" id="thursday" class="navigation-button active">Show tickets for Thursday July 26</a></th>
-            <th><a href="#" id="friday" class="navigation-button">Show tickets for Friday July 27</a></th>
-            <th><a href="#" id="saturday" class="navigation-button">Show tickets for Saturday July 28</a></th>
-            <th><a href="#" id="sunday" class="navigation-button">Show tickets for Sunday July 29</a></th>
+            <th><a id="thursday" class="navigation-button active">Show tickets for Thursday July 26</a></th>
+            <th><a id="friday" class="navigation-button">Show tickets for Friday July 27</a></th>
+            <th><a id="saturday" class="navigation-button">Show tickets for Saturday July 28</a></th>
+            <th><a id="sunday" class="navigation-button">Show tickets for Sunday July 29</a></th>
         </tr>
     </table>
     <!-- NAVIGATIE TICKETS EIND -->
@@ -118,6 +118,11 @@
             $(".dayOfWeek").hide();
             var knopId = $(this).attr("id");
             $(".dayOfWeek." + knopId).show();
+        });
+
+        $(".add-cart").click(function () {
+            var eventId = $(this).parent().attr("id");
+            // alert(eventId);
         });
     });
 </script>

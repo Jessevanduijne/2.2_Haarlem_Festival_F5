@@ -63,15 +63,6 @@ namespace Haarlem_Festival.Models.Domain_Models.Historic
             }
 
             return htmlGenerated;
-
-            /* <th><h4>Time</h4></th>
-            < th >< h4 > Price </ h4 ></ th >
-            < th >< h4 > English Tour </ h4 ></ th >
-     
-                 < th >< h4 > Dutch Tour </ h4 ></ th >
-          
-                      < th >< h4 > Chinese Tour </ h4 ></ th >
-                      */
         }
     }
 }
