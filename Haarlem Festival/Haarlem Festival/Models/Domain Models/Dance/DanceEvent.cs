@@ -8,6 +8,7 @@ using Haarlem_Festival.Models.Domain_Models.General;
 
 namespace Haarlem_Festival.Models.Domain_Models.Dance
 {
+    [Table("DanceEvents")]
     public class DanceEvent : Event
     {
         // Properties:
