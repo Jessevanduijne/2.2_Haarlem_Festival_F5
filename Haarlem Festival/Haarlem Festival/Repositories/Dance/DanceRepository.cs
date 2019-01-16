@@ -14,7 +14,7 @@ namespace Haarlem_Festival.Repositories.Dance
 
         public IEnumerable<DanceEvent> GetAllDanceEvents()
         {
-            IEnumerable<DanceEvent> DanceEvents = db.DanceEvents;
+            IEnumerable<DanceEvent> DanceEvents = db.Events.OfType<DanceEvent>();
             return DanceEvents;
         }
         public IEnumerable<Artist> GetAllArtists()

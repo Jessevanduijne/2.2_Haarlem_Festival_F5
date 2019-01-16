@@ -21,7 +21,7 @@ namespace Haarlem_Festival.Controllers
         public ActionResult Index()
         {
             // IEnumerable<HistoricEvent> historicEvents = historicRepository.GetAllTours();
-            return View(db.HistoricEvents.ToList().OrderBy(x => x.EventId));
+            return View(db.Events.OfType<HistoricEvent>().ToList().OrderBy(x => x.EventId));
         }
 
         // GET: Historic/Details/5
