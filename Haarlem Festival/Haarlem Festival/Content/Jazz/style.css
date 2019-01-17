@@ -103,10 +103,14 @@ h1 {
 .table {
     border: none;
     text-align: center;
-    width: 80%;
+    width: 65%;
     margin-left: auto;
     margin-right: auto;
-    
+}
+
+table {
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
     .table th {
@@ -124,16 +128,21 @@ h1 {
         border-left: 1px solid #ffc46b;
         border-right: 1px solid #ffc46b;
         border-collapse: collapse;
-
         background-color: white;
-        
         vertical-align: middle !important;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
     }
 
+
 .TicketsSection {
-    height: 500px;
+    min-height: 500px;
+    width: 120%;
+    position: relative;
+    left: -70px;
     background-image: url("../general/img/bgTable.png");
-    background-size: 100% 100%;
+    background-size: 100% 500px;
+    background-repeat: no-repeat;
 }
 
 footer {
