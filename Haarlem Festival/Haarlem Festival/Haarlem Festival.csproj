@@ -176,6 +176,10 @@
     <Compile Include="Migrations\201901152154439_AllToTPT.Designer.cs">
       <DependentUpon>201901152154439_AllToTPT.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901171931522_addspecialrequest.cs" />
+    <Compile Include="Migrations\201901171931522_addspecialrequest.Designer.cs">
+      <DependentUpon>201901171931522_addspecialrequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database Connection\HFContext.cs" />
     <Compile Include="Models\Domain Models\Dance\Artist.cs" />
@@ -197,6 +201,7 @@
     <Compile Include="Models\View Models\Dance\TicketdayView.cs" />
     <Compile Include="Models\View Models\Dance\Ticketview.cs" />
     <Compile Include="Models\View Models\Food\RestaurantView.cs" />
+    <Compile Include="Models\View Models\Tickets\TicketOverview.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Dance\DanceRepository.cs" />
     <Compile Include="Repositories\Dance\IDanceRepository.cs" />
@@ -331,6 +336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901152154439_AllToTPT.resx">
       <DependentUpon>201901152154439_AllToTPT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901171931522_addspecialrequest.resx">
+      <DependentUpon>201901171931522_addspecialrequest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

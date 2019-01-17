@@ -1,4 +1,5 @@
 ﻿using Haarlem_Festival.Models.Domain_Models.General;
+using Haarlem_Festival.Models.View_Models.Tickets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,25 @@ namespace Haarlem_Festival.Controllers
     {
         [HttpGet]
         public ActionResult Index()
-        {
+        {           
             List<Ticket> tickets = (List<Ticket>)Session["CurrentTickets"];
-            if (tickets != null)
+
+            if (ModelState.IsValid)
             {
-                return View(tickets);
+                if (tickets != null)
+                {
+                    float totalPrice = tickets.Sum(t => t.Price);
+                    int totalTickets = tickets.Sum(t => t.Amount);
+
+                    TicketOverview viewModel = new TicketOverview(tickets, totalTickets, totalPrice);
+
+                    return View(viewModel);
+                }
+                else ModelState.AddModelError("", "It seems you dont have any tickets yet..");
             }
-            else return View(new List<Ticket>());            
+            else ModelState.AddModelError("", "You can't pay if you don't have any tickets");
+
+            return View(new TicketOverview(new List<Ticket>(), 0, 0));
         }
 
         [HttpGet]
@@ -32,10 +45,15 @@ namespace Haarlem_Festival.Controllers
             return RedirectToAction("Index");
         }
 
+        //[HttpPost]
+        //public ActionResult Index(TicketOverview viewmodel)
+        //{
+
+        //}
+
         [HttpGet]
         public ActionResult Payment()
         {
-
 
             return View();
         }
