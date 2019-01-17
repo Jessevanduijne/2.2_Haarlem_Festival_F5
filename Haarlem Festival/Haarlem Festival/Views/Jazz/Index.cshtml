@@ -1,7 +1,67 @@
-﻿
+﻿@using Haarlem_Festival.Models.Domain_Models.Jazz; 
+@model IEnumerable<JazzEvent>
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<html>
+<head>
+    @Styles.Render("~/Content/Jazz/style.css")
+</head>
+<body>
 
+    <section class="BodyAlignCenter">
+        <h1>Visit Haarlem Jazz</h1>
+        <p>Haarlem Jazz is an important music event for the City of Haarlem. During the Haarlem festival, we want to recreate part of this festival by inviting some of the bands that previously performed there to play at the Patronaat. On Sunday, some of the bands will taketo the big stage at the Grote Markt to perform for all visitors for free! </p>
+        <p class="alignCenter">See the artists and times below! </p>
+
+        <div class="bluebox">
+            <section class="blueboxText">
+                <p>
+                    Haarlem Jazz is one of the big jazz stages in The Netherlands! Various famous artists will be playing. All kinds of famous artists will be playing. Gare du Nord, Soul Six , Lilith Merlot and many more. If you want some standard dabbler tracks, you should definitely listen to Gare du Nord. But if you want a more special act, don’t forget Han Bennink! Haarlem Jazz will show Haarlem what they got! <br>
+                    And last but not least, Sunday is free for all visitors! Come and visit the Grote Markt for free, and enjoy with other people. <br>
+                    So what holds you back? Pick a ticket and add it to your shopping cart.
+                </p>
+            </section>
+            <img class="jazzimg" src="~/Content/Jazz/img/jazz.png">
+        </div>
+
+        <section class="title">
+            <span>---------------------------------------------------</span>
+            <h1>Tickets</h1>
+            <span>---------------------------------------------------</span>
+        </section>
+
+        <section class="TicketsSection">
+            <table class="table">
+                <tr>
+                    <th>Time</th>
+                    <th>Location</th>
+                    <th>Band</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+
+                @foreach (JazzEvent JEvent in Model)
+                {
+                <tr>
+                    <td>@JEvent.StartTime.Hour:@JEvent.StartTime.Minute</td>
+                    <td>@JEvent.JazzVenue.Name</td>
+                    <td>@JEvent.JazzArtist</td>
+                    <td>&euro;@JEvent.Price.00</td>
+                    <td><img class="cart" src="~/Content/General/img/cart.png" /></td>
+                </tr>
+                }
+            </table>
+        </section>
+
+        <section class="title">
+            <span>---------------------------------------------------</span>
+            <h1>Line up</h1>
+            <span>---------------------------------------------------</span>
+        </section>
+        <p>Slideshow here...</p>
+    </section>
+
+</body>
+</html>
