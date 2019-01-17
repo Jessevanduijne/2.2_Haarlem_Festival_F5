@@ -318,11 +318,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Jazz\img\" />
-    <Folder Include="Repositories\Jazz\" />
-    <Folder Include="Models\Input Models\" />
-    <Folder Include="Repositories\Dance\" />
-    <Folder Include="Repositories\Historic\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
