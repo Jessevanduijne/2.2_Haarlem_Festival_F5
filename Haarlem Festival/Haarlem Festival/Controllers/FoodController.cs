@@ -73,6 +73,7 @@ namespace Haarlem_Festival.Controllers
                 ticket.EventId = booking.SelectedEvent;
                 ticket.Event = eventRepository.GetEvent(ticket.EventId);
                 ticket.Price = (booking.AdultTickets * restaurant.PriceAdults) + (booking.ChildTickets * restaurant.PriceChildren);
+                ticket.SpecialRequest = booking.SpecialRequest;
 
                 // Create session if it doesn't exist or add ticket to existing session
                 if (Session["currentTickets"] == null)

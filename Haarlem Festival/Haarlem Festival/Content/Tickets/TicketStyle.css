@@ -5,6 +5,8 @@
 #ticketSection {
     margin: 50px;
     border: 1px solid;
+    height: 100%;
+    position: relative;
 }
 
 tr th {
@@ -14,6 +16,34 @@ tr th {
 #deleteTicket img {
     width: 20px;
     height: 20px;
+}
+
+#ticketSection label {
+    position: relative;
+    margin-top: 10px;
+}
+
+#ticketgeneralitems {
+    margin-top: 100px;
+}
+
+#ticketleftbutton {
+    text-decoration: underline;
+}
+
+#ticketrightbutton {
+    background-color: green;
+    color: white;
+}
+
+#ticketSection button {
+    height: 80px;
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+#createemptyspace {
+    min-height: 00px;
 }
 
 /* Payment form: */
