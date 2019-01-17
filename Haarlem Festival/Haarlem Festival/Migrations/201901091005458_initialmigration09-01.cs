@@ -3,7 +3,7 @@ namespace Haarlem_Festival.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class help : DbMigration
+    public partial class initialmigration0901 : DbMigration
     {
         public override void Up()
         {
@@ -30,7 +30,7 @@ namespace Haarlem_Festival.Migrations
                         WebsiteLink = c.String(),
                         PriceAdults = c.Single(nullable: false),
                         PriceChildren = c.Single(nullable: false),
-                        GoogleReviewLink = c.String(),
+                        GooglePlacesID = c.String(),
                     })
                 .PrimaryKey(t => t.RestaurantID);
             
@@ -106,23 +106,6 @@ namespace Haarlem_Festival.Migrations
                 .Index(t => t.Cuisine_CuisineId);
             
             CreateTable(
-                "dbo.JazzEvents",
-                c => new
-                    {
-                        EventId = c.Int(nullable: false),
-                        JazzArtist = c.String(),
-                        JazzVenueId = c.Int(nullable: false),
-                        Description = c.String(),
-                        PictureLocation = c.String(),
-                        Price = c.Double(nullable: false),
-                    })
-                .PrimaryKey(t => t.EventId)
-                .ForeignKey("dbo.Events", t => t.EventId)
-                .ForeignKey("dbo.Venues", t => t.JazzVenueId, cascadeDelete: true)
-                .Index(t => t.EventId)
-                .Index(t => t.JazzVenueId);
-            
-            CreateTable(
                 "dbo.FoodEvents",
                 c => new
                     {
@@ -135,30 +118,44 @@ namespace Haarlem_Festival.Migrations
                 .Index(t => t.EventId)
                 .Index(t => t.RestaurantID);
             
+            CreateTable(
+                "dbo.JazzEvents",
+                c => new
+                    {
+                        EventId = c.Int(nullable: false),
+                        JazzArtist = c.String(),
+                        JazzVenueId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.EventId)
+                .ForeignKey("dbo.Events", t => t.EventId)
+                .ForeignKey("dbo.Venues", t => t.JazzVenueId, cascadeDelete: true)
+                .Index(t => t.EventId)
+                .Index(t => t.JazzVenueId);
+            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.FoodEvents", "RestaurantID", "dbo.Restaurants");
-            DropForeignKey("dbo.FoodEvents", "EventId", "dbo.Events");
             DropForeignKey("dbo.JazzEvents", "JazzVenueId", "dbo.Venues");
             DropForeignKey("dbo.JazzEvents", "EventId", "dbo.Events");
+            DropForeignKey("dbo.FoodEvents", "RestaurantID", "dbo.Restaurants");
+            DropForeignKey("dbo.FoodEvents", "EventId", "dbo.Events");
             DropForeignKey("dbo.Tickets", "OrderId", "dbo.Orders");
             DropForeignKey("dbo.Tickets", "EventId", "dbo.Events");
             DropForeignKey("dbo.Events", "DanceVenueId", "dbo.Venues");
             DropForeignKey("dbo.RestaurantCuisines", "Cuisine_CuisineId", "dbo.Cuisines");
             DropForeignKey("dbo.RestaurantCuisines", "Restaurant_RestaurantID", "dbo.Restaurants");
-            DropIndex("dbo.FoodEvents", new[] { "RestaurantID" });
-            DropIndex("dbo.FoodEvents", new[] { "EventId" });
             DropIndex("dbo.JazzEvents", new[] { "JazzVenueId" });
             DropIndex("dbo.JazzEvents", new[] { "EventId" });
+            DropIndex("dbo.FoodEvents", new[] { "RestaurantID" });
+            DropIndex("dbo.FoodEvents", new[] { "EventId" });
             DropIndex("dbo.RestaurantCuisines", new[] { "Cuisine_CuisineId" });
             DropIndex("dbo.RestaurantCuisines", new[] { "Restaurant_RestaurantID" });
             DropIndex("dbo.Tickets", new[] { "OrderId" });
             DropIndex("dbo.Tickets", new[] { "EventId" });
             DropIndex("dbo.Events", new[] { "DanceVenueId" });
-            DropTable("dbo.FoodEvents");
             DropTable("dbo.JazzEvents");
+            DropTable("dbo.FoodEvents");
             DropTable("dbo.RestaurantCuisines");
             DropTable("dbo.Tickets");
             DropTable("dbo.Orders");

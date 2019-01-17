@@ -33,7 +33,7 @@ namespace Haarlem_Festival.Repositories.Food
         public ICollection<Cuisine> GetAllCuisinesForRestaurant(int restaurantId)
         {
             ICollection<Cuisine> cuisines = db.Cuisines.Where(c => c.Restaurants.Any(r => r.RestaurantID == restaurantId)).ToList();
-            return cuisines;
+            return cuisines;            
         }
     }
 }

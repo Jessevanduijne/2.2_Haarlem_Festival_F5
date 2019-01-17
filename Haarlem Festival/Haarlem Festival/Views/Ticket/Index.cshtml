@@ -20,6 +20,7 @@
             <th> Selected Event </th>
             <th> Price </th>
             <th> Amount </th>
+            <th></th>
         </tr>
         @foreach (var ticket in Model)
         {
@@ -27,7 +28,15 @@
                 <td> @ticket.Event.EventName - @ticket.Event.StartTime </td>
                 <td> €@ticket.Price,- </td>
                 <td> @ticket.Amount </td>
+                <td>
+                    <a id="deleteTicket" href="@Url.Action("DeleteTicket", "Ticket", new { eventId = ticket.EventId })">
+                        <img src="@Url.Content("~/Content/Tickets/img/cross.png")" />
+                    </a>
+                </td>
             </tr>
         }
     </table>
+
+    <button class="btn">Shop more tickets</button>
+    <button class="btn" onclick="location.href='@Url.Action("Payment", "Ticket")'">Pay your tickets</button>
 </section>

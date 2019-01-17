@@ -10,3 +10,19 @@
 tr th {
     text-align: center;
 }
+
+#deleteTicket img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Payment form: */
+#paymentform {
+    border: 1px solid black;
+    margin: 20px;
+    padding: 20px;
+}
+
+#paymentform .row {
+    margin-bottom: 20px;
+}

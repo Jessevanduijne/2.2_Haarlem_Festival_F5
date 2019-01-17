@@ -1,24 +1,17 @@
-﻿@model IEnumerable<Haarlem_Festival.Models.Domain_Models.Food.Restaurant>
+﻿@model IEnumerable<Haarlem_Festival.Models.View_Models.Food.RestaurantView>
 
 @{
     ViewBag.Title = "Food";
 }
 
-<script>
-    var BookRestaurant = function (restaurantId) {
-        var url = "/Food/BookRestaurant?restaurantId=" + restaurantId;
-        $("#modalBody").load(url, function () {
-            $("#MyModal").modal("show");
-        }) 
-    }
-</script>
 
 <head>
     @Styles.Render("~/Content/Food/FoodStyle.css")
+    @Scripts.Render("~/Scripts/jquery.validate.unobtrusive")
 </head>
 
 <section>
-    <h1>Visit Haarlem Restaurants</h1>
+    <h1>Have a great dinner in Haarlem</h1>
     <p id="shortintro">
         Although Haarlem had not all particular well known culinary tradition there are lots of restaurants that are worth your while.
         Some of them created a special Haarlem festival menu at a reduced price. It is a great way to enjoy the posibilities of Haarlem. <br /><br />
@@ -45,16 +38,16 @@
     <table class="table-bordered">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.RestaurantName)
+                @Html.DisplayNameFor(model => model.Restaurant.RestaurantName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PriceAdults)
+                @Html.DisplayNameFor(model => model.Restaurant.PriceAdults)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PriceChildren)
+                @Html.DisplayNameFor(model => model.Restaurant.PriceChildren)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cuisines)
+                @Html.DisplayNameFor(model => model.Restaurant.Cuisines)
             </th>
             <th>
                 Order a ticket**
@@ -65,19 +58,21 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => restaurant.RestaurantName)
+                    @Html.DisplayFor(modelItem => restaurant.Restaurant.RestaurantName)
                 </td>
                 <td>
-                    @String.Format("€{0:00.00}", restaurant.PriceAdults)
+                    @String.Format("€{0:00.00}", restaurant.Restaurant.PriceAdults)
                 </td>
                 <td>
-                    @String.Format("€{0:00.00}", restaurant.PriceChildren)
-                </td>
-                <td>           
-                    @String.Join(", ", restaurant.Cuisines.Select(x => x.Category)) 
+                    @String.Format("€{0:00.00}", restaurant.Restaurant.PriceChildren)
                 </td>
                 <td>
-                    <button id="loadEvents" data-toggle="modal" data-target="#MyModal" onclick="BookRestaurant(@restaurant.RestaurantID)"><img class="cart" src="~/Content/General/img/cart.png" /></button>
+                    @String.Join(", ", restaurant.Restaurant.Cuisines.Select(x => x.Category))
+                </td>
+                <td>
+                    <button id="loadEvents" data-toggle="modal" data-target="#MyModal" onclick="BookRestaurant(@restaurant.Restaurant.RestaurantID)">
+                        <img class="cart" src="@Url.Content("~/Content/General/img/cart.png")" />
+                    </button>
                 </td>
             </tr>
         }
@@ -101,31 +96,40 @@
     @foreach (var item in Model)
     {
         <section class="restaurantTile">
-            <h2>@item.RestaurantName</h2>
-            <section class="stars">
-                Stars:
-                @for (int i = 1; i <= item.Stars; i++)
-                {
-                    <img src="@Url.Content("~/Content/Food/img/star.png")" />
-                }
+            <section class="alignTileContent">
+                <h2>@item.Restaurant.RestaurantName</h2>
+                <section class="stars">
+                    Stars:
+                    @for (int i = 1; i <= item.Restaurant.Stars; i++)
+                    {
+                        <img src="@Url.Content("~/Content/Food/img/star.png")" />
+                    }
+                </section> <br />
+                <section class="googleReview">
+                    @item.Review.text <br /> -
+                    @item.Review.author_name
+                </section>
             </section>
-            <section class="googleReview">[Google review link input] @item.GoogleReviewLink</section>
-            <img src="@Url.Content("~/Content/Food/img/" + item.ImageLink)" />
-            <p>@item.Address</p>
-
-            <section id="restauranticons">
-                <img src="@Url.Content("~/Content/Food/img/route.png")" />
-                <img src="@Url.Content("~/Content/Food/img/www.png")" />
+            <img id="restImg" src="@Url.Content("~/Content/Food/img/" + item.Restaurant.ImageLink)" />
+            <br /><br />
+            <section id="restaurantTileFooter">
+                <p>
+                    @Html.DisplayNameFor(x => x.Restaurant.Address): <br />
+                    @item.Restaurant.Address
+                </p>
+                <span><img src="@Url.Content("~/Content/Food/img/route.png")" /><br /> Route</span>
+                <span><img src="@Url.Content("~/Content/Food/img/www.png")" /><br />  Website</span>
             </section>
         </section>
     }
+
     <br />
 </section>
 
 <!-- Modal screen: -->
-<section class="modal fade" id="MyModal">
+<section class="modal fade" id="MyModal" role="dialog">
     <section class="modal-dialog">
-        <section class="modal-content">           
+        <section class="modal-content">
             <section class="modal-body" id="modalBody">
                 <!-- Filled by partial View, see JS at top of this file -->
                 <!-- RenderPartial or Partial are no option, because they render it immediately (but we want the ticketscreen rendered after click) -->
@@ -134,4 +138,17 @@
     </section>
 </section>
 
+<footer>
+    <script>
 
+
+        var BookRestaurant = function (restaurantId) {
+            var url = "/Food/BookRestaurant?restaurantId=" + restaurantId;
+            $("#modalBody").load(url, function () {
+                $("#MyModal").modal("show");
+            })
+        };
+
+
+    </script>
+</footer>
