@@ -15,14 +15,14 @@ namespace Haarlem_Festival.Repositories.Jazz
 
         public IEnumerable<JazzEvent> GetAllJazzEvents()
         {
-            IEnumerable<JazzEvent> jazzEvents = db.JazzEvents.Include(j => j.JazzVenue).ToList();
+            IEnumerable<JazzEvent> jazzEvents = db.Events.OfType<JazzEvent>().Include(j => j.JazzVenue).ToList();
 
             return jazzEvents;
         }
 
         public IEnumerable<JazzEvent> GetJazzEventsByDate(DateTime date)
         {
-            return db.JazzEvents.Where(j => j.StartTime.Date == date.Date).ToList();
+            return db.Events.OfType<JazzEvent>().Where(j => j.StartTime.Date == date.Date).ToList();
         }
     }
 }

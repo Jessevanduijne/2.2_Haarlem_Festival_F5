@@ -52,6 +52,9 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -105,9 +108,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -159,15 +159,26 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JazzController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
+    <Compile Include="Data\Food\JsonRestaurantReview.cs" />
+    <Compile Include="Data\GooglePlacesApiHandler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901051132247_help.cs" />
-    <Compile Include="Migrations\201901051132247_help.Designer.cs">
-      <DependentUpon>201901051132247_help.cs</DependentUpon>
+    <Compile Include="Migrations\201901091005458_initialmigration09-01.cs" />
+    <Compile Include="Migrations\201901091005458_initialmigration09-01.Designer.cs">
+      <DependentUpon>201901091005458_initialmigration09-01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901091036100_extratables.cs" />
+    <Compile Include="Migrations\201901091036100_extratables.Designer.cs">
+      <DependentUpon>201901091036100_extratables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901152154439_AllToTPT.cs" />
+    <Compile Include="Migrations\201901152154439_AllToTPT.Designer.cs">
+      <DependentUpon>201901152154439_AllToTPT.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database Connection\HFContext.cs" />
+    <Compile Include="Models\Domain Models\Dance\Artist.cs" />
     <Compile Include="Models\Domain Models\Dance\DanceEvent.cs" />
     <Compile Include="Models\Domain Models\Food\Cuisine.cs" />
     <Compile Include="Models\Domain Models\Food\FoodEvent.cs" />
@@ -176,16 +187,23 @@
     <Compile Include="Models\Domain Models\General\Order.cs" />
     <Compile Include="Models\Domain Models\General\Venue.cs" />
     <Compile Include="Models\Domain Models\General\Ticket.cs" />
+    <Compile Include="Models\Domain Models\Historic\Day.cs" />
+    <Compile Include="Models\Domain Models\Historic\Guide.cs" />
     <Compile Include="Models\Domain Models\Historic\HistoricEvent.cs" />
     <Compile Include="Models\Domain Models\Jazz\JazzEvent.cs" />
     <Compile Include="Models\View Models\Food\RestaurantBooking.cs" />
     <Compile Include="Models\View Models\Dance\ArtistView.cs" />
     <Compile Include="Models\View Models\Dance\TicketdayView.cs" />
     <Compile Include="Models\View Models\Dance\Ticketview.cs" />
+    <Compile Include="Models\View Models\Food\RestaurantView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Dance\DanceRepository.cs" />
+    <Compile Include="Repositories\Dance\IDanceRepository.cs" />
     <Compile Include="Repositories\Events\EventRepository.cs" />
     <Compile Include="Repositories\Food\FoodRepository.cs" />
     <Compile Include="Repositories\Food\IFoodRepository.cs" />
+    <Compile Include="Repositories\Historic\HistoricRepository.cs" />
+    <Compile Include="Repositories\Historic\IHistoricRepository.cs" />
     <Compile Include="Repositories\Jazz\IJazzRepository.cs" />
     <Compile Include="Repositories\Jazz\JazzRepository.cs" />
     <Compile Include="Repositories\Events\IEventRepository.cs" />
@@ -280,13 +298,12 @@
     <Content Include="Views\Dance\Index.cshtml" />
     <Content Include="Views\Ticket\Index.cshtml" />
     <Content Include="Views\Food\BookEvent.cshtml" />
+    <Content Include="Views\Ticket\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Historic\img\" />
     <Folder Include="Models\Input Models\" />
-    <Folder Include="Repositories\Dance\" />
-    <Folder Include="Repositories\Historic\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -302,8 +319,14 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901051132247_help.resx">
-      <DependentUpon>201901051132247_help.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901091005458_initialmigration09-01.resx">
+      <DependentUpon>201901091005458_initialmigration09-01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901091036100_extratables.resx">
+      <DependentUpon>201901091036100_extratables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901152154439_AllToTPT.resx">
+      <DependentUpon>201901152154439_AllToTPT.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
