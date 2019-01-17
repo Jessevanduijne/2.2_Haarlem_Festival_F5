@@ -31,8 +31,8 @@ namespace Haarlem_Festival.Controllers
                 restaurant.Cuisines = foodRepository.GetAllCuisinesForRestaurant(restaurant.RestaurantID);
 
                 // Fill list of viewmodels (reviews aren't stored in db so vm's are necessary)
-                //Review review = googlePlacesApiHandler.GetRestaurantReview(restaurant.GooglePlacesID);
-                //restaurantViews.Add(new RestaurantView(restaurant, review));
+                Review review = googlePlacesApiHandler.GetRestaurantReview(restaurant.GooglePlacesID);
+                restaurantViews.Add(new RestaurantView(restaurant, review));
             }
 
             return View(restaurantViews);

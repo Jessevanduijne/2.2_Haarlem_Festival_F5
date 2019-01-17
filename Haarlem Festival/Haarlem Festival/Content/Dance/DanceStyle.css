@@ -1,7 +1,39 @@
-﻿.paragraph {
+﻿p {
     font-family: Arial;
     font-size: 13px;
     width: 900px;
     height: 96px;
-    position: center;
 }
+#InfoTiles {
+    width:90%;
+    height:400px;
+    background: linear-gradient(135deg, #8ad183 0%,#c3e395 100%);    
+}
+#InfoTiles section{
+    width:50%;
+    height:50%;
+    float:left;
+}
+
+/* override position and transform in 3.3.x */
+.carousel-inner .Slides.left.active {
+    transform: translateX(-33%);
+}
+
+.carousel-inner .Slides.right.active {
+    transform: translateX(33%);
+}
+
+.carousel-inner .Slides.next {
+    transform: translateX(33%)
+}
+
+.carousel-inner .Slides.prev {
+    transform: translateX(-33%)
+}
+
+.carousel-inner .Slides.right,
+.carousel-inner .Slides.left {
+    transform: translateX(0);
+}
+

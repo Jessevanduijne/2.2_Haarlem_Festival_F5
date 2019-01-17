@@ -7,6 +7,7 @@ using System.Web;
 
 namespace Haarlem_Festival.Models.Domain_Models.General
 {
+    [Table("Events")]
     public abstract class Event
     {
         [Key]
