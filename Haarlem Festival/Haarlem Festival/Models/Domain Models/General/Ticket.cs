@@ -14,7 +14,10 @@ namespace Haarlem_Festival.Models.Domain_Models.General
 
         // Properties 
         public float Price { get; set; }
-        public int Amount { get; set; }        
+        public int Amount { get; set; }    
+
+        [Display(Name = "Special Request: ")]
+        public string SpecialRequest { get; set; }
 
         // Foreign Keys
         [ForeignKey("Event")]

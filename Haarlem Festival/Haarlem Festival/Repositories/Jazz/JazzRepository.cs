@@ -15,7 +15,7 @@ namespace Haarlem_Festival.Repositories.Jazz
 
         public IEnumerable<JazzEvent> GetAllJazzEvents()
         {
-            IEnumerable<JazzEvent> jazzEvents = db.JazzEvents.Include(j => j.JazzVenue).ToList();
+            IEnumerable<JazzEvent> jazzEvents = db.Events.OfType<JazzEvent>().Include(j => j.JazzVenue).ToList();
 
             return jazzEvents;
         }
