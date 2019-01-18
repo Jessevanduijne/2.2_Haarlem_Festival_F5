@@ -34,6 +34,7 @@ html {
     background-image: url("img/bg.png");
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 body {
@@ -113,26 +114,26 @@ table {
     margin-bottom: 25px;
 }
 
-    .table th {
-        text-align: center;
-        background-color: #fbfcfe;
-        border-top: none !important;
-        border-bottom: none !important;
-        border-left: 1px solid #ffc46b;
-        border-right: 1px solid #ffc46b;
-    }
+.table th {
+    text-align: center;
+    background-color: #fbfcfe;
+    border-top: none !important;
+    border-bottom: none !important;
+    border-left: 1px solid #ffc46b;
+    border-right: 1px solid #ffc46b;
+}
 
-    .table td, th {
-        border-top: none !important;
-        border-bottom: none !important;
-        border-left: 1px solid #ffc46b;
-        border-right: 1px solid #ffc46b;
-        border-collapse: collapse;
-        background-color: white;
-        vertical-align: middle !important;
-        padding-left: 0px !important;
-        padding-right: 0px !important;
-    }
+.table td, th {
+    border-top: none !important;
+    border-bottom: none !important;
+    border-left: 1px solid #ffc46b;
+    border-right: 1px solid #ffc46b;
+    border-collapse: collapse;
+    background-color: white;
+    vertical-align: middle !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
 
 
 .TicketsSection {
@@ -148,3 +149,118 @@ table {
 footer {
     font-size: 16px !important;
 }
+
+.SlideShow {
+    position: relative;
+    margin-top: 5px;    
+}
+
+.Slide {
+    border: 1px solid #ffc46b;
+    margin: 0px;
+    width: 45%;
+    height: 700px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 10px;
+    position: relative;
+    display: none;
+}
+
+    .Slide p {
+        width: 95%;
+        text-align: center;
+    }
+
+.SlidesTextBox {
+    display: table-cell;
+    vertical-align: middle;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 200px;
+}
+
+    .SlidesTextBox p {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0px;
+    }
+
+.SlideCenter {
+    margin-left: auto;
+    margin-right: auto;
+    width: 45%;
+    text-align: center;
+    z-index: 20;
+    background-color: white;
+    display: block;
+}
+
+.SlideSides {
+    width: 30%;
+    height: 500px;
+    opacity: 0.5;
+    z-index: 10;
+    top: 80px;
+    position: absolute;
+    display: block;
+}
+
+    .SlideSides p {
+        font-size: 13px;
+    }
+
+    .SlideSides h1 {
+        font-size: 21px;
+        font-weight: bold;
+    }
+
+.SlideRight {
+    left: 70%;
+}
+
+.SlideLeft {
+    left: 0px;
+}
+
+.SlideImage {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 150px;
+    width: auto;
+    padding: 16px;
+    color: #ffc46b;
+    font-weight: bold;
+    font-size: 200px;
+    transition: 0.3s ease;
+    border-radius: 0 3px 3px 0;
+    z-index: 25;
+    opacity: 0.8;
+    user-select: none;
+}
+
+.prev{
+    left: 0px;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover, .next:hover {
+        color: rgba(0,0,0,0.8);
+        text-decoration: none;
+    }

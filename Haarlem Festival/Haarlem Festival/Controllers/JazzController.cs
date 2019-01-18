@@ -21,16 +21,19 @@ namespace Haarlem_Festival.Controllers
 
             foreach (JazzEvent jEvent in events)
             {
-                jazzEvents.Add(ToJazzEvent(jEvent));
+                jazzEvents.Add(ToJazzTableView(jEvent));
             }
+
+            MakeSlideshowList(events);
 
             return View(jazzEvents);
         }
 
-        public JazzTableView ToJazzEvent(JazzEvent JazzEvent){
+        public JazzTableView ToJazzTableView(JazzEvent JazzEvent)
+        {
             JazzTableView view = new JazzTableView();
 
-            view.Time = JazzEvent.StartTime.TimeOfDay.ToString() + " - " + JazzEvent.EndTime.TimeOfDay.ToString();
+            view.Time = string.Format("{0}:{1:00} - {2}:{3:00}", JazzEvent.StartTime.Hour, JazzEvent.StartTime.Minute, JazzEvent.EndTime.Hour, JazzEvent.EndTime.Minute);
             view.Location = JazzEvent.JazzVenue.Name;
             view.Band = JazzEvent.JazzArtist;
 
@@ -42,8 +45,31 @@ namespace Haarlem_Festival.Controllers
             {
                 view.Price = "€" + JazzEvent.Price + ".00";
             }
-            
+
             return view;
+        }
+
+        public void MakeSlideshowList(IEnumerable<JazzEvent> events)
+        {
+            ViewBag.SlideShowViews = null;
+            ViewBag.SlideShowViews = new List<SlideShowView>();
+
+            foreach (JazzEvent jEvent in events)
+            {
+                if (jEvent.PictureLocation != null)
+                {
+                    SlideShowView slideShowView = new SlideShowView();
+                    slideShowView.BandName = jEvent.JazzArtist;
+                    slideShowView.Description = jEvent.Description;
+                    slideShowView.ImageLink = jEvent.PictureLocation;
+
+                    List<SlideShowView> temp = ViewBag.SlideShowViews;
+                    if (!(temp.Contains(slideShowView)))
+                    {
+                        ViewBag.SlideShowViews.Add(slideShowView);
+                    }
+                }
+            }
         }
     }
 }
