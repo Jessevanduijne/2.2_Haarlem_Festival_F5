@@ -1,0 +1,58 @@
+﻿@model Haarlem_Festival.Models.View_Models.Historic.TourBooking
+
+<head>
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax")
+</head>
+
+<section id="loaderDiv" hidden>
+    <img src="@Url.Content("~/Content/Food/img/loading.gif")" />
+</section>
+
+<section id="ticketbookingsection">
+    <section class="modal-header">
+        <a href="#" class="close" data-dismiss="modal">&times;</a>
+        <h3 class="modal-title">Book @Model.TourName</h3>
+    </section>
+
+
+    @using (Html.BeginForm("BookTour", "Historic", FormMethod.Post, new { id = "ticketformid" }))
+    {
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(item => item.EventId, new { eventId = Model.EventId })
+        <section class="container-fluid">
+                <section class="row">
+                <label class="col-sm-offset-2 col-sm-4">Amount of Tickets:</label>
+                <section class="col-sm-4">
+                    @Html.EditorFor(item => item.RegularTickets, new { htmlAttributes = new { @type = "number", @min = "1", @max = "20", @step = "1", @value = "1" } })
+                </section>
+            </section>
+
+            <hr />
+
+            <section class="row">
+                <button href="#" id="bookRestaurantSubmit" type="submit" class="col-sm-offset-1 col-sm-10 btn btn-primary">Add to Shoppingcart</button>
+            </section>
+        </section>
+    }
+</section>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#MyModal").on("submit", "#ticketformid", function (e) {
+                e.preventDefault(); // Prevent default submission (?)
+
+                var ticketform = $(this);
+                $.ajax({
+                    url: ticketform.attr("action"),
+                    method: ticketform.attr("method"),
+                    data: ticketform.serialize(),
+                    success: function (partialResult) {
+                        $("#ticketbookingsection").html(partialResult);
+                    }
+                });
+            });
+        });
+    </script>
+}

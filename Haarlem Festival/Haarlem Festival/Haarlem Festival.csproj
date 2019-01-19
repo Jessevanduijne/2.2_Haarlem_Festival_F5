@@ -197,6 +197,8 @@
     <Compile Include="Models\View Models\Dance\TicketdayView.cs" />
     <Compile Include="Models\View Models\Dance\Ticketview.cs" />
     <Compile Include="Models\View Models\Food\RestaurantView.cs" />
+    <Compile Include="Models\View Models\Historic\HistoricView.cs" />
+    <Compile Include="Models\View Models\Historic\TourBooking.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Dance\DanceRepository.cs" />
     <Compile Include="Repositories\Dance\IDanceRepository.cs" />
@@ -303,6 +305,7 @@
     <Content Include="Views\Ticket\Payment.cshtml" />
     <Content Include="Views\Dance\Artists.cshtml" />
     <Content Include="Views\Dance\DanceTickets.cshtml" />
+    <Content Include="Views\Historic\BookTour.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
