@@ -1,5 +1,4 @@
 ﻿@using Haarlem_Festival.Models.View_Models.Jazz; 
-@model List<JazzTableView>
 @{
     ViewBag.Title = "Index";
 }
@@ -33,26 +32,7 @@
         </section>
 
         <section class="TicketsSection">
-            <table class="table">
-                <tr>
-                    <th>Time</th>
-                    <th>Location</th>
-                    <th>Band</th>
-                    <th>Price</th>
-                    <th></th>
-                </tr>
-
-                @foreach (JazzTableView JEvent in Model)
-                {
-                <tr>
-                    <td>@JEvent.Time</td>
-                    <td>@JEvent.Location</td>
-                    <td>@JEvent.Band</td>
-                    <td>@JEvent.Price</td>
-                    <td><img class="cart" src="~/Content/General/img/cart.png" /></td>
-                </tr>
-                }
-            </table>
+            @Html.Partial("JazzTable")
         </section>
 
         <section class="title">

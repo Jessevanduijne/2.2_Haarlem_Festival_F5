@@ -15,18 +15,56 @@ namespace Haarlem_Festival.Controllers
         // GET: Jazz
         public ActionResult Index()
         {
-            IEnumerable<JazzEvent> events = repository.GetAllJazzEvents();
+            GetAllJEventsInViewbag();
 
-            List<JazzTableView> jazzEvents = new List<JazzTableView>();
+            MakeSlideshowList(repository.GetAllJazzEvents());
 
-            foreach (JazzEvent jEvent in events)
+
+
+            return View();
+        }
+
+        public void GetAllJEventsInViewbag()
+        {
+            // Thursday
+            IEnumerable<JazzEvent> thursday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 26));
+
+            ViewBag.JThursday = new List<JazzTableView>();
+
+            foreach(JazzEvent jEvent in thursday)
             {
-                jazzEvents.Add(ToJazzTableView(jEvent));
+                ViewBag.JThursday.Add(ToJazzTableView(jEvent));
             }
 
-            MakeSlideshowList(events);
+            // Friday
+            IEnumerable<JazzEvent> friday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 27));
 
-            return View(jazzEvents);
+            ViewBag.JFriday = new List<JazzTableView>();
+
+            foreach (JazzEvent jEvent in friday)
+            {
+                ViewBag.JFriday.Add(ToJazzTableView(jEvent));
+            }
+
+            // Saturday
+            IEnumerable<JazzEvent> saturday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 28));
+
+            ViewBag.JSaturday = new List<JazzTableView>();
+
+            foreach (JazzEvent jEvent in saturday)
+            {
+                ViewBag.JSaturday.Add(ToJazzTableView(jEvent));
+            }
+
+            // Sunday
+            IEnumerable<JazzEvent> sunday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 29));
+
+            ViewBag.JSunday = new List<JazzTableView>();
+
+            foreach (JazzEvent jEvent in sunday)
+            {
+                ViewBag.JSunday.Add(ToJazzTableView(jEvent));
+            }
         }
 
         public JazzTableView ToJazzTableView(JazzEvent JazzEvent)
@@ -63,7 +101,7 @@ namespace Haarlem_Festival.Controllers
                     slideShowView.Description = jEvent.Description;
                     slideShowView.ImageLink = jEvent.PictureLocation;
 
-                    ViewBag.SlideShowViews.Add(slideShowView); 
+                    ViewBag.SlideShowViews.Add(slideShowView);
                 }
             }
         }

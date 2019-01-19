@@ -20,7 +20,7 @@ namespace Haarlem_Festival.Repositories.Jazz
             return jazzEvents;
         }
 
-        public IEnumerable<JazzEvent> GetJazzEventsByDate(DateTime date)
+       /* public IEnumerable<JazzEvent> GetJazzEventsByDate()
         {
             IEnumerable<JazzEvent> jazzEvents = GetAllJazzEvents();
 
@@ -50,6 +50,16 @@ namespace Haarlem_Festival.Repositories.Jazz
             }
 
             return null;
+        }*/
+
+        public IEnumerable<JazzEvent> GetJazzEventsByDate(DateTime date)
+        {
+            var jEvents = db.JazzEvents
+                    .Where(x => x.StartTime.Year == date.Year
+                            && x.StartTime.Month == date.Month
+                            && x.StartTime.Day == date.Day).Include(j => j.JazzVenue);
+
+            return jEvents;
         }
     }
 }
