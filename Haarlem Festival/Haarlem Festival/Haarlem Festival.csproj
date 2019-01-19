@@ -345,24 +345,6 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
-  <ItemGroup>
-<<<<<<<<< Temporary merge branch 1
-    <EmbeddedResource Include="Migrations\201901051132247_help.resx">
-      <DependentUpon>201901051132247_help.cs</DependentUpon>
-=========
-    <EmbeddedResource Include="Migrations\201901091005458_initialmigration09-01.resx">
-      <DependentUpon>201901091005458_initialmigration09-01.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901091036100_extratables.resx">
-      <DependentUpon>201901091036100_extratables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901152154439_AllToTPT.resx">
-      <DependentUpon>201901152154439_AllToTPT.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901171931522_addspecialrequest.resx">
-      <DependentUpon>201901171931522_addspecialrequest.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
