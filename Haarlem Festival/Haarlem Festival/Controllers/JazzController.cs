@@ -63,11 +63,7 @@ namespace Haarlem_Festival.Controllers
                     slideShowView.Description = jEvent.Description;
                     slideShowView.ImageLink = jEvent.PictureLocation;
 
-                    List<SlideShowView> temp = ViewBag.SlideShowViews;
-                    if (!(temp.Contains(slideShowView)))
-                    {
-                        ViewBag.SlideShowViews.Add(slideShowView);
-                    }
+                    ViewBag.SlideShowViews.Add(slideShowView); 
                 }
             }
         }
