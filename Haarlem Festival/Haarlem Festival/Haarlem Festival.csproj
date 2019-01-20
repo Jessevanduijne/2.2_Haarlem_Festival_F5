@@ -195,6 +195,7 @@
     <Compile Include="Models\Domain Models\Historic\Guide.cs" />
     <Compile Include="Models\Domain Models\Historic\HistoricEvent.cs" />
     <Compile Include="Models\Domain Models\Jazz\JazzEvent.cs" />
+    <Compile Include="Models\Input Models\Tickets\Payment.cs" />
     <Compile Include="Models\View Models\Food\RestaurantBooking.cs" />
     <Compile Include="Models\View Models\Dance\ArtistView.cs" />
     <Compile Include="Models\View Models\Dance\TicketdayView.cs" />
@@ -334,7 +335,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Historic\img\" />
-    <Folder Include="Models\Input Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
