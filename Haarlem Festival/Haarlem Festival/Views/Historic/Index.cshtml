@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Haarlem_Festival.Models.Domain_Models.Historic.HistoricEvent>
+﻿@model IEnumerable<Haarlem_Festival.Models.View_Models.Historic.HistoricView>
 
 @{
     ViewBag.Title = "Index";
@@ -9,9 +9,11 @@
 }
 
 <head>
-    @Styles.Render("~/Content/Historic/HistoricStyle.css")
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    @Styles.Render("~/Content/Historic/HistoricStyle.css")
+    @Scripts.Render("~/Scripts/jquery.validate.unobtrusive.js")
+
+
 </head>
 
 <section id="historicintro">
@@ -31,15 +33,15 @@
     <h1>Tickets</h1>
     <span>---------------------------------------------------</span>
 </section>
-    <!-- NAVIGATIE TICKETS BEGIN -->
-    <!-- Knoppen voor navigatie verschillende dagen -->
+<!-- NAVIGATIE TICKETS BEGIN -->
+<!-- Knoppen voor navigatie verschillende dagen -->
 <section id="availabletours">
     <table width="50%" align="center" id="day-selector">
         <tr>
-            <th><a href="#" id="thursday" class="navigation-button active">Show tickets for Thursday July 26</a></th>
-            <th><a href="#" id="friday" class="navigation-button">Show tickets for Friday July 27</a></th>
-            <th><a href="#" id="saturday" class="navigation-button">Show tickets for Saturday July 28</a></th>
-            <th><a href="#" id="sunday" class="navigation-button">Show tickets for Sunday July 29</a></th>
+            <th><a id="thursday" class="navigation-button active">Show tickets for Thursday July 25</a></th>
+            <th><a id="friday" class="navigation-button">Show tickets for Friday July 26</a></th>
+            <th><a id="saturday" class="navigation-button">Show tickets for Saturday July 27</a></th>
+            <th><a id="sunday" class="navigation-button">Show tickets for Sunday July 28</a></th>
         </tr>
     </table>
     <!-- NAVIGATIE TICKETS EIND -->
@@ -48,29 +50,24 @@
         <tr>
             <th><h4>Time</h4></th>
             <th><h4>Price</h4></th>
-            <th><h4>English Tour</h4></th>
             <th><h4>Dutch Tour</h4></th>
+            <th><h4>English Tour</h4></th>
             <th><h4>Chinese Tour</h4></th>
         </tr>
 
         @foreach (var historicEvent in Model)
         {
-            @Html.Raw(historicEvent.GetGeneratedHtml)
+            @Html.Raw(historicEvent.HistoricEvent.GetGeneratedHtml)
         }
 
-         <tr class="familyRow">
-            <td colspan="3">
-                    <b>Also available, family tickets!</b> For 4 persons <br />
-
-                    (For all tours, except Chinese at 10.00 o'clock)
+        <tr class="familyRow">
+            <td colspan="4">
+                <b>Also available, family tickets!</b> For 4 people
             </td>
             <td>
                 Price €60,-
             </td>
-                <td>
-                    Knop
-                </td>
-            </tr>
+        </tr>
     </table>
     <!-- TICKET TABLE EIND -->
 </section>
@@ -95,8 +92,34 @@
     </ol>
 </section>
 
-<script>
+<!-- Modal screen: -->
+<section class="modal fade" id="MyModal" role="dialog">
+    <section class="modal-dialog">
+        <section class="modal-content">
+            <section class="modal-body" id="modalBody">
+                <!-- Filled by partial View, see JS at top of this file -->
+                <!-- RenderPartial or Partial are no option, because they render it immediately (but we want the ticketscreen rendered after click) -->
+            </section>
+        </section>
+    </section>
+</section>
 
+<section class="locationpreview">
+    <h2>St. Bavo Church</h2>
+    <img src="~/Content/Historic/img/stbavo.jpg" />
+</section>
+
+<section class="locationpreview">
+    <h2>Amsterdam Gate</h2>
+    <img src="~/Content/Historic/img/amsterdamgate.png" />
+</section>
+
+<section class="tourpreview">
+    <img src="~/Content/Historic/img/tour.PNG" />
+</section>
+
+<script>
+    var thisDay = "thursday";
     var buttoncontainer = document.getElementById("day-selector");
     var buttons = buttoncontainer.getElementsByClassName("navigation-button");
 
@@ -118,6 +141,28 @@
             $(".dayOfWeek").hide();
             var knopId = $(this).attr("id");
             $(".dayOfWeek." + knopId).show();
+
+            thisDay = knopId;
         });
+
+    });
+
+    var BookTour = function (historicEventId) {
+        var url = "/Historic/BookTour?eventId=" + historicEventId;
+        $("#modalBody").load(url, function () {
+            $("#MyModal").modal("show");
+        })
+    };
+
+    $('body').on("change", 'input[type=radio][name=FamilyTicket]', function () {
+        var isFamily = $(this).val();
+        if (isFamily == "True") {
+            $("#RegularTickets").hide();
+            $("#ticketlabel").hide();
+        }
+        else {
+            $("#RegularTickets").show();
+            $("#ticketlabel").show();
+        }
     });
 </script>
