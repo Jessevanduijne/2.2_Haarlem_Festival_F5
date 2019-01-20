@@ -14,6 +14,8 @@ namespace Haarlem_Festival.Models.Input_Models.Tickets
         [Display(Name = "Last name"), Required(ErrorMessage = "Please enter your last name")]
         public string LastName { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MMM/yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Date of birth"), Required(ErrorMessage = "Please enter your date of birth")]
         public DateTime DateOfBirth { get; set; }
 
@@ -21,8 +23,9 @@ namespace Haarlem_Festival.Models.Input_Models.Tickets
         public string Email { get; set; }
 
         // Dropdownlist:
-        [Display(Name = "Payment method"), Required(ErrorMessage = "Please enter a payment method")]
+        [Display(Name = "Payment method")]
         public List<string> PaymentMethods { get; set; }
+        
         public string SelectedPaymentMethod { get; set; }
     }
 }
