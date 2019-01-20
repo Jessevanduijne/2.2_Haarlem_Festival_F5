@@ -75,6 +75,7 @@ namespace Haarlem_Festival.Controllers
                 int ticketsLeft = historicEvent.CurrentTickets - booking.RegularTickets;
                 int ticketsLeftFamily = historicEvent.CurrentTickets - (booking.RegularTickets * 4);
 
+                // Fills ticket if its not a family ticket and you have a correct value that isnt more than the available tickets for event
                 if ((!booking.FamilyTicket) && (booking.RegularTickets > 0) && (ticketsLeft >= 0))
                 {
                     ticket.Amount = booking.RegularTickets;
@@ -82,15 +83,20 @@ namespace Haarlem_Festival.Controllers
                     ticket.Event = eventRepository.GetEvent(ticket.EventId);
                     ticket.Price = (booking.RegularTickets * historicEvent.Price);
                 }
+
+                // Redirects back to index page if ticket input is 0 or less
                 else if ((!booking.FamilyTicket) && (booking.RegularTickets < 1))
                 {
                     return RedirectToAction("Index");
                 }
+
+                // Redirects back to index page if ticket input is 0 or less
                 else if ((booking.FamilyTicket) && (booking.RegularTickets < 1))
                 {
                     return RedirectToAction("Index");
                 }
-                //
+
+                // Fills ticket if its a family ticket and you have a correct value that isnt more than the available tickets for event
                 else if ((booking.FamilyTicket) && (booking.RegularTickets > 0) && (ticketsLeftFamily >= 0))
                 {
                     ticket.Amount = (booking.RegularTickets * 4);
@@ -98,6 +104,8 @@ namespace Haarlem_Festival.Controllers
                     ticket.Event = eventRepository.GetEvent(ticket.EventId);
                     ticket.Price = (ticket.Amount * historicEvent.FamilyPrice);
                 }
+
+                // Redirects to index page if ticket input is more than available tickets for event
                 else if ((ticketsLeft < 0) || (ticketsLeftFamily < 0))
                 {
                     return RedirectToAction("Index");
