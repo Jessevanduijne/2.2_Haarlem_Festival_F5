@@ -22,15 +22,22 @@ namespace Haarlem_Festival.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            List<Ticket> tickets = (List<Ticket>)Session["CurrentTickets"];
+            List<Ticket> tickets = GetSessionTickets();
 
             if (tickets != null)
             {
                 float totalPrice = tickets.Sum(t => t.Price);
                 int totalTickets = tickets.Sum(t => t.Amount);
 
+                foreach(var ticket in tickets)
+                {
+                    ViewBag.SpecialRequestLabel = "";
+                    if(ticket.SpecialRequest != null)
+                    {
+                        ViewBag.SpecialRequestLabel = "Special Request: ";
+                    }
+                }
                 TicketOverview viewModel = new TicketOverview(tickets, totalTickets, totalPrice);
-
                 return View(viewModel);
             }
             else
@@ -114,6 +121,10 @@ namespace Haarlem_Festival.Controllers
             }
 
             order.Tickets = tickets;
+
+            // Clear the session
+            var session = GetSessionTickets();
+            session.Clear();
 
             return View(order);
         }

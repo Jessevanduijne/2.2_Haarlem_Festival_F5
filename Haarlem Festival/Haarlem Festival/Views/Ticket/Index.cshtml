@@ -26,13 +26,12 @@
             <tr class="row">
                 <td>
                     @ticket.Event.EventName - @ticket.Event.StartTime
-                    <br />
-                    @if (ticket.SpecialRequest != null)
-                    {
-                        <b>@Html.DisplayNameFor(x => x.Tickets[0].SpecialRequest)</b>
-                        <i> @ticket.SpecialRequest</i>
-                    }
+                    <br />                                           
 
+                    @if(ticket.SpecialRequest != null)
+                    {
+                        <b> Special Request: </b> <i> @ticket.SpecialRequest</i>
+                    }
                 </td>
                 <td> €@ticket.Price,- </td>
                 <td> @ticket.Amount </td>

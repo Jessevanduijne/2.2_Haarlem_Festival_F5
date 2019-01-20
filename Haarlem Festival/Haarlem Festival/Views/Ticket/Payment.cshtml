@@ -31,10 +31,6 @@
     <span>---------------------------------------------------</span>
 </section>
 
-<button class="btn" onclick="goBack()">
-    Previous
-</button>
-
 <section id="paymentform" class="container-fluid">
     @using (Html.BeginForm())
     {
@@ -79,6 +75,7 @@
         </section>
 
         <br />
-        <button id="payButton" class="btn col-lg-offset-7 col-lg-4" type="submit">Pay</button>
+        <button class="btn col-lg-offset-1 col-lg-4 previousbutton" onclick="goBack()"> Previous </button>
+        <button id="payButton" class="btn col-lg-offset-2 col-lg-4" type="submit">Pay</button>
     }
 </section>
