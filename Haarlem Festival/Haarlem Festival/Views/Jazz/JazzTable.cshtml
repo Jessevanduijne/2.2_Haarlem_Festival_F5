@@ -1,0 +1,92 @@
+﻿@using Haarlem_Festival.Models.View_Models.Jazz;
+
+<button type="button" onclick="reset(); thursday()" class="tableButton ButtonActive ButtonThursday">Thursday<br />26 July</button>
+<button type="button" onclick="friday()" class="tableButton ButtonInactive ButtonFriday">Friday<br />27 July</button>
+<button type="button" onclick="saturday()" class="tableButton ButtonInactive ButtonSaturday">Saturday<br />28 July</button>
+<button type="button" onclick="sunday()" class="tableButton ButtonInactive ButtonSunday">Sunday<br />29 July</button>
+
+<table class="table tableInactive tableThursday">
+    <tr>
+        <th>Time</th>
+        <th>Location</th>
+        <th>Band</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
+
+    @foreach (JazzTableView JEvent in ViewBag.JThursday)
+    {
+        <tr>
+            <td>@JEvent.Time</td>
+            <td>@JEvent.Location</td>
+            <td>@JEvent.Band</td>
+            <td>@JEvent.Price</td>
+            <td><img class="cart" src="~/Content/General/img/cart.png" /></td>
+        </tr>
+    }
+</table>
+
+<table class="table tableInactive tableFriday">
+    <tr>
+        <th>Time</th>
+        <th>Location</th>
+        <th>Band</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
+
+    @foreach (JazzTableView JEvent in ViewBag.JFriday)
+    {
+        <tr>
+            <td>@JEvent.Time</td>
+            <td>@JEvent.Location</td>
+            <td>@JEvent.Band</td>
+            <td>@JEvent.Price</td>
+            <td><img class="cart" src="~/Content/General/img/cart.png" /></td>
+        </tr>
+    }
+</table>
+
+<table class="table tableInactive tableSaturday">
+    <tr>
+        <th>Time</th>
+        <th>Location</th>
+        <th>Band</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
+
+    @foreach (JazzTableView JEvent in ViewBag.JSaturday)
+    {
+        <tr>
+            <td>@JEvent.Time</td>
+            <td>@JEvent.Location</td>
+            <td>@JEvent.Band</td>
+            <td>@JEvent.Price</td>
+            <td><img class="cart" src="~/Content/General/img/cart.png" /></td>
+        </tr>
+    }
+</table>
+
+<table class="table tableInactive tableSunday">
+    <tr>
+        <th>Time</th>
+        <th>Location</th>
+        <th>Band</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
+
+    @foreach (JazzTableView JEvent in ViewBag.JSunday)
+    {
+        <tr>
+            <td>@JEvent.Time</td>
+            <td>@JEvent.Location</td>
+            <td>@JEvent.Band</td>
+            <td>@JEvent.Price</td>
+        </tr>
+    }
+</table>
+<p>With the passepartouts you can visit every band on that day. <br />Access for sunday is free, no reservation needed</p>
+
+<script src="~/Scripts/JazzTable.js"></script>

@@ -21,9 +21,8 @@ namespace Haarlem_Festival.Models.Domain_Models.Jazz
         
         // Navigation Properties:
         public Venue JazzVenue { get; set; }
-        public string Description { get; set; }
-        public string PictureLocation { get; set; }
-
         public double Price { get; set; }
+        public string PictureLocation { get; set; }
+        public string Description { get; set; }
     }
 }

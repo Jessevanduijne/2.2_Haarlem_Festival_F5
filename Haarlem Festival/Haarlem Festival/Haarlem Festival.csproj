@@ -202,6 +202,8 @@
     <Compile Include="Models\View Models\Food\RestaurantView.cs" />
     <Compile Include="Models\View Models\Jazz\JazzTableView.cs" />
     <Compile Include="Models\View Models\Tickets\TicketOverview.cs" />
+    <Compile Include="Models\View Models\Jazz\JazzTableView.cs" />
+    <Compile Include="Models\View Models\Jazz\SlideShowView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Dance\DanceRepository.cs" />
     <Compile Include="Repositories\Dance\IDanceRepository.cs" />
@@ -257,12 +259,29 @@
     <Content Include="Content\Home\img\historic.png" />
     <Content Include="Content\Home\img\jazz.png" />
     <Content Include="Content\Jazz\img\bg.png" />
+    <Content Include="Content\Jazz\img\ChrisAllen.png" />
+    <Content Include="Content\Jazz\img\Evolve.png" />
     <Content Include="Content\Jazz\img\fb.png" />
+    <Content Include="Content\Jazz\img\Fox&amp;TheMayors.png" />
+    <Content Include="Content\Jazz\img\GareDuNord.png" />
+    <Content Include="Content\Jazz\img\GumboKings.png" />
+    <Content Include="Content\Jazz\img\HanBennink.png" />
     <Content Include="Content\Jazz\img\insta.png" />
     <Content Include="Content\Jazz\img\jazz.png" />
+    <Content Include="Content\Jazz\img\JonnaFrazer.png" />
+    <Content Include="Content\Jazz\img\LilithMerlot.png" />
     <Content Include="Content\Jazz\img\Logo.png" />
+    <Content Include="Content\Jazz\img\MylesSanko.png" />
+    <Content Include="Content\Jazz\img\NtjamRosie.png" />
+    <Content Include="Content\Jazz\img\rilan&amp;thebombadiers.png" />
+    <Content Include="Content\Jazz\img\RuisSoundSystem.png" />
+    <Content Include="Content\Jazz\img\soulsix.png" />
     <Content Include="Content\Jazz\img\tablebg.png" />
+    <Content Include="Content\Jazz\img\TheFamilyXL.png" />
+    <Content Include="Content\Jazz\img\theNordanians.png" />
     <Content Include="Content\Jazz\img\twitter.png" />
+    <Content Include="Content\Jazz\img\UncleSue.png" />
+    <Content Include="Content\Jazz\img\WickedJazzSounds.png" />
     <Content Include="Content\Jazz\JazzStyle.css" />
     <Content Include="Content\Tickets\img\tickets.jpg" />
     <Content Include="Content\Tickets\TicketStyle.css" />
@@ -276,6 +295,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\JazzSlideShow.js" />
+    <Content Include="Scripts\JazzTable.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -305,6 +326,10 @@
     <Content Include="Views\Ticket\Index.cshtml" />
     <Content Include="Views\Food\BookEvent.cshtml" />
     <Content Include="Views\Ticket\Payment.cshtml" />
+    <Content Include="Views\Dance\Artists.cshtml" />
+    <Content Include="Views\Dance\DanceTickets.cshtml" />
+    <Content Include="Views\Jazz\JazzSlideShow.cshtml" />
+    <Content Include="Views\Jazz\JazzTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
