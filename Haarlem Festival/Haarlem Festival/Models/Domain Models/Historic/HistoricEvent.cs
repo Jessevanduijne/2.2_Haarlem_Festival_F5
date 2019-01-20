@@ -19,6 +19,9 @@ namespace Haarlem_Festival.Models.Domain_Models.Historic
         public float Price = 17.50f;
 
         [NotMapped]
+        public int FamilyPrice = 60;
+
+        [NotMapped]
         public string TicketAvailable => (CurrentTickets == 0 ?
                    "<img src='/Content/Historic/img/cartcross.png'style='width:25px' />" :
                     ActionButtonStart + "<img src='/Content/Historic/img/addcart.png' class='add-cart' />") + ActionButtonEnd;

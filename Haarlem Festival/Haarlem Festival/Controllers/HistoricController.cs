@@ -47,9 +47,8 @@ namespace Haarlem_Festival.Controllers
                 booking.Events = historicRepository.GetAllTours();
                 booking.TourName = historicRepository.GetTour((int)eventId).EventName;
 
-                //Pass ID value of restaurant:
+                //Pass ID value of tour:
                 booking.EventId = (int)eventId;
-
                 return PartialView("BookTour", booking);
             }
             else
@@ -58,13 +57,10 @@ namespace Haarlem_Festival.Controllers
             }
         }
 
-
-
         [HttpPost]
         public ActionResult BookTour(TourBooking booking)
         {
-            // The 'booking'-parameter is filled up only with data that is being entered in the form: ticketamount (child/adult), selected event, special request & hidden restaurantID-field
-            // Only a field can be passed hidden, not an entire object. That's why we pass only the restaurantId to the viewmodel
+            // The 'booking'-parameter is filled up only with data that is being entered in the form
 
             HistoricEvent historicEvent = historicRepository.GetTour(booking.EventId);
 
@@ -73,10 +69,20 @@ namespace Haarlem_Festival.Controllers
                 List<Ticket> tickets = new List<Ticket>();
                 Ticket ticket = new Ticket();
 
-                ticket.Amount = booking.RegularTickets;
-                ticket.EventId = booking.EventId;
-                ticket.Event = eventRepository.GetEvent(ticket.EventId);
-                ticket.Price = (booking.RegularTickets * historicEvent.Price);
+                if (!booking.FamilyTicket)
+                {
+                    ticket.Amount = booking.RegularTickets;
+                    ticket.EventId = booking.EventId;
+                    ticket.Event = eventRepository.GetEvent(ticket.EventId);
+                    ticket.Price = (booking.RegularTickets * historicEvent.Price);
+                }
+                else
+                {
+                    ticket.Amount = 1;
+                    ticket.EventId = booking.EventId;
+                    ticket.Event = eventRepository.GetEvent(ticket.EventId);
+                    ticket.Price = historicEvent.FamilyPrice;
+                }
 
                 // Create session if it doesn't exist or add ticket to existing session
                 if (Session["currentTickets"] == null)
@@ -89,11 +95,11 @@ namespace Haarlem_Festival.Controllers
                     List<Ticket> sessionTickets = (List<Ticket>)Session["currentTickets"];
                     sessionTickets.Add(ticket);
                 }
-
                 return RedirectToAction("Index", "Ticket");
             }
             
             // Post booking
+
             return PartialView("BookTour", booking);
         }
     }

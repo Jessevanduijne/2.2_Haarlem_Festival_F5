@@ -14,31 +14,41 @@
         <h3 class="modal-title">Book @Model.TourName</h3>
     </section>
 
+        @using (Html.BeginForm("BookTour", "Historic", FormMethod.Post, new { id = "ticketformid" }))
+        {
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
-    @using (Html.BeginForm("BookTour", "Historic", FormMethod.Post, new { id = "ticketformid" }))
-    {
-        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-
-        @Html.HiddenFor(item => item.EventId, new { eventId = Model.EventId })
-        <section class="container-fluid">
+            @Html.HiddenFor(item => item.EventId, new { eventId = Model.EventId })
+            <section class="container-fluid">
                 <section class="row">
-                <label class="col-sm-offset-2 col-sm-4">Amount of Tickets:</label>
-                <section class="col-sm-4">
-                    @Html.EditorFor(item => item.RegularTickets, new { htmlAttributes = new { @type = "number", @min = "1", @max = "20", @step = "1", @value = "1" } })
+                    <label class="col-sm-6">Are you booking a family ticket?</label>
+                    <section class="col-sm-2">
+                        <label>Yes</label>
+                        @Html.RadioButtonFor(item => item.FamilyTicket, true)
+                    </section>
+                    <section class="col-sm-2">
+                        <label>No</label>
+                        @Html.RadioButtonFor(item => item.FamilyTicket, false, new { Checked = "checked" })
+                    </section>
+                    
+                    <label class="col-sm-6" id="ticketlabel">Amount of Tickets:</label>
+                    <section class="col-sm-2">
+                        @Html.EditorFor(item => item.RegularTickets, new { htmlAttributes = new { @type = "number", @min = "1", @max = "12", @step = "1", @value = "1" } })
+                    </section>
+                </section>
+
+                <hr />
+
+                <section class="row">
+                    <button href="#" id="bookTourSubmit" type="submit" class="col-sm-offset-1 col-sm-10 btn btn-primary">Add to Shoppingcart</button>
                 </section>
             </section>
-
-            <hr />
-
-            <section class="row">
-                <button href="#" id="bookRestaurantSubmit" type="submit" class="col-sm-offset-1 col-sm-10 btn btn-primary">Add to Shoppingcart</button>
-            </section>
-        </section>
-    }
+        }
 </section>
-
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 @section scripts {
     <script>
+
         $(document).ready(function () {
             $("#MyModal").on("submit", "#ticketformid", function (e) {
                 e.preventDefault(); // Prevent default submission (?)

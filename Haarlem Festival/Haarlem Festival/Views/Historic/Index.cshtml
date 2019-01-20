@@ -38,10 +38,10 @@
 <section id="availabletours">
     <table width="50%" align="center" id="day-selector">
         <tr>
-            <th><a id="thursday" class="navigation-button active">Show tickets for Thursday July 26</a></th>
-            <th><a id="friday" class="navigation-button">Show tickets for Friday July 27</a></th>
-            <th><a id="saturday" class="navigation-button">Show tickets for Saturday July 28</a></th>
-            <th><a id="sunday" class="navigation-button">Show tickets for Sunday July 29</a></th>
+            <th><a id="thursday" class="navigation-button active">Show tickets for Thursday July 25</a></th>
+            <th><a id="friday" class="navigation-button">Show tickets for Friday July 26</a></th>
+            <th><a id="saturday" class="navigation-button">Show tickets for Saturday July 27</a></th>
+            <th><a id="sunday" class="navigation-button">Show tickets for Sunday July 28</a></th>
         </tr>
     </table>
     <!-- NAVIGATIE TICKETS EIND -->
@@ -61,18 +61,11 @@
         }
 
         <tr class="familyRow">
-            <td colspan="3">
-                <b>Also available, family tickets!</b> For 4 persons <br />
-
-                (For all tours, except Chinese at 10.00 o'clock)
+            <td colspan="4">
+                <b>Also available, family tickets!</b> For 4 persons
             </td>
             <td>
                 Price €60,-
-            </td>
-            <td>
-                <button id="loadEvents" data-toggle="modal" data-target="#MyModal" class="family-addcart" onclick="BookTourFamily('thursday')">
-                    <img src='/Content/Historic/img/addcart.png' class='add-cart' />
-                </button>
             </td>
         </tr>
     </table>
@@ -126,7 +119,7 @@
 </section>
 
 <script>
-    var thisDay;
+    var thisDay = "thursday";
     var buttoncontainer = document.getElementById("day-selector");
     var buttons = buttoncontainer.getElementsByClassName("navigation-button");
 
@@ -154,15 +147,6 @@
 
     });
 
-    var BookTourFamily = function (day) {
-        // family-addcart
-        day = thisDay;
-        var url = "/Historic/BookTour?day=" + day;
-        $("#modalBody").load(url, function () {
-            $("#MyModal").modal("show");
-        })
-    }
-
     var BookTour = function (historicEventId) {
         var url = "/Historic/BookTour?eventId=" + historicEventId;
         $("#modalBody").load(url, function () {
@@ -170,4 +154,15 @@
         })
     };
 
+    $('body').on("change", 'input[type=radio][name=FamilyTicket]', function () {
+        var isFamily = $(this).val();
+        if (isFamily == "True") {
+            $("#RegularTickets").hide();
+            $("#ticketlabel").hide();
+        }
+        else {
+            $("#RegularTickets").show();
+            $("#ticketlabel").show();
+        }
+    });
 </script>
