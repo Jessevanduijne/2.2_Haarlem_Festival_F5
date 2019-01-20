@@ -207,6 +207,7 @@
     <Compile Include="Models\Domain Models\Historic\HistoricEvent.cs" />
     <Compile Include="Models\Domain Models\Jazz\JazzEvent.cs" />
     <Compile Include="Models\Input Models\Tickets\Payment.cs" />
+    <Compile Include="Models\View Models\Food\BookingResult.cs" />
     <Compile Include="Models\View Models\Food\RestaurantBooking.cs" />
     <Compile Include="Models\View Models\Dance\ArtistView.cs" />
     <Compile Include="Models\View Models\Dance\TicketdayView.cs" />
@@ -366,6 +367,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -397,6 +400,7 @@
     <Content Include="Views\Jazz\JazzSlideShow.cshtml" />
     <Content Include="Views\Jazz\JazzTable.cshtml" />
     <Content Include="Views\Ticket\PaymentResult.cshtml" />
+    <Content Include="Views\Food\BookEventSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,7 +6,7 @@
     margin-bottom: 40px;
 }
 
-#intro span, #events span {
+.intro span, #events span {
     letter-spacing: -2px;
     font-size: 15px;
     color: lightgreen;
@@ -39,6 +39,7 @@
     display: inline-block;
     margin: 50px 30px 50px 30px; 
     box-shadow: 10px 10px 5px grey;
+    cursor: pointer;
 }
 
 .eventtile img {
@@ -60,4 +61,8 @@
 
     .eventtile.green {
         background-color: #C3E395;
+    }
+
+    .eventtile p {
+        font-size: 24px;
     }
