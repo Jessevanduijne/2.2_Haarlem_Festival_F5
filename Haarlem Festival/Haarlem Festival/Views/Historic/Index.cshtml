@@ -153,16 +153,4 @@
             $("#MyModal").modal("show");
         })
     };
-
-    $('body').on("change", 'input[type=radio][name=FamilyTicket]', function () {
-        var isFamily = $(this).val();
-        if (isFamily == "True") {
-            $("#RegularTickets").hide();
-            $("#ticketlabel").hide();
-        }
-        else {
-            $("#RegularTickets").show();
-            $("#ticketlabel").show();
-        }
-    });
 </script>
