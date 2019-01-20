@@ -22,7 +22,5 @@ namespace Haarlem_Festival.Models.View_Models.Historic
 
         // Post to data
         public int EventId { get; set; }
-
-        public HistoricEvent HistoricEvent { get; set; }
     }
 }

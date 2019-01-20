@@ -19,9 +19,11 @@ namespace Haarlem_Festival.Models.View_Models.Food
         public string TimeAvailable { get; set; }
         public string RestaurantName { get; set; }
 
-        // Input: 
-        [Required(ErrorMessage = "At least one adult has to be in your party")]
+        // Input:
+        [Required, Range(1, 10, ErrorMessage = "At least one adult has to be in your party")]
         public int AdultTickets { get; set; }
+
+        [Range(0, 10, ErrorMessage = "You can't book more than 10 children in your party")]
         public int ChildTickets { get; set; }
 
         public string SpecialRequest { get; set; }

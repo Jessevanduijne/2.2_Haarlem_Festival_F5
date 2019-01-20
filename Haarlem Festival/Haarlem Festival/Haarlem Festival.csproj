@@ -192,6 +192,10 @@
     <Compile Include="Migrations\201901201519238_JazzChanges.Designer.cs">
       <DependentUpon>201901201519238_JazzChanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901202146150_deleterestaurantdescription.cs" />
+    <Compile Include="Migrations\201901202146150_deleterestaurantdescription.Designer.cs">
+      <DependentUpon>201901202146150_deleterestaurantdescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database Connection\HFContext.cs" />
     <Compile Include="Models\Domain Models\Dance\Artist.cs" />
@@ -203,11 +207,11 @@
     <Compile Include="Models\Domain Models\General\Order.cs" />
     <Compile Include="Models\Domain Models\General\Venue.cs" />
     <Compile Include="Models\Domain Models\General\Ticket.cs" />
-    <Compile Include="Models\Domain Models\Historic\Day.cs" />
     <Compile Include="Models\Domain Models\Historic\Guide.cs" />
     <Compile Include="Models\Domain Models\Historic\HistoricEvent.cs" />
     <Compile Include="Models\Domain Models\Jazz\JazzEvent.cs" />
     <Compile Include="Models\Input Models\Tickets\Payment.cs" />
+    <Compile Include="Models\View Models\Food\BookingResult.cs" />
     <Compile Include="Models\View Models\Food\RestaurantBooking.cs" />
     <Compile Include="Models\View Models\Dance\ArtistView.cs" />
     <Compile Include="Models\View Models\Dance\TicketdayView.cs" />
@@ -367,6 +371,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -398,7 +404,7 @@
     <Content Include="Views\Jazz\JazzSlideShow.cshtml" />
     <Content Include="Views\Jazz\JazzTable.cshtml" />
     <Content Include="Views\Ticket\PaymentResult.cshtml" />
-    <Content Include="Views\Dance\NoTickets.cshtml" />
+    <Content Include="Views\Food\BookEventSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -438,6 +444,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901201519238_JazzChanges.resx">
       <DependentUpon>201901201519238_JazzChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901202146150_deleterestaurantdescription.resx">
+      <DependentUpon>201901202146150_deleterestaurantdescription.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

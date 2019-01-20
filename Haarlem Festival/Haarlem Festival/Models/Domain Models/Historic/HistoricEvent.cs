@@ -19,7 +19,7 @@ namespace Haarlem_Festival.Models.Domain_Models.Historic
         public float Price = 17.50f;
 
         [NotMapped]
-        public int FamilyPrice = 60;
+        public int FamilyPrice = 15;
 
         [NotMapped]
         public string TicketAvailable => (CurrentTickets == 0 ?

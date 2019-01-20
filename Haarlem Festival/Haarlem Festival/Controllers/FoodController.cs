@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using System.Net;
 using Haarlem_Festival.Data;
 using Haarlem_Festival.Data.Food;
+using System.Web.Helpers;
 
 namespace Haarlem_Festival.Controllers
 {
@@ -34,7 +35,6 @@ namespace Haarlem_Festival.Controllers
                 Review review = googlePlacesApiHandler.GetRestaurantReview(restaurant.GooglePlacesID);
                 restaurantViews.Add(new RestaurantView(restaurant, review));
             }
-
             return View(restaurantViews);
         }
 
@@ -85,15 +85,26 @@ namespace Haarlem_Festival.Controllers
                 {
                     List<Ticket> sessionTickets = (List<Ticket>)Session["currentTickets"];
                     sessionTickets.Add(ticket);
-                }               
-
-                return RedirectToAction("Index", "Ticket");
-                //return Json(new { redirectTo = Url.Action("Index", "Ticket") });
+                }                
+                BookingResult resultViewModel = new BookingResult(booking.RestaurantName, ticket.Event.StartTime, ticket.Event.EndTime, ticket.SpecialRequest);
+                return RedirectToAction("BookEventSuccess", resultViewModel);
             }
 
-            
-            // Post booking
-            return PartialView("BookEvent", booking);
+            // Validation failed:
+            booking.RestaurantName = restaurant.RestaurantName;
+            booking.Events = foodRepository.GetAllFoodEvents(restaurant.RestaurantID);
+            return PartialView("BookEvent", booking);            
         }
+
+        
+        public ActionResult BookEventSuccess(BookingResult resultViewModel)
+        {  
+            if(resultViewModel.SpecialRequests != null)
+            {
+                ViewBag.SpecialRequestLabel = "Special Request: ";
+            }
+
+            return PartialView("BookEventSuccess", resultViewModel);
+        }        
     }
 }
