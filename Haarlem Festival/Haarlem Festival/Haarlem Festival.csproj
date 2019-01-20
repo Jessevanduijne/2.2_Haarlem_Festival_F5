@@ -192,6 +192,10 @@
     <Compile Include="Migrations\201901201519238_JazzChanges.Designer.cs">
       <DependentUpon>201901201519238_JazzChanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901202146150_deleterestaurantdescription.cs" />
+    <Compile Include="Migrations\201901202146150_deleterestaurantdescription.Designer.cs">
+      <DependentUpon>201901202146150_deleterestaurantdescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database Connection\HFContext.cs" />
     <Compile Include="Models\Domain Models\Dance\Artist.cs" />
@@ -440,6 +444,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901201519238_JazzChanges.resx">
       <DependentUpon>201901201519238_JazzChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901202146150_deleterestaurantdescription.resx">
+      <DependentUpon>201901202146150_deleterestaurantdescription.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
