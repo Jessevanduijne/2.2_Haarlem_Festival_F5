@@ -200,6 +200,7 @@
     <Compile Include="Models\View Models\Dance\TicketdayView.cs" />
     <Compile Include="Models\View Models\Dance\Ticketview.cs" />
     <Compile Include="Models\View Models\Food\RestaurantView.cs" />
+    <Compile Include="Models\View Models\Jazz\JazzTableView.cs" />
     <Compile Include="Models\View Models\Tickets\TicketOverview.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Dance\DanceRepository.cs" />
