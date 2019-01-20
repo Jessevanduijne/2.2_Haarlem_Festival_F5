@@ -17,10 +17,11 @@ namespace Haarlem_Festival.Models.View_Models.Dance
             List<ArtistView> Artistlist = new List<ArtistView>();
             foreach(Artist a in Artists)
             {
-                Name = a.Name;
-                ImgUrl = a.ImgUrl;
-                Description = a.Description;
-                Artistlist.Add(this);
+                ArtistView b = new ArtistView();
+                b.Name = a.Name;
+                b.ImgUrl = a.ImgUrl;
+                b.Description = a.Description;
+                Artistlist.Add(b);
             }
             return Artistlist;
         }

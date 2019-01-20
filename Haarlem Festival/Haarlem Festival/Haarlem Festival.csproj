@@ -215,9 +215,16 @@
     <Content Include="Content\Bootstrap\bootstrap.css" />
     <Content Include="Content\Bootstrap\bootstrap.min.css" />
     <Content Include="Content\Dance\DanceStyle.css" />
+    <Content Include="Content\Dance\img\Afrojack.png" />
+    <Content Include="Content\Dance\img\ArminvanBuuren.png" />
+    <Content Include="Content\Dance\img\Hardwell.png" />
     <Content Include="Content\Dance\img\Headphone.PNG" />
+    <Content Include="Content\Dance\img\MartinGarrix.png" />
+    <Content Include="Content\Dance\img\NickyRomero.png" />
     <Content Include="Content\Dance\img\Party.PNG" />
+    <Content Include="Content\Dance\img\spin.svg" />
     <Content Include="Content\Dance\img\TicketBackground.PNG" />
+    <Content Include="Content\Dance\img\Tiesto.png" />
     <Content Include="Content\Food\FoodStyle.css" />
     <Content Include="Content\Food\img\bg.jpg" />
     <Content Include="Content\Food\img\food.png" />
@@ -279,6 +286,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jssor.slider-27.5.0.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

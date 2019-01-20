@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Haarlem_Festival.Models.Database_Connection;
 using Haarlem_Festival.Models.Domain_Models.Dance;
+using Haarlem_Festival.Models.Domain_Models.General;
 
 
 namespace Haarlem_Festival.Repositories.Dance
@@ -14,8 +15,18 @@ namespace Haarlem_Festival.Repositories.Dance
 
         public IEnumerable<DanceEvent> GetAllDanceEvents()
         {
-            IEnumerable<DanceEvent> DanceEvents = db.Events.OfType<DanceEvent>();
-            return DanceEvents;
+            IEnumerable<DanceEvent> danceEvents;
+            using (db)
+            {
+                danceEvents = db.Events
+                                .OfType<DanceEvent>()                               
+                                .ToList();
+                foreach(DanceEvent d in danceEvents)
+                {
+                    d.DanceVenue = db.Venues.Where(b => b.VenueId == d.DanceVenueId).SingleOrDefault();
+                }
+            }            
+            return danceEvents;
         }
         public IEnumerable<Artist> GetAllArtists()
         {

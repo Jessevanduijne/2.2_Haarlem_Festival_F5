@@ -14,9 +14,9 @@ namespace Haarlem_Festival.Controllers
         readonly IDanceRepository repo = new DanceRepository();
         IEnumerable<DanceEvent> DanceEvents;
         IEnumerable<Artist> Artist;
-        ArtistView a;
+        ArtistView a = new ArtistView();
         IList<ArtistView> Artistlist;
-        Ticketview Tickets;
+        Ticketview Tickets = new Ticketview();
         
         
         public ActionResult Index()
