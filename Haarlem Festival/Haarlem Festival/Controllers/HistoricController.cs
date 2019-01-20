@@ -76,6 +76,13 @@ namespace Haarlem_Festival.Controllers
                     ticket.Event = eventRepository.GetEvent(ticket.EventId);
                     ticket.Price = (booking.RegularTickets * historicEvent.Price);
                 }
+                else if (booking.RegularTickets == 0)
+                {
+                    ticket.Amount = 1;
+                    ticket.EventId = booking.EventId;
+                    ticket.Event = eventRepository.GetEvent(ticket.EventId);
+                    ticket.Price = historicEvent.FamilyPrice;
+                }
                 else
                 {
                     ticket.Amount = 1;
