@@ -44,6 +44,7 @@ namespace Haarlem_Festival.Controllers
             if (eventId != null){
                 //Create Viewmodel
                 TourBooking booking = new TourBooking();
+                booking.RegularTickets = 1;
                 booking.Events = historicRepository.GetAllTours();
                 booking.TourName = historicRepository.GetTour((int)eventId).EventName;
 
@@ -69,14 +70,18 @@ namespace Haarlem_Festival.Controllers
                 List<Ticket> tickets = new List<Ticket>();
                 Ticket ticket = new Ticket();
 
-                if (!booking.FamilyTicket)
+                if ((!booking.FamilyTicket) && (booking.RegularTickets > 0))
                 {
                     ticket.Amount = booking.RegularTickets;
                     ticket.EventId = booking.EventId;
                     ticket.Event = eventRepository.GetEvent(ticket.EventId);
                     ticket.Price = (booking.RegularTickets * historicEvent.Price);
                 }
-                else if (booking.RegularTickets == 0)
+                else if ((!booking.FamilyTicket) && (booking.RegularTickets < 1))
+                {
+                    return RedirectToAction("Index");
+                }
+                else if (booking.FamilyTicket && booking.RegularTickets < 1)
                 {
                     ticket.Amount = 1;
                     ticket.EventId = booking.EventId;

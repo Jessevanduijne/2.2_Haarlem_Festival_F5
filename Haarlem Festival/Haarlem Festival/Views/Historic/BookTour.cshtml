@@ -4,10 +4,6 @@
     @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax")
 </head>
 
-<section id="loaderDiv" hidden>
-    <img src="@Url.Content("~/Content/Food/img/loading.gif")" />
-</section>
-
 <section id="ticketbookingsection">
     <section class="modal-header">
         <a href="#" class="close" data-dismiss="modal">&times;</a>
@@ -33,7 +29,7 @@
                     
                     <label class="col-sm-6" id="ticketlabel">Amount of Tickets:</label>
                     <section class="col-sm-2">
-                        @Html.EditorFor(item => item.RegularTickets, new { htmlAttributes = new { @type = "number", @min = "0", @max = "12", @step = "1", @value = "1" } })
+                        @Html.EditorFor(item => item.RegularTickets, new { htmlAttributes = new { @type = "number", @min = "1", @max = "12", @step = "1", @value = "1" } })
                     </section>
                 </section>
 
