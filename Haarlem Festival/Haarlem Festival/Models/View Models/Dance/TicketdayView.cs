@@ -18,30 +18,33 @@ namespace Haarlem_Festival.Models.View_Models.Dance
         {
             if (d.EventName.Contains("ALL-ACCESS") && (d.Price == 125.00))
             {
-                Start = null;
-                Location = null;
-                Name = "All access for this day";
-                Session = null;
-                Price = d.Price;
-                return this;
+                TicketdayView a = new TicketdayView();
+                a.Start = null;
+                a.Location = "";
+                a.Name = "All access for this day";
+                a.Session = null;
+                a.Price = d.Price;
+                return a;
             }
             else if (d.EventName.Contains("ALL-ACCESS") && (d.Price == 250.00))
             {
-                Start = null;
-                Location = null;
-                Name = "All access for July 27, 28 and 29";
-                Session = null;
-                Price = d.Price;
-                return this;
+                TicketdayView b = new TicketdayView();
+                b.Start = null;
+                b.Location = "";
+                b.Name = "All access for July 27, 28 and 29";
+                b.Session = null;
+                b.Price = d.Price;
+                return b;
             }
             else
             {
-                Start = d.StartTime;
-                Location = d.DanceVenue.Name;
-                Name = d.EventName;
-                Session = d.Session;
-                Price = d.Price;
-                return this;
+                TicketdayView c = new TicketdayView();
+                c.Start = d.StartTime;
+                c.Location = d.DanceVenue.Name;
+                c.Name = d.EventName;
+                c.Session = d.Session;
+                c.Price = d.Price;
+                return c;
             }
         }
     }

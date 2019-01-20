@@ -1,42 +1,84 @@
 ﻿@model IList<Haarlem_Festival.Models.View_Models.Dance.ArtistView>
 
-    <div class="carousel slide" id="myCarousel">
-        <div class="carousel-inner">
-            <div class="Slides active">
-                <h1>@Model[0].Name</h1>
-                <p>@Model[0].Description</p>
-                <img src="~/Content/Dance/img/@Model[0].ImgUrl" />
-            </div>
-            @for (int i = 1; i < Model.Count(); i++)
-            {
-                <div class="Slides">
-                    <h1>@Model[i].Name</h1>
-                    <p>@Model[i].Description</p>
-                    <img src="~/Content/Dance/img/@Model[i].ImgUrl" />
-                </div>
+<script src="~/Scripts/jssor.slider-27.5.0.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    jssor_1_slider_init = function () {
+
+        var jssor_1_options = {
+            $AutoPlay: 1,
+            $SlideWidth: 720,
+            $ArrowNavigatorOptions: {
+                $Class: $JssorArrowNavigator$
+            },
+            $BulletNavigatorOptions: {
+                $Class: $JssorBulletNavigator$
             }
-        </div>
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-    </div>
+        };
 
-<script>
-    $('#myCarousel').carousel({
-        interval: 10000
-    })
+        var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
 
-    $('.carousel .Slides').each(function () {
-        var next = $(this).next();
-        if (!next.length) {
-            next = $(this).siblings(':first');
-        }
-        next.children(':first-child').clone().appendTo($(this));
+        /*#region responsive code begin*/
 
-        if (next.next().length > 0) {
-            next.next().children(':first-child').clone().appendTo($(this));
+        var MAX_WIDTH = 980;
+
+        function ScaleSlider() {
+            var containerElement = jssor_1_slider.$Elmt.parentNode;
+            var containerWidth = containerElement.clientWidth;
+
+            if (containerWidth) {
+
+                var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                jssor_1_slider.$ScaleWidth(expectedWidth);
+            }
+            else {
+                window.setTimeout(ScaleSlider, 30);
+            }
         }
-        else {
-            $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-        }
-    });
+
+        ScaleSlider();
+
+        $Jssor$.$AddEvent(window, "load", ScaleSlider);
+        $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+        $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+        /*#endregion responsive code end*/
+    };
 </script>
+
+<div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:380px;overflow:hidden;visibility:hidden;">
+    <!-- Loading Screen -->
+    <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+        <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="~/Content/Dance/img/spin.svg" />
+    </div>
+    <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
+        @foreach (Haarlem_Festival.Models.View_Models.Dance.ArtistView a in Model)
+        {
+            <div>
+                <h1>@a.Name</h1>
+                <p>@a.Description</p>
+                <img src="~/Content/Dance/img/@a.ImgUrl" />
+            </div>
+        }
+    </div>
+    <!-- Bullet Navigator -->
+    <div data-u="navigator" class="jssorb051" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+        <div data-u="prototype" class="i" style="width:16px;height:16px;">
+            <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+            </svg>
+        </div>
+    </div>
+    <!-- Arrow Navigator -->
+    <div data-u="arrowleft" class="jssora051" style="width:65px;height:65px;top:0px;left:35px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+        <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+            <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+        </svg>
+    </div>
+    <div data-u="arrowright" class="jssora051" style="width:65px;height:65px;top:0px;right:35px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+        <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+            <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+        </svg>
+    </div>
+</div>
+<script type="text/javascript">jssor_1_slider_init();</script>
+<!-- #endregion Jssor Slider End -->

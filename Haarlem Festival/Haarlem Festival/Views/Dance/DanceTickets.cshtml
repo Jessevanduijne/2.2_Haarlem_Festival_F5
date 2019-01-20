@@ -1,40 +1,84 @@
 ﻿@model Haarlem_Festival.Models.View_Models.Dance.Ticketview
 
-<table id="Friday">
+<script type="text/javascript">
+    function ChangeTab(a) {
+        var x = document.getElementsByClassName("TicketTable");
+        for (var i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        document.getElementById(a).style.display = "table";        
+    }
+</script>
+
+
+<button class="TicketsTab" disabled>No tickets for Thursday July 26th </button>
+<button class="TicketsTab" onclick="ChangeTab('Friday')">Show tickets for Friday July 27th</button>
+<button class="TicketsTab" onclick="ChangeTab('Saturday')">Show tickets for Saturday July 28th</button>
+<button class="TicketsTab" onclick="ChangeTab('Sunday')">Show tickets for Sunday July 29th</button>
+
+
+<table class="TicketTable" id="Friday">
     <tr>
-        @foreach(Haarlem_Festival.Models.View_Models.Dance.TicketdayView a in Model.Friday)
-        {
+        <th>Time</th>
+        <th>Location</th>
+        <th>Artist</th>
+        <th>Session</th>
+        <th>Price</th>
+        <th>Add to cart</th>
+    </tr>
+    @foreach(Haarlem_Festival.Models.View_Models.Dance.TicketdayView a in Model.Friday)
+    {
+        <tr>
             <td>@a.Start</td>
-        }
-    </tr>
-    <tr>
-        @foreach(Haarlem_Festival.Models.View_Models.Dance.TicketdayView a in Model.Friday)
-        {
             <td>@a.Location</td>
-        }
-    </tr>
-    <tr>
-        @foreach(Haarlem_Festival.Models.View_Models.Dance.TicketdayView a in Model.Friday)
-        {
             <td>@a.Name</td>
-        }
-    </tr>
-    <tr>
-        @foreach (Haarlem_Festival.Models.View_Models.Dance.TicketdayView a in Model.Friday)
-        {
             <td>@a.Session</td>
-        }
-    </tr>
-    <tr>
-        @foreach(Haarlem_Festival.Models.View_Models.Dance.TicketdayView a in Model.Friday)
-        {
             <td>@a.Price</td>
-        }
-    </tr>
+            <td>button</td>
+        </tr>
+    }
+</table>
+
+<table class="TicketTable" id="Saturday" style="display:none">
     <tr>
-        @foreach (Haarlem_Festival.Models.View_Models.Dance.TicketdayView a in Model.Friday)
-        {
-            <td>Button</td>
-        }
+        <th>Time</th>
+        <th>Location</th>
+        <th>Artist</th>
+        <th>Session</th>
+        <th>Price</th>
+        <th>Add to cart</th>
     </tr>
+    @foreach (Haarlem_Festival.Models.View_Models.Dance.TicketdayView a in Model.Saturday)
+    {
+        <tr>
+            <td>@a.Start</td>
+            <td>@a.Location</td>
+            <td>@a.Name</td>
+            <td>@a.Session</td>
+            <td>@a.Price</td>
+            <td>button</td>
+        </tr>
+    }
+</table>
+
+<table class="TicketTable" id="Sunday" style="display:none">
+    <tr>
+        <th>Time</th>
+        <th>Location</th>
+        <th>Artist</th>
+        <th>Session</th>
+        <th>Price</th>
+        <th>Add to cart</th>
+    </tr>
+    @foreach (Haarlem_Festival.Models.View_Models.Dance.TicketdayView a in Model.Sunday)
+    {
+        <tr>
+            <td>@a.Start</td>
+            <td>@a.Location</td>
+            <td>@a.Name</td>
+            <td>@a.Session</td>
+            <td>@a.Price</td>
+            <td>button</td>
+        </tr>
+    }
 </table>
