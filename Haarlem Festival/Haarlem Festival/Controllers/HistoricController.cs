@@ -41,7 +41,8 @@ namespace Haarlem_Festival.Controllers
         [HttpGet]
         public ActionResult BookTour(int? eventId)
         {
-            if (eventId != null){
+            if (eventId != null)
+            {
                 //Create Viewmodel
                 TourBooking booking = new TourBooking();
                 booking.RegularTickets = 1;
@@ -70,7 +71,11 @@ namespace Haarlem_Festival.Controllers
                 List<Ticket> tickets = new List<Ticket>();
                 Ticket ticket = new Ticket();
 
-                if ((!booking.FamilyTicket) && (booking.RegularTickets > 0))
+                //Checks Input Tickets against database Current Tickets
+                int ticketsLeft = historicEvent.CurrentTickets - booking.RegularTickets;
+                int ticketsLeftFamily = historicEvent.CurrentTickets - (booking.RegularTickets * 4);
+
+                if ((!booking.FamilyTicket) && (booking.RegularTickets > 0) && (ticketsLeft >= 0))
                 {
                     ticket.Amount = booking.RegularTickets;
                     ticket.EventId = booking.EventId;
@@ -81,19 +86,21 @@ namespace Haarlem_Festival.Controllers
                 {
                     return RedirectToAction("Index");
                 }
-                else if (booking.FamilyTicket && booking.RegularTickets < 1)
+                else if ((booking.FamilyTicket) && (booking.RegularTickets < 1))
                 {
-                    ticket.Amount = 1;
-                    ticket.EventId = booking.EventId;
-                    ticket.Event = eventRepository.GetEvent(ticket.EventId);
-                    ticket.Price = historicEvent.FamilyPrice;
+                    return RedirectToAction("Index");
                 }
-                else
+                //
+                else if ((booking.FamilyTicket) && (booking.RegularTickets > 0) && (ticketsLeftFamily >= 0))
                 {
-                    ticket.Amount = 1;
+                    ticket.Amount = (booking.RegularTickets * 4);
                     ticket.EventId = booking.EventId;
                     ticket.Event = eventRepository.GetEvent(ticket.EventId);
-                    ticket.Price = historicEvent.FamilyPrice;
+                    ticket.Price = (ticket.Amount * historicEvent.FamilyPrice);
+                }
+                else if ((ticketsLeft < 0) || (ticketsLeftFamily < 0))
+                {
+                    return RedirectToAction("Index");
                 }
 
                 // Create session if it doesn't exist or add ticket to existing session
@@ -109,9 +116,7 @@ namespace Haarlem_Festival.Controllers
                 }
                 return RedirectToAction("Index", "Ticket");
             }
-            
             // Post booking
-
             return PartialView("BookTour", booking);
         }
     }
