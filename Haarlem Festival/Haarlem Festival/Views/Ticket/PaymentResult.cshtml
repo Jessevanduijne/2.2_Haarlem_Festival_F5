@@ -1,0 +1,54 @@
+﻿@model Haarlem_Festival.Models.Domain_Models.General.Order
+
+@{
+    ViewBag.Title = "Thanks";
+}
+
+<head>
+    @Styles.Render("~/Content/Tickets/TicketStyle.css")
+</head>
+
+<h1>Success!</h1>
+
+<section id="paymentResultText">
+    <span>---------------------------------------------------</span>
+    <img src="@Url.Content("~/Content/Home/img/centerbutton.png")" />
+    <span>---------------------------------------------------</span>
+    <br /><br /><br />
+
+    <table class="table">
+        <tr class="row">
+            <th> Your Event </th>
+            <th> Price </th>
+            <th> Amount </th>
+        </tr>
+        @foreach (var ticket in Model.Tickets)
+        {
+            <tr class="row">
+                <td>
+                    @ticket.Event.EventName - @ticket.Event.StartTime
+                    <br />
+                    @if (ticket.SpecialRequest != null)
+                    {
+                        <b>@Html.DisplayNameFor(x => x.Tickets[0].SpecialRequest)</b>
+                        <i> @ticket.SpecialRequest</i>
+                    }
+
+                </td>
+                <td> €@ticket.Price,- </td>
+                <td> @ticket.Amount </td>
+            </tr>
+        }
+    </table>
+
+    <p>
+        <b>Thank you, @Model.FirstName @Model.LastName!</b><br />
+        You paid successfully with @Model.PaymentMethod. <br />         
+        Your tickets will be delivered to you @Model.Email. <br />
+        Check you email carefully and also your spam inbox. <br /><br />
+        <b>We'll see you soon at the Haarlem Festival. </b>
+    </p><br /><br /><br />
+
+    <br /><br /><br />
+    @Html.ActionLink("Go back to the homepage", "Index", "Home")
+</section>

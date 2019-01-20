@@ -16,7 +16,6 @@ namespace Haarlem_Festival.Models.View_Models.Tickets
             this.TotalPrice = TotalPrice;
         }
 
-        [Required]
         public List<Ticket> Tickets { get; set; }
         public int TotalTickets { get; set; }
         public float TotalPrice { get; set; }

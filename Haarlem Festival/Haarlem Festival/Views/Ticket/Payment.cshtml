@@ -6,7 +6,24 @@
 
 <head>
     @Styles.Render("~/Content/Tickets/TicketStyle.css")
+    @Styles.Render("~/Content/cssjqryUi")
+    @Scripts.Render("~/bundles/jqueryui")
 </head>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('input[type=datetime]').datepicker({
+            dateFormat: "dd/M/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0"
+        });
+
+    });
+
+    function goBack() {
+        window.history.back();
+    }
+</script>
 
 <section class="title">
     <span>---------------------------------------------------</span>
@@ -14,31 +31,54 @@
     <span>---------------------------------------------------</span>
 </section>
 
+<button class="btn" onclick="goBack()">
+    Previous
+</button>
+
 <section id="paymentform" class="container-fluid">
     @using (Html.BeginForm())
     {
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
         <section class="row">
-            @Html.DisplayNameFor(formItem => formItem.FirstName)
-            @Html.TextBoxFor(x => x.FirstName)
+            <section class="col-lg-offset-1 col-lg-6">
+                <section class="form-group">
+                    @Html.LabelFor(formItem => formItem.FirstName, new { @class = "control-label" })
+                    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+                </section>
+
+                <section class="form-group">
+                    @Html.LabelFor(formItem => formItem.LastName, new { @class = "control-label" })
+                    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+                </section>
+
+                <section class="form-group">
+                    @Html.LabelFor(formItem => formItem.Email, new { @class = "control-label" })
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                </section>
+
+                <section class="row">
+                    <section class="form-group col-lg-6">
+                        @Html.LabelFor(formItem => formItem.DateOfBirth, new { @class = "control-label" }) <br />
+                        @Html.EditorFor(x => x.DateOfBirth, new { @class = "form-control" })
+                    </section>
+
+                    <section class="form-group col-lg-6">
+                        @Html.LabelFor(formItem => formItem.PaymentMethods, new { @class = "control-label" }) <br />
+                        @Html.DropDownListFor(formItem => formItem.SelectedPaymentMethod, new SelectList(Model.PaymentMethods), "Select payment method")
+                    </section>
+                </section>
+
+            </section>
+            <section class="col-lg-4" id="paymentsubtext">
+                <p>
+                    We don't want to store top much data about our customers. Once you've filled this form in, there is no way back to change details.
+                    So we ask you to check this form carefully before submitting.
+                    Once submitted, your data will be stored in a secure database.
+                </p>
+            </section>
         </section>
 
-        <section class="row">
-            @Html.DisplayNameFor(formItem => formItem.LastName)
-            @Html.TextBoxFor(x => x.LastName)
-        </section>
-
-        <section class="row">
-            @Html.DisplayNameFor(formItem => formItem.DateOfBirth)
-            @Html.TextBoxFor(x => x.DateOfBirth)
-        </section>
-
-        <section class="row">
-            @Html.DisplayNameFor(formItem => formItem.Email )
-            @Html.TextBoxFor(x => x.Email)
-        </section>
-
-
-
-        <button id="payButton" type="submit">Pay</button>
+        <br />
+        <button id="payButton" class="btn col-lg-offset-7 col-lg-4" type="submit">Pay</button>
     }
 </section>
