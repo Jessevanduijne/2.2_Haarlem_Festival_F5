@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Haarlem_Festival.Models.Domain_Models.General.Ticket>
-
+﻿@model Haarlem_Festival.Models.View_Models.Tickets.TicketOverview
 @{
     ViewBag.Title = "Tickets";
 }
@@ -22,10 +21,19 @@
             <th> Amount </th>
             <th></th>
         </tr>
-        @foreach (var ticket in Model)
+        @foreach (var ticket in Model.Tickets)
         {
             <tr class="row">
-                <td> @ticket.Event.EventName - @ticket.Event.StartTime </td>
+                <td>
+                    @ticket.Event.EventName - @ticket.Event.StartTime
+                    <br />
+                    @if (ticket.SpecialRequest != null)
+                    {
+                        <b>@Html.DisplayNameFor(x => x.Tickets[0].SpecialRequest)</b>
+                        <i> @ticket.SpecialRequest</i>
+                    }
+
+                </td>
                 <td> €@ticket.Price,- </td>
                 <td> @ticket.Amount </td>
                 <td>
@@ -36,7 +44,22 @@
             </tr>
         }
     </table>
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    <hr />
+    <section id="ticketgeneralitems">
+        <section class="row">
+            <label id="ticketAmountlbl" class="col-lg-6"> Total tickets: @Model.TotalTickets </label>
+            <label id="totalPricelbl" class="col-lg-6"> Total price: €@Model.TotalPrice,- </label>
+        </section>
 
-    <button class="btn">Shop more tickets</button>
-    <button class="btn" onclick="location.href='@Url.Action("Payment", "Ticket")'">Pay your tickets</button>
+        <br />
+
+        <section class="row">
+            <button id="ticketleftbutton" class="col-lg-offset-1 col-lg-4 btn">Shop more tickets</button>
+            <button type="submit" onclick="location.href='@Url.Action("Payment", "Ticket")'" class="col-lg-offset-2 col-lg-4 btn">Pay your tickets</button>
+        </section>
+    </section>
+
+    <br />
+
 </section>

@@ -1,0 +1,19 @@
+﻿@using Haarlem_Festival.Models.View_Models.Jazz;
+
+<section class="SlideShow">
+    @foreach (SlideShowView artist in ViewBag.slideshowViews)
+    {
+        <section class="Slide SlideCenter">
+            <h1>@artist.BandName</h1>
+            <section class="SlidesTextBox">
+                <p>@artist.Description</p>
+            </section>
+            <img class="SlideImage" src="~/Content/Jazz/img/@artist.ImageLink" />
+        </section>
+    }
+
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</section>
+
+<script src="~/Scripts/JazzSlideShow.js"></script>

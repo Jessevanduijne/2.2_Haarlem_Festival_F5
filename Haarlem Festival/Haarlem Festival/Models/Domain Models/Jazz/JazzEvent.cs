@@ -8,6 +8,7 @@ using Haarlem_Festival.Models.Domain_Models.General;
 
 namespace Haarlem_Festival.Models.Domain_Models.Jazz
 {
+    // Table per type
     [Table("JazzEvents")]
     public class JazzEvent : Event
     {
@@ -20,5 +21,8 @@ namespace Haarlem_Festival.Models.Domain_Models.Jazz
         
         // Navigation Properties:
         public Venue JazzVenue { get; set; }
+        public double Price { get; set; }
+        public string PictureLocation { get; set; }
+        public string Description { get; set; }
     }
 }

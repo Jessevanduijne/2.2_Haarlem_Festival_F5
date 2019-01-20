@@ -5,6 +5,8 @@
 #ticketSection {
     margin: 50px;
     border: 1px solid;
+    height: 100%;
+    position: relative;
 }
 
 tr th {
@@ -16,6 +18,34 @@ tr th {
     height: 20px;
 }
 
+#ticketSection label {
+    position: relative;
+    margin-top: 10px;
+}
+
+#ticketgeneralitems {
+    margin-top: 100px;
+}
+
+#ticketleftbutton {
+    text-decoration: underline;
+}
+
+#ticketrightbutton {
+    background-color: green;
+    color: white;
+}
+
+#ticketSection button {
+    height: 80px;
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+#createemptyspace {
+    min-height: 00px;
+}
+
 /* Payment form: */
 #paymentform {
     border: 1px solid black;
@@ -25,4 +55,55 @@ tr th {
 
 #paymentform .row {
     margin-bottom: 20px;
+}
+
+#paymentsubtext {
+    background-color: gainsboro;
+    height: 300px;
+    padding-top: 50px;
+}
+
+#paymentsubtext p {
+    font-size: 20px;
+}
+
+.form-group input {
+    width: 100%;
+    height: 30px;
+}
+
+#paymentform select {
+    width: 100%;
+    height: 30px;
+}
+
+#payButton {
+    height: 100px;
+    background-color: dodgerblue;
+    color: white;
+    font-size: 30px;
+}
+
+/* Payment result page */
+#paymentResultText p {
+    font-size: 30px;
+    margin-top: 40px;
+}
+
+#paymentResultText span {
+    letter-spacing: -2px;
+    font-size: 15px;
+    color: lightgreen;
+    margin: 0 20px 0 20px;
+}
+
+#paymentResultText table {
+    width: 800px;
+    margin-left: 200px;
+    border: 1px solid #d4d4d4;
+}
+
+#paymentResultText a {
+    font-size: 30px;
+
 }

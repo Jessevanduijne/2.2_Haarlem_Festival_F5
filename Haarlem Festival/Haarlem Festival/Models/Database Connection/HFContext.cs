@@ -37,6 +37,7 @@ namespace Haarlem_Festival.Models.Database_Connection
         public DbSet<Artist> Artists { get; set; }
 
         // Jazz:
+        public DbSet<JazzEvent> JazzEvents { get; set; }
 
         // Historic:
         public DbSet<Guide> Guides { get; set; }

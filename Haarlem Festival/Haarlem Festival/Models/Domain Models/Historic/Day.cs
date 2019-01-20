@@ -2,6 +2,6 @@
 {
     public enum Day
     {
-        Thursday = 26, Friday, Saturday, Sunday
+        Thursday = 25, Friday, Saturday, Sunday
     }
 }

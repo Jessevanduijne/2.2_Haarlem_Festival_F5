@@ -9,7 +9,8 @@ namespace Haarlem_Festival.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(Haarlem_Festival.Models.Database_Connection.HFContext context)
