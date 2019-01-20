@@ -188,6 +188,10 @@
     <Compile Include="Migrations\201901201333243_orderPropertiesAdditions.Designer.cs">
       <DependentUpon>201901201333243_orderPropertiesAdditions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901201519238_JazzChanges.cs" />
+    <Compile Include="Migrations\201901201519238_JazzChanges.Designer.cs">
+      <DependentUpon>201901201519238_JazzChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database Connection\HFContext.cs" />
     <Compile Include="Models\Domain Models\Dance\Artist.cs" />
@@ -209,7 +213,8 @@
     <Compile Include="Models\View Models\Dance\TicketdayView.cs" />
     <Compile Include="Models\View Models\Dance\Ticketview.cs" />
     <Compile Include="Models\View Models\Food\RestaurantView.cs" />
-    <Compile Include="Models\View Models\Jazz\JazzTableView.cs" />
+    <Compile Include="Models\View Models\Historic\HistoricView.cs" />
+    <Compile Include="Models\View Models\Historic\TourBooking.cs" />
     <Compile Include="Models\View Models\Tickets\TicketOverview.cs" />
     <Compile Include="Models\View Models\Jazz\JazzTableView.cs" />
     <Compile Include="Models\View Models\Jazz\SlideShowView.cs" />
@@ -333,6 +338,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\Tickets\img\cross.png" />
     <Content Include="Content\Tickets\img\tickets.jpg" />
     <Content Include="Content\Tickets\TicketStyle.css" />
     <Content Include="Content\Jazz\style.css" />
@@ -380,8 +386,10 @@
     <Content Include="Views\Ticket\Payment.cshtml" />
     <Content Include="Views\Dance\Artists.cshtml" />
     <Content Include="Views\Dance\DanceTickets.cshtml" />
+    <Content Include="Views\Historic\BookTour.cshtml" />
     <Content Include="Views\Jazz\JazzSlideShow.cshtml" />
     <Content Include="Views\Jazz\JazzTable.cshtml" />
+    <Content Include="Views\Ticket\PaymentResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -418,6 +426,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901201333243_orderPropertiesAdditions.resx">
       <DependentUpon>201901201333243_orderPropertiesAdditions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901201519238_JazzChanges.resx">
+      <DependentUpon>201901201519238_JazzChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
