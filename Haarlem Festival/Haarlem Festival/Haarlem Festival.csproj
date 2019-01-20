@@ -152,6 +152,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\NoDirectAccessAttribute.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DanceController.cs" />
     <Compile Include="Controllers\FoodController.cs" />
@@ -362,6 +363,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\FoodScript.js" />
     <Content Include="Scripts\JazzSlideShow.js" />
     <Content Include="Scripts\JazzTable.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

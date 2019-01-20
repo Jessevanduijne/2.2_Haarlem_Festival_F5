@@ -29,14 +29,6 @@ namespace Haarlem_Festival.Controllers
                 float totalPrice = tickets.Sum(t => t.Price);
                 int totalTickets = tickets.Sum(t => t.Amount);
 
-                foreach(var ticket in tickets)
-                {
-                    ViewBag.SpecialRequestLabel = "";
-                    if(ticket.SpecialRequest != null)
-                    {
-                        ViewBag.SpecialRequestLabel = "Special Request: ";
-                    }
-                }
                 TicketOverview viewModel = new TicketOverview(tickets, totalTickets, totalPrice);
                 return View(viewModel);
             }
@@ -50,7 +42,7 @@ namespace Haarlem_Festival.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet, NoDirectAccess]
         public ActionResult DeleteTicket(int eventId)
         {
             // EventId is passed because ticketId doesn't exist yet
@@ -62,7 +54,7 @@ namespace Haarlem_Festival.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
+        [HttpGet, NoDirectAccess]
         public ActionResult Payment()
         {
             List<Ticket> tickets = (List<Ticket>)Session["CurrentTickets"];
@@ -80,53 +72,69 @@ namespace Haarlem_Festival.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        [HttpPost, NoDirectAccess]
         public ActionResult Payment(Payment paymentModel)
         {
-            paymentModel.PaymentMethods = new List<string>(new string[]
-            {
-                "Cash at the ticket counter", "iDeal", "Visa", "PayPal"
-            });
-
             if (ModelState.IsValid)
-            {
-                List<Ticket> tickets = GetSessionTickets();
-                ticketRepository.AddTickets(tickets);
+            {   // Check if client is older than 18:
+                if (paymentModel.DateOfBirth.Year < DateTime.Now.Year - 18)
+                {
+                    List<Ticket> tickets = GetSessionTickets();
+                    ticketRepository.AddTickets(tickets);
 
-                Order order = new Order();
-                order.Tickets = tickets; // remove?
-                order.FirstName = paymentModel.FirstName;
-                order.LastName = paymentModel.LastName;
-                order.Email = paymentModel.Email;
-                order.IsPaid = true; // never false, because a real payment system lacks in this project
-                order.PaymentMethod = paymentModel.SelectedPaymentMethod;
-                order.OrderPlaced = DateTime.Now;
+                    foreach (var ticket in tickets)
+                    {
+                        if (ticket.Amount != 0)
+                        {
+                            // ticket.Event.CurrentTickets = ticket.Event.CurrentTickets - ticket.Amount;
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("", "Not enough tickets available");
+                            return View(paymentModel);
+                        }
+                    }
 
-                ticketRepository.AddOrder(order);
+                    Order order = new Order();
+                    order.Tickets = tickets; // remove?
+                    order.FirstName = paymentModel.FirstName;
+                    order.LastName = paymentModel.LastName;
+                    order.Email = paymentModel.Email;
+                    order.IsPaid = true; // never false, because a real payment system lacks in this project
+                    order.PaymentMethod = paymentModel.SelectedPaymentMethod;
+                    order.OrderPlaced = DateTime.Now;
 
-                return RedirectToAction("PaymentResult", "Ticket", order);
+                    ticketRepository.AddOrder(order);
+
+                    return RedirectToAction("PaymentResult", "Ticket", order);
+                }
+                else ModelState.AddModelError("", "You have to be older than 18 to order a ticket for Haarlem Festival. Sorry!");
             }
+
+            // Fill dropdownlist again if model has to be loaded again
+            paymentModel.PaymentMethods = new List<string>(new string[] { "Cash at the ticket counter", "iDeal", "Visa", "PayPal" });
             return View(paymentModel);
         }
 
-        [HttpGet]
+        [HttpGet, NoDirectAccess]
         public ActionResult PaymentResult(Order order)
         {
             List<Ticket> tickets = GetSessionTickets();
 
             // Eventname is needed in the view
-            foreach(var ticket in tickets)
+            foreach (var ticket in tickets)
             {
                 ticket.Event = ticketRepository.GetEvent(ticket.EventId);
             }
-
             order.Tickets = tickets;
 
-            // Clear the session
-            var session = GetSessionTickets();
-            session.Clear();
-
             return View(order);
+        }
+
+        public ActionResult ClearSession()
+        {
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

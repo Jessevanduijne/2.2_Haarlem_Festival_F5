@@ -26,6 +26,7 @@ namespace Haarlem_Festival.Models.Input_Models.Tickets
         [Display(Name = "Payment method")]
         public List<string> PaymentMethods { get; set; }
         
+        [Required(ErrorMessage = "Please select a payment method")]
         public string SelectedPaymentMethod { get; set; }
     }
 }

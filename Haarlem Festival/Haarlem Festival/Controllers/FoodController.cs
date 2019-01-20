@@ -38,6 +38,7 @@ namespace Haarlem_Festival.Controllers
             return View(restaurantViews);
         }
 
+        [NoDirectAccess]
         public ActionResult BookRestaurant(int restaurantId)
         {
             // Create Viewmodel
@@ -56,7 +57,7 @@ namespace Haarlem_Festival.Controllers
             return PartialView("BookEvent", booking);
         }
 
-        [HttpPost]
+        [HttpPost, NoDirectAccess]
         public ActionResult BookRestaurant(RestaurantBooking booking)
         {
             // The 'booking'-parameter is filled up only with data that is being entered in the form: ticketamount (child/adult), selected event, special request & hidden restaurantID-field
@@ -96,7 +97,7 @@ namespace Haarlem_Festival.Controllers
             return PartialView("BookEvent", booking);            
         }
 
-        
+        [NoDirectAccess]
         public ActionResult BookEventSuccess(BookingResult resultViewModel)
         {  
             if(resultViewModel.SpecialRequests != null)
