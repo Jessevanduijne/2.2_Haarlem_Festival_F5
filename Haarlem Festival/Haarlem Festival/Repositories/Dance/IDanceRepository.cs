@@ -11,5 +11,6 @@ namespace Haarlem_Festival.Repositories.Dance
     {
         IEnumerable<DanceEvent> GetAllDanceEvents();
         IEnumerable<Artist> GetAllArtists();
+        DanceEvent GetDanceEvent(int id);
     }
 }

@@ -19,5 +19,6 @@ namespace Haarlem_Festival.Models.Domain_Models.General
         public DateTime EndTime { get; set; }
         public int MaxTickets { get; set; }
         public int CurrentTickets { get; set; }
+
     }
 }

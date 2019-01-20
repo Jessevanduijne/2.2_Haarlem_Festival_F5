@@ -8,6 +8,7 @@ namespace Haarlem_Festival.Models.View_Models.Dance
 {
     public class TicketdayView
     {
+        public int EventId { get; set; }
         public Nullable<DateTime> Start { get; set; }
         public string Location { get; set; }
         public string Name { get; set; } // All Access or Artist
@@ -19,6 +20,7 @@ namespace Haarlem_Festival.Models.View_Models.Dance
             if (d.EventName.Contains("ALL-ACCESS") && (d.Price == 125.00))
             {
                 TicketdayView a = new TicketdayView();
+                a.EventId = d.EventId;
                 a.Start = null;
                 a.Location = "";
                 a.Name = "All access for this day";
@@ -29,6 +31,7 @@ namespace Haarlem_Festival.Models.View_Models.Dance
             else if (d.EventName.Contains("ALL-ACCESS") && (d.Price == 250.00))
             {
                 TicketdayView b = new TicketdayView();
+                b.EventId = d.EventId;
                 b.Start = null;
                 b.Location = "";
                 b.Name = "All access for July 27, 28 and 29";
@@ -39,6 +42,7 @@ namespace Haarlem_Festival.Models.View_Models.Dance
             else
             {
                 TicketdayView c = new TicketdayView();
+                c.EventId = d.EventId;
                 c.Start = d.StartTime;
                 c.Location = d.DanceVenue.Name;
                 c.Name = d.EventName;

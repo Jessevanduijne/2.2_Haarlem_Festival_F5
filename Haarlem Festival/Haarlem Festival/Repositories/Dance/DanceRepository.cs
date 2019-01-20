@@ -34,5 +34,11 @@ namespace Haarlem_Festival.Repositories.Dance
             return Artists;
         }
 
+        public DanceEvent GetDanceEvent(int ID)
+        {
+            DanceEvent d = (DanceEvent)db.Events.Where(b => b.EventId== ID).OfType<DanceEvent>().FirstOrDefault();
+            return d;
+        }
+
     }
 }
