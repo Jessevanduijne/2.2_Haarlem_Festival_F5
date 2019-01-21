@@ -54,7 +54,7 @@
         <br />
 
         <section class="row">
-            <button id="ticketleftbutton" class="col-lg-offset-1 col-lg-4 btn">Shop more tickets</button>
+            <button id="ticketleftbutton" onclick="location.href='@Url.Action("Index", "Home")'" class="col-lg-offset-1 col-lg-4 btn">Shop more tickets</button>
             <button type="submit" onclick="location.href='@Url.Action("Payment", "Ticket")'" class="col-lg-offset-2 col-lg-4 btn">Pay your tickets</button>
         </section>
     </section>

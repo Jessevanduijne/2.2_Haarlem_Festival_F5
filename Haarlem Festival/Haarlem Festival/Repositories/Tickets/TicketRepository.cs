@@ -2,6 +2,7 @@
 using Haarlem_Festival.Models.Domain_Models.General;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -31,6 +32,16 @@ namespace Haarlem_Festival.Repositories.Tickets
         {
             Event e = db.Events.Find(eventId);
             return e;
+        }
+
+        public void UpdateTickets(List<Ticket> tickets)
+        {
+            foreach (var ticket in tickets)
+            {
+                db.Entry(ticket).State = EntityState.Modified;
+            }
+
+            db.SaveChanges();
         }
     }
 }

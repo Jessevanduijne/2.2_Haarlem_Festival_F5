@@ -10,5 +10,7 @@ namespace Haarlem_Festival.Repositories.Events
     interface IEventRepository
     {
         Event GetEvent(int eventId);
+        Event GetEventByRestaurantId(int restaurantId);
+
     }
 }

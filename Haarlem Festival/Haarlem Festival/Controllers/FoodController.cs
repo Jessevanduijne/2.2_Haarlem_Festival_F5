@@ -45,9 +45,12 @@ namespace Haarlem_Festival.Controllers
             RestaurantBooking booking = new RestaurantBooking();
             booking.Events = foodRepository.GetAllFoodEvents(restaurantId);
 
-            booking.RestaurantName = foodRepository.GetRestaurant(restaurantId).RestaurantName;
+            Restaurant restaurant = foodRepository.GetRestaurant(restaurantId);
+            booking.RestaurantName = restaurant.RestaurantName;
+            booking.ChildrenPrice = restaurant.PriceChildren;
+            booking.AdultPrice = restaurant.PriceAdults;
 
-            // Fix the datetime issue:
+            // Get the correct timespan:
             TimeSpan timeAtRestaurant = booking.Events.First().EndTime.Subtract(booking.Events.First().StartTime);
             booking.TimeAvailable = String.Format("{0:00}:{1:00}", timeAtRestaurant.Hours, timeAtRestaurant.Minutes);
 
@@ -60,52 +63,58 @@ namespace Haarlem_Festival.Controllers
         [HttpPost, NoDirectAccess]
         public ActionResult BookRestaurant(RestaurantBooking booking)
         {
-            // The 'booking'-parameter is filled up only with data that is being entered in the form: ticketamount (child/adult), selected event, special request & hidden restaurantID-field
-            // Only a field can be passed hidden, not an entire object. That's why we pass only the restaurantId to the viewmodel
+            // Only a field can be passed hidden, not an entire object. 
+            // That's why the restaurantId & name is passed to the viewmodel
 
             Restaurant restaurant = foodRepository.GetRestaurant(booking.RestaurantId);
+            Event selectedevent = eventRepository.GetEvent(booking.SelectedEvent);
 
             if (ModelState.IsValid)
             {
-                List<Ticket> tickets = new List<Ticket>();
-                Ticket ticket = new Ticket();
-
-                ticket.Amount = booking.AdultTickets + booking.ChildTickets;
-                ticket.EventId = booking.SelectedEvent;
-                ticket.Event = eventRepository.GetEvent(ticket.EventId);
-                ticket.Price = (booking.AdultTickets * restaurant.PriceAdults) + (booking.ChildTickets * restaurant.PriceChildren);
-                ticket.SpecialRequest = booking.SpecialRequest;
-
-                // Create session if it doesn't exist or add ticket to existing session
-                if (Session["currentTickets"] == null)
+                if (selectedevent.CurrentTickets != 0 &&
+                    booking.AdultTickets + booking.ChildTickets <= selectedevent.CurrentTickets)
                 {
-                    tickets.Add(ticket);
-                    Session["CurrentTickets"] = tickets;
+                    List<Ticket> tickets = new List<Ticket>();
+                    Ticket ticket = new Ticket();
+
+                    ticket.Amount = booking.AdultTickets + booking.ChildTickets;
+                    ticket.EventId = booking.SelectedEvent;
+                    ticket.Event = eventRepository.GetEvent(ticket.EventId);
+                    ticket.Price = (booking.AdultTickets * restaurant.PriceAdults) + (booking.ChildTickets * restaurant.PriceChildren);
+                    ticket.SpecialRequest = booking.SpecialRequest;
+
+                    // Create session if it doesn't exist or add ticket to existing session
+                    if (Session["currentTickets"] == null)
+                    {
+                        tickets.Add(ticket);
+                        Session["CurrentTickets"] = tickets;
+                    }
+                    else
+                    {
+                        List<Ticket> sessionTickets = (List<Ticket>)Session["currentTickets"];
+                        sessionTickets.Add(ticket);
+                    }
+                    BookingResult resultViewModel = new BookingResult(booking.RestaurantName, ticket.Event.StartTime, ticket.Event.EndTime, ticket.SpecialRequest);
+                    return RedirectToAction("BookEventSuccess", resultViewModel);
                 }
-                else
-                {
-                    List<Ticket> sessionTickets = (List<Ticket>)Session["currentTickets"];
-                    sessionTickets.Add(ticket);
-                }                
-                BookingResult resultViewModel = new BookingResult(booking.RestaurantName, ticket.Event.StartTime, ticket.Event.EndTime, ticket.SpecialRequest);
-                return RedirectToAction("BookEventSuccess", resultViewModel);
+                ModelState.AddModelError("", "There are only " + selectedevent.CurrentTickets + " tickets available");
             }
 
-            // Validation failed:
+            // Validation failed, reload some data:
             booking.RestaurantName = restaurant.RestaurantName;
             booking.Events = foodRepository.GetAllFoodEvents(restaurant.RestaurantID);
-            return PartialView("BookEvent", booking);            
+            return PartialView("BookEvent", booking);
         }
 
         [NoDirectAccess]
         public ActionResult BookEventSuccess(BookingResult resultViewModel)
-        {  
-            if(resultViewModel.SpecialRequests != null)
+        {
+            if (resultViewModel.SpecialRequests != null)
             {
                 ViewBag.SpecialRequestLabel = "Special Request: ";
             }
 
             return PartialView("BookEventSuccess", resultViewModel);
-        }        
+        }
     }
 }

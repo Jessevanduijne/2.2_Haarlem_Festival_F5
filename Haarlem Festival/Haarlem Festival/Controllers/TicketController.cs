@@ -46,7 +46,6 @@ namespace Haarlem_Festival.Controllers
         public ActionResult DeleteTicket(int eventId)
         {
             // EventId is passed because ticketId doesn't exist yet
-
             List<Ticket> tickets = (List<Ticket>)Session["currentTickets"];
             Ticket ticket = tickets.Find(x => x.EventId == eventId);
             tickets.Remove(ticket);
@@ -84,17 +83,10 @@ namespace Haarlem_Festival.Controllers
 
                     foreach (var ticket in tickets)
                     {
-                        if (ticket.Amount != 0)
-                        {
-                            // ticket.Event.CurrentTickets = ticket.Event.CurrentTickets - ticket.Amount;
-                        }
-                        else
-                        {
-                            ModelState.AddModelError("", "Not enough tickets available");
-                            return View(paymentModel);
-                        }
+                        ticket.Event = ticketRepository.GetEvent(ticket.EventId);
+                        ticket.Event.CurrentTickets = ticket.Event.CurrentTickets - ticket.Amount;   
                     }
-
+                    
                     Order order = new Order();
                     order.Tickets = tickets; // remove?
                     order.FirstName = paymentModel.FirstName;
