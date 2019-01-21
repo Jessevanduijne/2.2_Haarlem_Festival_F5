@@ -107,10 +107,14 @@
 }
 
 .Container {
-    width: 100%;
+    width: 50%;
     height: 100%;
-    position: absolute;
+    margin-left:252px;
+    position:relative;
+    left:110px;
+    top:320px;
+    text-align:center;
     visibility: hidden;
     display: none;
-    background-color: rgba(22,22,22,0.5);
+    background-color: rgba(22,22,22,0.9);
 }
