@@ -90,12 +90,31 @@
         opacity: .3;
         pointer-events: none;
     }
+.SlideInfo {
+    width: 350px;
+    height: 900px;
+    text-align: center;
+
+}
+.SlideInfo img{
+    margin-top:0;
+    height:50%;
+}
+.SlideInfo p{
+    width:80%;
+    margin: 0 auto;
+    height: 40%;
+}
 
 .Container {
-    width: 100%;
+    width: 50%;
     height: 100%;
-    position: absolute;
+    margin-left:252px;
+    position:relative;
+    left:110px;
+    top:320px;
+    text-align:center;
     visibility: hidden;
     display: none;
-    background-color: rgba(22,22,22,0.5);
+    background-color: rgba(22,22,22,0.9);
 }
