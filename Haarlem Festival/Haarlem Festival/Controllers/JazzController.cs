@@ -6,13 +6,16 @@ using System.Web.Mvc;
 using Haarlem_Festival.Repositories.Jazz;
 using Haarlem_Festival.Models.Domain_Models.Jazz;
 using Haarlem_Festival.Models.View_Models.Jazz;
-using Haarlem_Festival.Models.Input_Models.Jazz;
+using Haarlem_Festival.Repositories.Events;
+using Haarlem_Festival.Models.Domain_Models.General;
 
 namespace Haarlem_Festival.Controllers
 {
     public class JazzController : Controller
     {
         JazzRepository repository = new JazzRepository();
+        EventRepository eventRepo = new EventRepository();
+
         // GET: Jazz
         public ActionResult Index()
         {
@@ -23,15 +26,47 @@ namespace Haarlem_Festival.Controllers
             return View();
         }
 
-        public ActionResult JazzOrder(int EventId)
+        [HttpPost] 
+        public ActionResult JazzOrder()
         {
-            return PartialView();
+            int EventId = int.Parse(Request.Form["EventId"]);
+            int Amount = int.Parse(Request.Form["TicketAmount"]);
+
+            JazzEvent e = repository.GetJazzEvent(EventId);
+
+            List<Ticket> tickets = new List<Ticket>();
+            Ticket ticket = new Ticket();
+
+            ticket.Amount = Amount;
+            ticket.EventId = e.EventId;
+            ticket.Event = eventRepo.GetEvent(e.EventId);
+            ticket.Price = (float)e.Price * Amount;
+            ticket.SpecialRequest = null;
+
+            if (ticket.Amount > (ticket.Event.MaxTickets - ticket.Event.CurrentTickets))
+            {
+                return RedirectToAction("NoTickets", "Jazz");
+            }
+            else
+            {
+                // Create session if it doesn't exist or add ticket to existing session
+                if (Session["currentTickets"] == null)
+                {
+                    tickets.Add(ticket);
+                    Session["CurrentTickets"] = tickets;
+                }
+                else
+                {
+                    List<Ticket> sessionTickets = (List<Ticket>)Session["currentTickets"];
+                    sessionTickets.Add(ticket);
+                }
+                return RedirectToAction("Index", "Ticket");
+            }
         }
 
-        [HttpPost] 
-        public ActionResult JazzOrder(JazzOrder order)
+        public ActionResult NoTickets()
         {
-            return View("index");
+            return View();
         }
 
         public void GetAllJEventsInViewbag()

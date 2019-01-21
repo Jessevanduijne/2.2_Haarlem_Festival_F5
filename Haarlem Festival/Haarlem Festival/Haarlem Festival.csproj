@@ -332,6 +332,7 @@
     <Content Include="Views\Jazz\JazzSlideShow.cshtml" />
     <Content Include="Views\Jazz\JazzTable.cshtml" />
     <Content Include="Views\Jazz\JazzOrder.cshtml" />
+    <Content Include="Views\Jazz\NoTickets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

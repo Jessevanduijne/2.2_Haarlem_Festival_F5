@@ -20,37 +20,10 @@ namespace Haarlem_Festival.Repositories.Jazz
             return jazzEvents;
         }
 
-       /* public IEnumerable<JazzEvent> GetJazzEventsByDate()
+        internal JazzEvent GetJazzEvent(int eventId)
         {
-            IEnumerable<JazzEvent> jazzEvents = GetAllJazzEvents();
-
-            List<JazzEvent> thursday = new List<JazzEvent>();
-            List<JazzEvent> friday = new List<JazzEvent>();
-            List<JazzEvent> saturday = new List<JazzEvent>();
-            List<JazzEvent> sunday = new List<JazzEvent>();
-
-            foreach (JazzEvent jEvent in jazzEvents)
-            {
-                if (jEvent.StartTime.Date == new DateTime(2019, 7, 26))
-                {
-                    thursday.Add(jEvent);
-                }
-                else if (jEvent.StartTime.Date == new DateTime(2019, 7, 27))
-                {
-                    friday.Add(jEvent);
-                }
-                else if (jEvent.StartTime.Date == new DateTime(2019, 7, 28))
-                {
-                    saturday.Add(jEvent);
-                }
-                else if (jEvent.StartTime.Date == new DateTime(2019, 7, 29))
-                {
-                    sunday.Add(jEvent);
-                }
-            }
-
-            return null;
-        }*/
+            return (db.JazzEvents.Find(eventId));
+        }
 
         public IEnumerable<JazzEvent> GetJazzEventsByDate(DateTime date)
         {
