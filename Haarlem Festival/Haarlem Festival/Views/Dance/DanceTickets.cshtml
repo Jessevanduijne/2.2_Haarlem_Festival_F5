@@ -34,10 +34,12 @@
     }
 </script>
 
+
 <button class="tableButton ButtonInactive" disabled>No tickets for Thursday July 25th </button>
 <button class="tableButton ButtonActive" id="FridayTab" onclick="ChangeTab('Friday')">Show tickets for Friday July 26th</button>
 <button class="tableButton ButtonInactive" id="SaturdayTab" onclick="ChangeTab('Saturday')">Show tickets for Saturday July 27th</button>
 <button class="tableButton ButtonInactive" id="SundayTab" onclick="ChangeTab('Sunday')">Show tickets for Sunday July 28th</button>
+
 
 <table class="TicketTable table" id="Friday">
     <tr>
@@ -66,7 +68,6 @@
         <td><button onclick="PopUp(@a.EventId,'@a.Name')"><img class="cart" src="~/Content/General/img/cart.png" /></button></td>
     </tr>
     }
-
 </table>
 
 <table class="TicketTable table" id="Saturday" style="display:none">
@@ -127,21 +128,21 @@
     }
 </table>
 
-<div id="Popup" class="Container" style="position:relative;top:-253px;">
-    <button style="position:relative;left:320px;top:20px;" onclick="Close()"> X </button>
+<div id="Popup" class="Container">
+    <button onclick="Close()"> X </button>
     <div>
         @using (Html.BeginForm("AddTickets", "Dance", FormMethod.Post))
         {
-            <h1 style="color:white;" id="title"></h1>
-            <p style="color:white;width:150px;height:10px;">Amount of tickets</p>
-            <select name="ticketAmount">
-                @for (int i = 1; i < 21; i++)
+            <h1 id="title"></h1>
+            <p>Amount of tickets</p>
+            <select name="ticketAmount" >
+                @for (int i = 0; i < 20; i++)
                 {
                     <option value="@i">@i</option>
                 }
             </select>
-            <input name="EventId" type="number" value="" style="display:none" />
-            <button style="position:center" type="submit">Add</button>
+            <input name="EventId" type="number" value="" style="display:none"/>
+            <button type="submit">Add</button>
         }
     </div>
 </div>
