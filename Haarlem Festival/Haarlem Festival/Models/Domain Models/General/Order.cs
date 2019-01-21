@@ -17,10 +17,10 @@ namespace Haarlem_Festival.Models.Domain_Models.General
         public string LastName { get; set; } 
         public string Email { get; set; }
         public bool IsPaid { get; set; }
+        public string PaymentMethod { get; set; }
+        public DateTime OrderPlaced { get; set; }
 
         // Collections:
         public List<Ticket> Tickets { get; set; }
-
-
     }
 }

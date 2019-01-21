@@ -7,129 +7,125 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Haarlem_Festival.Models.Database_Connection;
-using Haarlem_Festival.Models.Domain_Models.Historic;
 using Haarlem_Festival.Repositories.Historic;
+using Haarlem_Festival.Repositories.Tickets;
+using Haarlem_Festival.Repositories.Events;
+using Haarlem_Festival.Models.View_Models.Historic;
+using Haarlem_Festival.Models.Domain_Models.Historic;
+using Haarlem_Festival.Models.Domain_Models.General;
 
 namespace Haarlem_Festival.Controllers
 {
     public class HistoricController : Controller
     {
-        private HFContext db = new HFContext();
         private IHistoricRepository historicRepository = new HistoricRepository();
+        private ITicketRepository ticketRepository = new TicketRepository();
+        private IEventRepository eventRepository = new EventRepository();
 
         // GET: Historic
         public ActionResult Index()
         {
-            // IEnumerable<HistoricEvent> historicEvents = historicRepository.GetAllTours();
-            return View(db.Events.OfType<HistoricEvent>().ToList().OrderBy(x => x.EventId));
-        }
+            IEnumerable<HistoricEvent> histEvents = historicRepository.GetAllTours();
 
-        // GET: Historic/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
+            List<HistoricView> historicEvents = new List<HistoricView>();
+
+            foreach (HistoricEvent ev in histEvents)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                ev.StartingPoint = histEvents.First().EventId;
+                historicEvents.Add(new HistoricView(ev));
             }
-            HistoricEvent historicEvent = (HistoricEvent)db.Events.Find(id);
-            if (historicEvent == null)
+
+            return View(historicEvents);
+        }
+
+        [HttpGet]
+        public ActionResult BookTour(int? eventId)
+        {
+            if (eventId != null)
             {
-                return HttpNotFound();
+                //Create Viewmodel
+                TourBooking booking = new TourBooking();
+                booking.RegularTickets = 1;
+                booking.Events = historicRepository.GetAllTours();
+                booking.TourName = historicRepository.GetTour((int)eventId).EventName;
+
+                //Pass ID value of tour:
+                booking.EventId = (int)eventId;
+                return PartialView("BookTour", booking);
             }
-            return View(historicEvent);
-        }
-
-        // GET: Historic/Create
-        public ActionResult Create()
-        {
-            ViewBag.GuideID = new SelectList(db.Guides, "GuideID", "Name");
-            return View();
-        }
-
-        // POST: Historic/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventId,EventName,StartTime,EndTime,MaxTickets,CurrentTickets,GuideID")] HistoricEvent historicEvent)
-        {
-            if (ModelState.IsValid)
+            else
             {
-                db.Events.Add(historicEvent);
-                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.GuideID = new SelectList(db.Guides, "GuideID", "Name", historicEvent.GuideID);
-            return View(historicEvent);
         }
 
-        // GET: Historic/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            HistoricEvent historicEvent = (HistoricEvent)db.Events.Find(id);
-            if (historicEvent == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.GuideID = new SelectList(db.Guides, "GuideID", "Name", historicEvent.GuideID);
-            return View(historicEvent);
-        }
-
-        // POST: Historic/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EventId,EventName,StartTime,EndTime,MaxTickets,CurrentTickets,GuideID")] HistoricEvent historicEvent)
+        public ActionResult BookTour(TourBooking booking)
         {
+            // The 'booking'-parameter is filled up only with data that is being entered in the form
+
+            HistoricEvent historicEvent = historicRepository.GetTour(booking.EventId);
+
             if (ModelState.IsValid)
             {
-                db.Entry(historicEvent).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.GuideID = new SelectList(db.Guides, "GuideID", "Name", historicEvent.GuideID);
-            return View(historicEvent);
-        }
+                List<Ticket> tickets = new List<Ticket>();
+                Ticket ticket = new Ticket();
 
-        // GET: Historic/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            HistoricEvent historicEvent = (HistoricEvent)db.Events.Find(id);
-            if (historicEvent == null)
-            {
-                return HttpNotFound();
-            }
-            return View(historicEvent);
-        }
+                //Checks Input Tickets against database Current Tickets
+                int ticketsLeft = historicEvent.CurrentTickets - booking.RegularTickets;
+                int ticketsLeftFamily = historicEvent.CurrentTickets - (booking.RegularTickets * 4);
 
-        // POST: Historic/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            HistoricEvent historicEvent = (HistoricEvent)db.Events.Find(id);
-            db.Events.Remove(historicEvent);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+                // Fills ticket if its not a family ticket and you have a correct value that isnt more than the available tickets for event
+                if ((!booking.FamilyTicket) && (booking.RegularTickets > 0) && (ticketsLeft >= 0))
+                {
+                    ticket.Amount = booking.RegularTickets;
+                    ticket.EventId = booking.EventId;
+                    ticket.Event = eventRepository.GetEvent(ticket.EventId);
+                    ticket.Price = (booking.RegularTickets * historicEvent.Price);
+                }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
+                // Redirects back to index page if ticket input is 0 or less
+                else if ((!booking.FamilyTicket) && (booking.RegularTickets < 1))
+                {
+                    return RedirectToAction("Index");
+                }
+
+                // Redirects back to index page if ticket input is 0 or less
+                else if ((booking.FamilyTicket) && (booking.RegularTickets < 1))
+                {
+                    return RedirectToAction("Index");
+                }
+
+                // Fills ticket if its a family ticket and you have a correct value that isnt more than the available tickets for event
+                else if ((booking.FamilyTicket) && (booking.RegularTickets > 0) && (ticketsLeftFamily >= 0))
+                {
+                    ticket.Amount = (booking.RegularTickets * 4);
+                    ticket.EventId = booking.EventId;
+                    ticket.Event = eventRepository.GetEvent(ticket.EventId);
+                    ticket.Price = (ticket.Amount * historicEvent.FamilyPrice);
+                }
+
+                // Redirects to index page if ticket input is more than available tickets for event
+                else if ((ticketsLeft < 0) || (ticketsLeftFamily < 0))
+                {
+                    return RedirectToAction("Index");
+                }
+
+                // Create session if it doesn't exist or add ticket to existing session
+                if (Session["currentTickets"] == null)
+                {
+                    tickets.Add(ticket);
+                    Session["CurrentTickets"] = tickets;
+                }
+                else
+                {
+                    List<Ticket> sessionTickets = (List<Ticket>)Session["currentTickets"];
+                    sessionTickets.Add(ticket);
+                }
+                return RedirectToAction("Index", "Ticket");
             }
-            base.Dispose(disposing);
+            // Post booking
+            return PartialView("BookTour", booking);
         }
     }
 }

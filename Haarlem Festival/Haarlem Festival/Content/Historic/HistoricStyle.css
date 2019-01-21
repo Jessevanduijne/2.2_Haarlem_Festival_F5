@@ -105,6 +105,9 @@ th {
 
 .familyRow td {
     border: none;
+}
+
+.familyRow {
     border-left: 2px solid orange;
     border-right: 2px solid orange;
     border-top: 2px solid deepskyblue;
@@ -128,4 +131,39 @@ th {
     border: 1px solid deepskyblue;
     padding: 40px 120px 40px 120px;
     box-shadow: 2px 2px lightgrey;
+}
+
+.locationpreview {
+    width: 500px;
+    height: 430px;
+    font-size: 24px;
+    display: inline-block;
+    margin: 50px 30px 50px 30px;
+    box-shadow: 2px 2px lightgrey;
+    border: 1px solid deepskyblue;
+}
+
+.locationpreview img {
+    width: 480px;
+    height: 350px;
+}
+
+.locationpreview h2 {
+    text-decoration: none;
+}
+
+.tourpreview img {
+    padding: 30px 30px 30px 30px;
+    border: 1px solid deepskyblue;
+    box-shadow: 2px 2px lightgrey;
+}
+
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
 }

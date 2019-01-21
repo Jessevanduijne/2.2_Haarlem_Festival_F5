@@ -9,6 +9,8 @@ namespace Haarlem_Festival.Repositories.Tickets
 {
     interface ITicketRepository
     {
-        void CreateTicket(Ticket ticket);
+        void AddTickets(List<Ticket> tickets);
+        void AddOrder(Order order);
+        Event GetEvent(int eventId);
     }
 }

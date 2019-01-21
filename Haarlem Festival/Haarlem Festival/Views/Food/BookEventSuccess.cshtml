@@ -1,0 +1,19 @@
+﻿@model Haarlem_Festival.Models.View_Models.Food.BookingResult
+
+<h3 class="modal-title">Success!</h3>
+<p><i>You successfully added a reservation your cart</i></p>
+
+<label> Restaurant:</label> @Model.RestaurantName 
+
+<br />
+
+<label> Time reserved: </label> @Model.StartTime &nbsp; - &nbsp; @Model.EndTime
+
+<br />
+
+<label> @ViewBag.SpecialRequestLabel </label> <i> @Model.SpecialRequests </i>
+
+<br /><br />
+
+
+@Html.ActionLink("Go to the checkout", "Index", "Ticket")

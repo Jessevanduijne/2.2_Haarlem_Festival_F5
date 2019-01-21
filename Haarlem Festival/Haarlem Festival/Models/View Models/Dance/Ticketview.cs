@@ -16,18 +16,20 @@ namespace Haarlem_Festival.Models.View_Models.Dance
         public Ticketview DomainToView(IEnumerable<DanceEvent> danceEvents)
         {
             TicketdayView t = new TicketdayView();
-
+            Friday = new List<TicketdayView>();
+            Saturday = new List<TicketdayView>();
+            Sunday = new List<TicketdayView>();
             foreach(DanceEvent d in danceEvents)
             {                
-                if(d.StartTime.Day == 27)
+                if(d.StartTime.Day == 26)
                 {
                     Friday.Add(t.DomainToView(d));
                 }
-                else if(d.StartTime.Day == 28)
+                else if(d.StartTime.Day == 27)
                 {
                     Saturday.Add(t.DomainToView(d));
                 }
-                else if(d.StartTime.Day == 29)
+                else if(d.StartTime.Day == 28)
                 {
                     Sunday.Add(t.DomainToView(d));
                 }

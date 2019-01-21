@@ -16,12 +16,18 @@ namespace Haarlem_Festival.Models.Domain_Models.Historic
         public virtual Guide Guide { get; set; }
 
         [NotMapped]
-        public string TicketAvailable => (CurrentTickets == 0 ?
-                   "<img src='/Content/Historic/img/cartcross.png'style='width:25px' />" :
-                    "<img src='/Content/Historic/img/addcart.png' class='add-cart' />");
+        public float Price = 17.50f;
 
         [NotMapped]
-        public DayOfWeek Day { get { return ((DayOfWeek)(StartTime.DayOfWeek)); } }
+        public int FamilyPrice = 15;
+
+        [NotMapped]
+        public string TicketAvailable => (CurrentTickets == 0 ?
+                   "<img src='/Content/Historic/img/cartcross.png'style='width:25px' />" :
+                    ActionButtonStart + "<img src='/Content/Historic/img/addcart.png' class='add-cart' />") + ActionButtonEnd;
+
+        [NotMapped]
+        public DayOfWeek Day { get { return ((DayOfWeek)(StartTime.DayOfWeek)); } set { } }
 
         [NotMapped]
         public int Hour { get { return (StartTime.Hour); } }
@@ -29,30 +35,40 @@ namespace Haarlem_Festival.Models.Domain_Models.Historic
         [NotMapped]
         public int Minutes { get { return (StartTime.Minute); } }
 
+        [NotMapped]
+        public int StartingPoint { get; set; }
 
         [NotMapped]
-        public string GetGeneratedHtml => (GenerateHtml());
+        public string ActionButtonStart { get { return "<button id='loadEvents' data-toggle='modal' data-target='#MyModal' onclick='BookTour("+EventId+")'>"; } }
 
-        private string GenerateHtml()
+        [NotMapped]
+        public string ActionButtonEnd { get { return "</button>"; } }
+
+        [NotMapped]
+        public string GetGeneratedHtml => (GenerateHtmlTable());
+
+        private string GenerateHtmlTable()
         {
             string tableRowOpening = "<tr class='dayOfWeek "+Day.ToString().ToLower()+"'>";
             string tableRowClosing = "</tr>";
-            string prijsStr = "<td>17,50</td>";
+            string prijsStr = "<td>€17,50</td>";
             string timeStr = "<td>" + Hour.ToString() + ":" + Minutes.ToString("00") + "</td>";
             string tourStr = "<td id='"+EventId+"'>" + TicketAvailable + "</td>";
 
             string htmlGenerated = "";
 
-            if ((EventId % 3) == 1)
+            int startingPoint = ((EventId - StartingPoint) + 1) % 3;
+
+            if (startingPoint == 1)
             {
                 htmlGenerated += tableRowOpening + timeStr + prijsStr;
                 htmlGenerated += tourStr;
             }
-            else if ((EventId % 3) == 2)
+            else if (startingPoint == 2)
             {
                 htmlGenerated += tourStr;
             }
-            else if ((EventId % 3) == 0)
+            else if (startingPoint == 0)
             {
                 htmlGenerated += tourStr;
                 htmlGenerated += tableRowClosing;
@@ -63,15 +79,6 @@ namespace Haarlem_Festival.Models.Domain_Models.Historic
             }
 
             return htmlGenerated;
-
-            /* <th><h4>Time</h4></th>
-            < th >< h4 > Price </ h4 ></ th >
-            < th >< h4 > English Tour </ h4 ></ th >
-     
-                 < th >< h4 > Dutch Tour </ h4 ></ th >
-          
-                      < th >< h4 > Chinese Tour </ h4 ></ th >
-                      */
         }
     }
 }

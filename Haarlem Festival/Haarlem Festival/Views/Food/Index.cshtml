@@ -8,6 +8,7 @@
 <head>
     @Styles.Render("~/Content/Food/FoodStyle.css")
     @Scripts.Render("~/Scripts/jquery.validate.unobtrusive")
+    @Scripts.Render("~/bundles/jquery")
 </head>
 
 <section>
@@ -99,7 +100,7 @@
             <section class="alignTileContent">
                 <h2>@item.Restaurant.RestaurantName</h2>
                 <section class="stars">
-                    Stars:
+                    @Html.DisplayNameFor(x => x.Restaurant.Stars):
                     @for (int i = 1; i <= item.Restaurant.Stars; i++)
                     {
                         <img src="@Url.Content("~/Content/Food/img/star.png")" />
@@ -117,17 +118,24 @@
                     @Html.DisplayNameFor(x => x.Restaurant.Address): <br />
                     @item.Restaurant.Address
                 </p>
-                <span><img src="@Url.Content("~/Content/Food/img/route.png")" /><br /> Route</span>
-                <span><img src="@Url.Content("~/Content/Food/img/www.png")" /><br />  Website</span>
+                <span>
+                    <img onclick="location.href='@item.Restaurant.RouteLink'"
+                         src="@Url.Content("~/Content/Food/img/route.png")" />
+                    <br /> @Html.DisplayNameFor(x => x.Restaurant.RouteLink)
+                </span>
+                <span>
+                    <img onclick="location.href='@item.Restaurant.WebsiteLink'"
+                         src="@Url.Content("~/Content/Food/img/www.png")" />
+                    <br /> @Html.DisplayNameFor(x => x.Restaurant.WebsiteLink)
+                </span>
             </section>
         </section>
     }
-
     <br />
 </section>
 
 <!-- Modal screen: -->
-<section class="modal fade" id="MyModal" role="dialog">
+<section class="modal fade" id="RestaurantModal" role="dialog">
     <section class="modal-dialog">
         <section class="modal-content">
             <section class="modal-body" id="modalBody">
@@ -139,16 +147,5 @@
 </section>
 
 <footer>
-    <script>
-
-
-        var BookRestaurant = function (restaurantId) {
-            var url = "/Food/BookRestaurant?restaurantId=" + restaurantId;
-            $("#modalBody").load(url, function () {
-                $("#MyModal").modal("show");
-            })
-        };
-
-
-    </script>
+    @Scripts.Render("~/Scripts/FoodScript.js");
 </footer>

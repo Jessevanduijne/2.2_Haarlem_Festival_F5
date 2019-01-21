@@ -12,11 +12,14 @@ namespace Haarlem_Festival.Repositories.Historic
         public IEnumerable<HistoricEvent> GetAllTours()
         {
             IEnumerable<HistoricEvent> tours;
+
             using (HFContext db = new HFContext())
             {
-                tours = db.Events.OfType<HistoricEvent>().OrderBy(x => x.EventId);
+                tours = db.Events.OfType<HistoricEvent>().ToList().OrderBy(t => t.EventId);
+
             }
             return tours;
+
         }
 
         public HistoricEvent GetTour(int eventID)

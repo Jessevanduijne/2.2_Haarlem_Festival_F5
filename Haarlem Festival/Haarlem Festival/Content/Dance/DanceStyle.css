@@ -3,37 +3,99 @@
     font-size: 13px;
     width: 900px;
     height: 96px;
+    margin: 0 auto;
 }
 #InfoTiles {
     width:90%;
-    height:400px;
+    height:50%;
+    overflow:hidden;
+    margin:auto;
     background: linear-gradient(135deg, #8ad183 0%,#c3e395 100%);    
 }
-#InfoTiles section{
+#InfoTiles table{
+    margin-top:0;
+}
+#InfoTiles td{
     width:50%;
-    height:50%;
-    float:left;
+}
+#InfoTiles img{
+    width:100%;
 }
 
-/* override position and transform in 3.3.x */
-.carousel-inner .Slides.left.active {
-    transform: translateX(-33%);
+/* Caroussel*/
+/*jssor slider loading skin spin css*/
+.jssorl-009-spin img {
+    animation-name: jssorl-009-spin;
+    animation-duration: 1.6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
 
-.carousel-inner .Slides.right.active {
-    transform: translateX(33%);
+@keyframes jssorl-009-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
-.carousel-inner .Slides.next {
-    transform: translateX(33%)
+/*jssor slider bullet skin 051 css*/
+.jssorb051 .i {
+    position: absolute;
+    cursor: pointer;
 }
 
-.carousel-inner .Slides.prev {
-    transform: translateX(-33%)
+    .jssorb051 .i .b {
+        fill: #fff;
+        fill-opacity: 0.5;
+    }
+
+    .jssorb051 .i:hover .b {
+        fill-opacity: .7;
+    }
+
+.jssorb051 .iav .b {
+    fill-opacity: 1;
 }
 
-.carousel-inner .Slides.right,
-.carousel-inner .Slides.left {
-    transform: translateX(0);
+.jssorb051 .i.idn {
+    opacity: .3;
 }
 
+/*jssor slider arrow skin 051 css*/
+.jssora051 {
+    display: block;
+    position: absolute;
+    cursor: pointer;
+}
+
+.jssora051 .a {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 360;
+        stroke-miterlimit: 10;
+}
+
+    .jssora051:hover {
+        opacity: .8;
+    }
+
+    .jssora051.jssora051dn {
+        opacity: .5;
+    }
+
+    .jssora051.jssora051ds {
+        opacity: .3;
+        pointer-events: none;
+    }
+
+.Container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    visibility: hidden;
+    display: none;
+    background-color: rgba(22,22,22,0.5);
+}
