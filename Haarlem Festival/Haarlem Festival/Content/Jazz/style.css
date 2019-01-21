@@ -206,3 +206,21 @@ footer {
 #JazzOrder {
     background-color: white;
 }
+
+#Popup {
+    background-color: lightblue;
+    z-index: 50;
+    position:absolute;
+    width: 500px;
+    height: 200px;
+    top:100px;
+    left: 300px;
+    visibility: none;
+    display: none;
+}
+
+.close {
+    position: absolute;
+    left: 480px;
+    top: 5px;
+}

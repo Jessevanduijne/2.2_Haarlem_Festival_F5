@@ -44,7 +44,7 @@
             <td>@JEvent.Location</td>
             <td>@JEvent.Band</td>
             <td>@JEvent.Price</td>
-            <td><img onclick="JazzOrder(@JEvent.Id)" class="cart" src="@Url.Content("~/Content/General/img/cart.png")" /></td>
+            <td><img class="cart" src="@Url.Content("~/Content/General/img/cart.png")" onclick="PopUp(@JEvent.Id, '@JEvent.Band')" /></td>
         </tr>
     }
 </table>
@@ -65,7 +65,7 @@
             <td>@JEvent.Location</td>
             <td>@JEvent.Band</td>
             <td>@JEvent.Price</td>
-            <td><img onclick="JazzOrder(@JEvent.Id)" class="cart" src="@Url.Content("~/Content/General/img/cart.png")" /></td>
+            <td><img class="cart" src="@Url.Content("~/Content/General/img/cart.png")" onclick="PopUp(@JEvent.Id, '@JEvent.Band')" /></td>
         </tr>
     }
 </table>
@@ -102,17 +102,23 @@
         y.style.visibility = "visible";
         y.style.display = "block";
     }
+
+    function Close() {
+        var x = document.getElementById("Popup");
+        x.style.visibility = "hidden";
+        x.style.display = "none";
+    }
 </script>
 
 <div id="Popup" class="Container">
-    <button onclick="Close()"> X </button>
+    <button class ="close" onclick="Close()"> X </button>
     <div>
         @using (Html.BeginForm("JazzOrder", "Jazz", FormMethod.Post))
         {
             <h1 id="title"></h1>
             <p>Amount of tickets</p>
             <select name="ticketAmount">
-                @for (int i = 0; i < 20; i++)
+                @for (int i = 1; i < 20; i++)
                 {
                     <option value="@i">@i</option>
                 }
