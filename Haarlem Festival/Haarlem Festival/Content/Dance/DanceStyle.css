@@ -90,6 +90,21 @@
         opacity: .3;
         pointer-events: none;
     }
+.SlideInfo {
+    width: 350px;
+    height: 900px;
+    text-align: center;
+
+}
+.SlideInfo img{
+    margin-top:0;
+    height:50%;
+}
+.SlideInfo p{
+    width:80%;
+    margin: 0 auto;
+    height: 40%;
+}
 
 .Container {
     width: 100%;
