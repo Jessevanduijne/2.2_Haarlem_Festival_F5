@@ -5,6 +5,7 @@
     @Styles.Render("~/Content/Home/HomeStyle.css")
     @Styles.Render("~/Content/General/GeneralStyle.css")
     @Styles.Render("~/Content/Dance/DanceStyle.css")
+    @Styles.Render("~/Content/Jazz/style.css")
 </head>
 
 <section class="intro">
@@ -22,7 +23,9 @@
     <h1>Tickets</h1>
     <span>---------------------------------------------------</span>
     <br />
-    @Html.Action("DanceTickets", "Dance")
+    <section class="TicketsSection">
+        @Html.Action("DanceTickets", "Dance")
+    </section>
     <p>
         * The capacity of the Club sessions is very limited. Availability for All-Access pas holders can not be garanteed due to safety regulations.
         <br />** TiëstoWorld is a special session spannig his careers work. There will also be some special guests.
@@ -66,5 +69,7 @@
     <h1>Line Up</h1>
     <span>---------------------------------------------------</span>
     <br />
+    <section>
     @Html.Action("Artists", "Dance")
+    </section>
 </section>
