@@ -213,6 +213,7 @@
     <Compile Include="Models\Domain Models\Jazz\JazzEvent.cs" />
     <Compile Include="Models\Input Models\Tickets\Payment.cs" />
     <Compile Include="Models\View Models\Food\BookingResult.cs" />
+    <Compile Include="Models\Input Models\Jazz\JazzOrder.cs" />
     <Compile Include="Models\View Models\Food\RestaurantBooking.cs" />
     <Compile Include="Models\View Models\Dance\ArtistView.cs" />
     <Compile Include="Models\View Models\Dance\TicketdayView.cs" />
@@ -274,6 +275,7 @@
     <Content Include="Content\General\img\insta.png" />
     <Content Include="Content\General\img\logo.png" />
     <Content Include="Content\General\img\twitter.png" />
+    <Content Include="Content\General\Table.css" />
     <Content Include="Content\Historic\HistoricStyle.css" />
     <Content Include="Content\Home\HomeStyle.css" />
     <Content Include="Content\Home\img\banner.png" />
@@ -407,6 +409,8 @@
     <Content Include="Views\Ticket\PaymentResult.cshtml" />
     <Content Include="Views\Food\BookEventSuccess.cshtml" />
     <Content Include="Views\Dance\NoTickets.cshtml" />
+    <Content Include="Views\Jazz\JazzOrder.cshtml" />
+    <Content Include="Views\Jazz\NoTickets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

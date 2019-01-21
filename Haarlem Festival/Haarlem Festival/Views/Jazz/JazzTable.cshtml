@@ -1,11 +1,11 @@
 ﻿@using Haarlem_Festival.Models.View_Models.Jazz;
 
-<button type="button" onclick="reset(); thursday()" class="tableButton ButtonActive ButtonThursday">Thursday<br />26 July</button>
-<button type="button" onclick="friday()" class="tableButton ButtonInactive ButtonFriday">Friday<br />27 July</button>
-<button type="button" onclick="saturday()" class="tableButton ButtonInactive ButtonSaturday">Saturday<br />28 July</button>
-<button type="button" onclick="sunday()" class="tableButton ButtonInactive ButtonSunday">Sunday<br />29 July</button>
+<button type="button" onclick="reset(); thursday()" class="tableButton ButtonActive">Thursday<br />25 July</button>
+<button type="button" onclick="friday()" class="tableButton ButtonInactive">Friday<br />26 July</button>
+<button type="button" onclick="saturday()" class="tableButton ButtonInactive">Saturday<br />27 July</button>
+<button type="button" onclick="sunday()" class="tableButton ButtonInactive">Sunday<br />28 July</button>
 
-<table class="table tableInactive tableThursday">
+<table class="table tableInactive">
     <tr>
         <th>Time</th>
         <th>Location</th>
@@ -21,12 +21,14 @@
             <td>@JEvent.Location</td>
             <td>@JEvent.Band</td>
             <td>@JEvent.Price</td>
-            <td><img class="cart" src="~/Content/General/img/cart.png" /></td>
+            <td>
+                <img class="cart" src="@Url.Content("~/Content/General/img/cart.png")" onclick="PopUp(@JEvent.Id, '@JEvent.Band')" />
+            </td>
         </tr>
     }
 </table>
 
-<table class="table tableInactive tableFriday">
+<table class="table tableInactive">
     <tr>
         <th>Time</th>
         <th>Location</th>
@@ -42,12 +44,12 @@
             <td>@JEvent.Location</td>
             <td>@JEvent.Band</td>
             <td>@JEvent.Price</td>
-            <td><img class="cart" src="~/Content/General/img/cart.png" /></td>
+            <td><img class="cart" src="@Url.Content("~/Content/General/img/cart.png")" onclick="PopUp(@JEvent.Id, '@JEvent.Band')" /></td>
         </tr>
     }
 </table>
 
-<table class="table tableInactive tableSaturday">
+<table class="table tableInactive">
     <tr>
         <th>Time</th>
         <th>Location</th>
@@ -63,18 +65,17 @@
             <td>@JEvent.Location</td>
             <td>@JEvent.Band</td>
             <td>@JEvent.Price</td>
-            <td><img class="cart" src="~/Content/General/img/cart.png" /></td>
+            <td><img class="cart" src="@Url.Content("~/Content/General/img/cart.png")" onclick="PopUp(@JEvent.Id, '@JEvent.Band')" /></td>
         </tr>
     }
 </table>
 
-<table class="table tableInactive tableSunday">
+<table class="table tableInactive">
     <tr>
         <th>Time</th>
         <th>Location</th>
         <th>Band</th>
         <th>Price</th>
-        <th></th>
     </tr>
 
     @foreach (JazzTableView JEvent in ViewBag.JSunday)
@@ -90,3 +91,40 @@
 <p>With the passepartouts you can visit every band on that day. <br />Access for sunday is free, no reservation needed</p>
 
 <script src="~/Scripts/JazzTable.js"></script>
+
+<script>
+    function PopUp(eventId, Name) {
+        var x = document.getElementById("title");
+        x.innerText = Name;
+        var z = document.getElementsByName("EventId")[0];
+        z.value = eventId;
+        var y = document.getElementById("Popup");
+        y.style.visibility = "visible";
+        y.style.display = "block";
+    }
+
+    function Close() {
+        var x = document.getElementById("Popup");
+        x.style.visibility = "hidden";
+        x.style.display = "none";
+    }
+</script>
+
+<div id="Popup" class="Container">
+    <button class ="close" onclick="Close()"> X </button>
+    <div>
+        @using (Html.BeginForm("JazzOrder", "Jazz", FormMethod.Post))
+        {
+            <h1 id="title"></h1>
+            <p>Amount of tickets</p>
+            <select name="ticketAmount">
+                @for (int i = 1; i < 20; i++)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+            <input name="EventId" type="number" value="" style="display:none" />
+            <button type="submit">Add</button>
+        }
+    </div>
+</div>

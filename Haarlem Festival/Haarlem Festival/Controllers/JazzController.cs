@@ -6,12 +6,16 @@ using System.Web.Mvc;
 using Haarlem_Festival.Repositories.Jazz;
 using Haarlem_Festival.Models.Domain_Models.Jazz;
 using Haarlem_Festival.Models.View_Models.Jazz;
+using Haarlem_Festival.Repositories.Events;
+using Haarlem_Festival.Models.Domain_Models.General;
 
 namespace Haarlem_Festival.Controllers
 {
     public class JazzController : Controller
     {
         JazzRepository repository = new JazzRepository();
+        EventRepository eventRepo = new EventRepository();
+
         // GET: Jazz
         public ActionResult Index()
         {
@@ -19,15 +23,56 @@ namespace Haarlem_Festival.Controllers
 
             MakeSlideshowList(repository.GetAllJazzEvents());
 
+            return View();
+        }
 
+        [HttpPost] 
+        public ActionResult JazzOrder()
+        {
+            int EventId = int.Parse(Request.Form["EventId"]);
+            int Amount = int.Parse(Request.Form["TicketAmount"]);
 
+            JazzEvent e = repository.GetJazzEvent(EventId);
+
+            List<Ticket> tickets = new List<Ticket>();
+            Ticket ticket = new Ticket();
+
+            ticket.Amount = Amount;
+            ticket.EventId = e.EventId;
+            ticket.Event = eventRepo.GetEvent(e.EventId);
+            ticket.Price = (float)e.Price * Amount;
+            ticket.SpecialRequest = null;
+
+            if (ticket.Amount > (ticket.Event.MaxTickets - ticket.Event.CurrentTickets))
+            {
+                return RedirectToAction("NoTickets", "Jazz");
+            }
+            else
+            {
+                // Create session if it doesn't exist or add ticket to existing session
+                if (Session["currentTickets"] == null)
+                {
+                    tickets.Add(ticket);
+                    Session["CurrentTickets"] = tickets;
+                }
+                else
+                {
+                    List<Ticket> sessionTickets = (List<Ticket>)Session["currentTickets"];
+                    sessionTickets.Add(ticket);
+                }
+                return RedirectToAction("Index", "Ticket");
+            }
+        }
+
+        public ActionResult NoTickets()
+        {
             return View();
         }
 
         public void GetAllJEventsInViewbag()
         {
             // Thursday
-            IEnumerable<JazzEvent> thursday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 26));
+            IEnumerable<JazzEvent> thursday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 25));
 
             ViewBag.JThursday = new List<JazzTableView>();
 
@@ -37,7 +82,7 @@ namespace Haarlem_Festival.Controllers
             }
 
             // Friday
-            IEnumerable<JazzEvent> friday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 27));
+            IEnumerable<JazzEvent> friday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 26));
 
             ViewBag.JFriday = new List<JazzTableView>();
 
@@ -47,7 +92,7 @@ namespace Haarlem_Festival.Controllers
             }
 
             // Saturday
-            IEnumerable<JazzEvent> saturday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 28));
+            IEnumerable<JazzEvent> saturday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 27));
 
             ViewBag.JSaturday = new List<JazzTableView>();
 
@@ -57,7 +102,7 @@ namespace Haarlem_Festival.Controllers
             }
 
             // Sunday
-            IEnumerable<JazzEvent> sunday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 29));
+            IEnumerable<JazzEvent> sunday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 28));
 
             ViewBag.JSunday = new List<JazzTableView>();
 
@@ -71,6 +116,7 @@ namespace Haarlem_Festival.Controllers
         {
             JazzTableView view = new JazzTableView();
 
+            view.Id = JazzEvent.EventId;
             view.Time = string.Format("{0}:{1:00} - {2}:{3:00}", JazzEvent.StartTime.Hour, JazzEvent.StartTime.Minute, JazzEvent.EndTime.Hour, JazzEvent.EndTime.Minute);
             view.Location = JazzEvent.JazzVenue.Name;
             view.Band = JazzEvent.JazzArtist;
