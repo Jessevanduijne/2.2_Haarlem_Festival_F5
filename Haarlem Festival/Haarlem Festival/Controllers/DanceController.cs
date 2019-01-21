@@ -54,7 +54,7 @@ namespace Haarlem_Festival.Controllers
             ticket.Amount = Amount;
             ticket.EventId = e.EventId;
             ticket.Event = eventRepo.GetEvent(e.EventId);
-            ticket.Price = e.Price;
+            ticket.Price = e.Price*Amount;
             ticket.SpecialRequest = null;
 
             if(ticket.Amount > (ticket.Event.MaxTickets - ticket.Event.CurrentTickets))
