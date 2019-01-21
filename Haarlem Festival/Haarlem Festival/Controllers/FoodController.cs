@@ -38,7 +38,7 @@ namespace Haarlem_Festival.Controllers
             return View(restaurantViews);
         }
 
-        [NoDirectAccess]
+        [HttpGet, NoDirectAccess]
         public ActionResult BookRestaurant(int restaurantId)
         {
             // Create Viewmodel
@@ -63,8 +63,7 @@ namespace Haarlem_Festival.Controllers
         [HttpPost, NoDirectAccess]
         public ActionResult BookRestaurant(RestaurantBooking booking)
         {
-            // Only a field can be passed hidden, not an entire object. 
-            // That's why the restaurantId & name is passed to the viewmodel
+            // RestaurantName & ID are passed hidden
 
             Restaurant restaurant = foodRepository.GetRestaurant(booking.RestaurantId);
             Event selectedevent = eventRepository.GetEvent(booking.SelectedEvent);
@@ -72,11 +71,9 @@ namespace Haarlem_Festival.Controllers
             if (ModelState.IsValid)
             {
                 if (selectedevent.CurrentTickets != 0 &&
-                    booking.AdultTickets + booking.ChildTickets <= selectedevent.CurrentTickets)
+                    (booking.AdultTickets + booking.ChildTickets) <= selectedevent.CurrentTickets)
                 {
-                    List<Ticket> tickets = new List<Ticket>();
                     Ticket ticket = new Ticket();
-
                     ticket.Amount = booking.AdultTickets + booking.ChildTickets;
                     ticket.EventId = booking.SelectedEvent;
                     ticket.Event = eventRepository.GetEvent(ticket.EventId);
@@ -86,6 +83,7 @@ namespace Haarlem_Festival.Controllers
                     // Create session if it doesn't exist or add ticket to existing session
                     if (Session["currentTickets"] == null)
                     {
+                        List<Ticket> tickets = new List<Ticket>();
                         tickets.Add(ticket);
                         Session["CurrentTickets"] = tickets;
                     }
