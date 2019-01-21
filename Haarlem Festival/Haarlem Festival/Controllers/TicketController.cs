@@ -103,7 +103,7 @@ namespace Haarlem_Festival.Controllers
                 else ModelState.AddModelError("", "You have to be older than 18 to order a ticket for Haarlem Festival. Sorry!");
             }
 
-            // Fill dropdownlist again if model has to be loaded again
+            // Lists are not passed with model, fill again:
             paymentModel.PaymentMethods = new List<string>(new string[] { "Cash at the ticket counter", "iDeal", "Visa", "PayPal" });
             return View(paymentModel);
         }

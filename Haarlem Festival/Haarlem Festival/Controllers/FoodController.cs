@@ -99,7 +99,6 @@ namespace Haarlem_Festival.Controllers
             }
 
             // Validation failed, reload some data:
-            booking.RestaurantName = restaurant.RestaurantName;
             booking.Events = foodRepository.GetAllFoodEvents(restaurant.RestaurantID);
             return PartialView("BookEvent", booking);
         }
