@@ -3,16 +3,23 @@
     font-size: 13px;
     width: 900px;
     height: 96px;
+    margin: 0 auto;
 }
 #InfoTiles {
     width:90%;
-    height:400px;
+    height:50%;
+    overflow:hidden;
+    margin:auto;
     background: linear-gradient(135deg, #8ad183 0%,#c3e395 100%);    
 }
-#InfoTiles section{
+#InfoTiles table{
+    margin-top:0;
+}
+#InfoTiles td{
     width:50%;
-    height:50%;
-    float:left;
+}
+#InfoTiles img{
+    width:100%;
 }
 
 /* Caroussel*/
