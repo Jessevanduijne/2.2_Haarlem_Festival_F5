@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Haarlem_Festival.Repositories.Jazz;
 using Haarlem_Festival.Models.Domain_Models.Jazz;
 using Haarlem_Festival.Models.View_Models.Jazz;
+using Haarlem_Festival.Models.Input_Models.Jazz;
 
 namespace Haarlem_Festival.Controllers
 {
@@ -19,15 +20,24 @@ namespace Haarlem_Festival.Controllers
 
             MakeSlideshowList(repository.GetAllJazzEvents());
 
-
-
             return View();
+        }
+
+        public ActionResult JazzOrder(int EventId)
+        {
+            return PartialView();
+        }
+
+        [HttpPost] 
+        public ActionResult JazzOrder(JazzOrder order)
+        {
+            return View("index");
         }
 
         public void GetAllJEventsInViewbag()
         {
             // Thursday
-            IEnumerable<JazzEvent> thursday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 26));
+            IEnumerable<JazzEvent> thursday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 25));
 
             ViewBag.JThursday = new List<JazzTableView>();
 
@@ -37,7 +47,7 @@ namespace Haarlem_Festival.Controllers
             }
 
             // Friday
-            IEnumerable<JazzEvent> friday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 27));
+            IEnumerable<JazzEvent> friday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 26));
 
             ViewBag.JFriday = new List<JazzTableView>();
 
@@ -47,7 +57,7 @@ namespace Haarlem_Festival.Controllers
             }
 
             // Saturday
-            IEnumerable<JazzEvent> saturday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 28));
+            IEnumerable<JazzEvent> saturday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 27));
 
             ViewBag.JSaturday = new List<JazzTableView>();
 
@@ -57,7 +67,7 @@ namespace Haarlem_Festival.Controllers
             }
 
             // Sunday
-            IEnumerable<JazzEvent> sunday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 29));
+            IEnumerable<JazzEvent> sunday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 28));
 
             ViewBag.JSunday = new List<JazzTableView>();
 
@@ -71,6 +81,7 @@ namespace Haarlem_Festival.Controllers
         {
             JazzTableView view = new JazzTableView();
 
+            view.Id = JazzEvent.EventId;
             view.Time = string.Format("{0}:{1:00} - {2}:{3:00}", JazzEvent.StartTime.Hour, JazzEvent.StartTime.Minute, JazzEvent.EndTime.Hour, JazzEvent.EndTime.Minute);
             view.Location = JazzEvent.JazzVenue.Name;
             view.Band = JazzEvent.JazzArtist;

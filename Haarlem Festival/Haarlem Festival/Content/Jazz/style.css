@@ -20,11 +20,6 @@ p {
     font-size: 20px;
 }
 
-.cart {
-    width: 30px;
-    height: 30px;
-}
-
 .blueboxText {
     width: 90%;
 }
@@ -89,105 +84,13 @@ h1 {
     margin: 5px;
 }
 
-.dot {
-    height: 500px;
-    width: 800px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    z-index: -4;
-}
-
-.table {
-    border: none;
-    text-align: center;
-    width: 65%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0;
-}
-
-.tableActive{
-    display: table;
-}
-
-.tableInactive {
-    display: none;
-}
-
-.tableButton {
-    width: 100px;
-    background-color: #f2f2f2;
-    border: none;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin-left: 25px;
-}
-
-.ButtonInactive {
-    opacity: 0.7;
-}
-
-.ButtonActive {
-    opacity: 1;
-}
-
-table {
-    margin-top: 5px;
-    margin-bottom: 0;
-}
-
-.table th {
-    text-align: center;
-    background-color: #fbfcfe;
-    border-top: none !important;
-    border-bottom: none !important;
-    border-left: 1px solid #ffc46b;
-    border-right: 1px solid #ffc46b;
-}
-
-.table td, th {
-    border-top: none !important;
-    border-bottom: none !important;
-    border-left: 1px solid #ffc46b;
-    border-right: 1px solid #ffc46b;
-    border-collapse: collapse;
-    background-color: white;
-    vertical-align: middle !important;
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-}
-
-
-.TicketsSection {
-    min-height: 500px;
-    width: 120%;
-    position: relative;
-    left: -70px;
-    background-image: url("../general/img/bgTable.png");
-    background-size: 100% 500px;
-    background-repeat: no-repeat;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-}
-
-    .TicketsSection p {
-        margin-top: 2px;
-        margin-bottom: 10px;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 14px;
-    }
-
 footer {
     font-size: 16px !important;
 }
 
 .SlideShow {
     position: relative;
-    margin-top: 5px;    
+    margin-top: 5px;
 }
 
 .Slide {
@@ -285,7 +188,7 @@ footer {
     user-select: none;
 }
 
-.prev{
+.prev {
     left: 0px;
 }
 
@@ -299,3 +202,7 @@ footer {
         color: rgba(0,0,0,0.8);
         text-decoration: none;
     }
+
+#JazzOrder {
+    background-color: white;
+}

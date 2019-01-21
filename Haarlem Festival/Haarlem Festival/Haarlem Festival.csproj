@@ -195,6 +195,7 @@
     <Compile Include="Models\Domain Models\Historic\Guide.cs" />
     <Compile Include="Models\Domain Models\Historic\HistoricEvent.cs" />
     <Compile Include="Models\Domain Models\Jazz\JazzEvent.cs" />
+    <Compile Include="Models\Input Models\Jazz\JazzOrder.cs" />
     <Compile Include="Models\View Models\Food\RestaurantBooking.cs" />
     <Compile Include="Models\View Models\Dance\ArtistView.cs" />
     <Compile Include="Models\View Models\Dance\TicketdayView.cs" />
@@ -248,6 +249,7 @@
     <Content Include="Content\General\img\insta.png" />
     <Content Include="Content\General\img\logo.png" />
     <Content Include="Content\General\img\twitter.png" />
+    <Content Include="Content\General\Table.css" />
     <Content Include="Content\Historic\HistoricStyle.css" />
     <Content Include="Content\Home\HomeStyle.css" />
     <Content Include="Content\Home\img\banner.png" />
@@ -329,11 +331,11 @@
     <Content Include="Views\Dance\DanceTickets.cshtml" />
     <Content Include="Views\Jazz\JazzSlideShow.cshtml" />
     <Content Include="Views\Jazz\JazzTable.cshtml" />
+    <Content Include="Views\Jazz\JazzOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Historic\img\" />
-    <Folder Include="Models\Input Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
