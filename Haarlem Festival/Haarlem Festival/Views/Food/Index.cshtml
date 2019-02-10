@@ -71,7 +71,7 @@
                     @String.Join(", ", restaurant.Restaurant.Cuisines.Select(x => x.Category))
                 </td>
                 <td>
-                    <button id="loadEvents" data-toggle="modal" data-target="#RestaurantModal" onclick="BookRestaurant(@restaurant.Restaurant.RestaurantID)">
+                    <button id="loadEvents" data-toggle="modal" data-target="#MyModal" onclick="BookRestaurant(@restaurant.Restaurant.RestaurantID)">
                         <img class="cart" src="@Url.Content("~/Content/General/img/cart.png")" />
                     </button>
                 </td>
