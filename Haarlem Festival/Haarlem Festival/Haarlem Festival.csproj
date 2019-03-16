@@ -221,6 +221,7 @@
     <Compile Include="Models\View Models\Food\RestaurantView.cs" />
     <Compile Include="Models\View Models\Historic\HistoricView.cs" />
     <Compile Include="Models\View Models\Historic\TourBooking.cs" />
+    <Compile Include="Models\View Models\Jazz\JazzTables.cs" />
     <Compile Include="Models\View Models\Tickets\TicketOverview.cs" />
     <Compile Include="Models\View Models\Jazz\JazzTableView.cs" />
     <Compile Include="Models\View Models\Jazz\SlideShowView.cs" />

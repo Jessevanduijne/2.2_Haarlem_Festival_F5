@@ -19,14 +19,10 @@ namespace Haarlem_Festival.Controllers
         // GET: Jazz
         public ActionResult Index()
         {
-            GetAllJEventsInViewbag();
-
-            MakeSlideshowList(repository.GetAllJazzEvents());
-
             return View();
         }
 
-        [HttpPost] 
+        [HttpPost]
         public ActionResult JazzOrder()
         {
             int EventId = int.Parse(Request.Form["EventId"]);
@@ -69,74 +65,105 @@ namespace Haarlem_Festival.Controllers
             return View();
         }
 
-        public void GetAllJEventsInViewbag()
+        public ActionResult JazzTable()
         {
-            // Thursday
+            IEnumerable<JazzEvent> jazzEvents = repository.GetAllJazzEvents();
+            List<List<JazzTableView>> tableViews = new List<List<JazzTableView>>();
+
+            List<JazzTableView> temp = new List<JazzTableView>();
+            temp.Add(ToJazzTableView(jazzEvents.ElementAt(0)));
+            for (int i = 1; i < jazzEvents.Count(); i++)
+            {
+                JazzEvent previous = jazzEvents.ElementAt(i - 1);
+                JazzEvent current = jazzEvents.ElementAt(i);
+                if (current.StartTime.Date == previous.StartTime.Date)
+                {
+                    temp.Add(ToJazzTableView(current));
+                } else
+                {
+                    temp = temp.OrderBy(t => t.Location).ThenBy(t => t.StartTime).ToList();
+                    tableViews.Add(temp);
+                    temp = new List<JazzTableView>();
+                    temp.Add(ToJazzTableView(current));
+                }
+            }
+
+            tableViews.Add(temp);
+
+            /*// Thursday
             IEnumerable<JazzEvent> thursday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 25));
 
-            ViewBag.JThursday = new List<JazzTableView>();
+            List<JazzTableView> tempThursday = new List<JazzTableView>();
 
-            foreach(JazzEvent jEvent in thursday)
+            foreach (JazzEvent jEvent in thursday)
             {
-                ViewBag.JThursday.Add(ToJazzTableView(jEvent));
+                tempThursday.Add(ToJazzTableView(jEvent));
             }
 
             // Friday
             IEnumerable<JazzEvent> friday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 26));
 
-            ViewBag.JFriday = new List<JazzTableView>();
+            List<JazzTableView> tempFriday = new List<JazzTableView>();
 
             foreach (JazzEvent jEvent in friday)
             {
-                ViewBag.JFriday.Add(ToJazzTableView(jEvent));
+                tempFriday.Add(ToJazzTableView(jEvent));
             }
 
             // Saturday
             IEnumerable<JazzEvent> saturday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 27));
 
-            ViewBag.JSaturday = new List<JazzTableView>();
+            List<JazzTableView> tempSaturday = new List<JazzTableView>();
 
             foreach (JazzEvent jEvent in saturday)
             {
-                ViewBag.JSaturday.Add(ToJazzTableView(jEvent));
+                tempSaturday.Add(ToJazzTableView(jEvent));
             }
 
             // Sunday
             IEnumerable<JazzEvent> sunday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 28));
 
-            ViewBag.JSunday = new List<JazzTableView>();
+            List < JazzTableView > tempSunday = new List<JazzTableView>();
 
             foreach (JazzEvent jEvent in sunday)
             {
-                ViewBag.JSunday.Add(ToJazzTableView(jEvent));
+                tempSunday.Add(ToJazzTableView(jEvent));
             }
+
+            JazzTables jazzTables = new JazzTables(tempThursday, tempFriday, tempSaturday, tempSunday); */
+
+            return PartialView(tableViews);
         }
 
         public JazzTableView ToJazzTableView(JazzEvent JazzEvent)
         {
-            JazzTableView view = new JazzTableView();
+            JazzTableView jazzTableView = new JazzTableView();
 
-            view.Id = JazzEvent.EventId;
-            view.Time = string.Format("{0}:{1:00} - {2}:{3:00}", JazzEvent.StartTime.Hour, JazzEvent.StartTime.Minute, JazzEvent.EndTime.Hour, JazzEvent.EndTime.Minute);
-            view.Location = JazzEvent.JazzVenue.Name;
-            view.Band = JazzEvent.JazzArtist;
+            jazzTableView.Id = JazzEvent.EventId;
+
+            jazzTableView.StartTime = JazzEvent.StartTime;
+
+            jazzTableView.Time = string.Format("{0}:{1:00} - {2}:{3:00}", JazzEvent.StartTime.Hour, JazzEvent.StartTime.Minute, JazzEvent.EndTime.Hour, JazzEvent.EndTime.Minute);
+            jazzTableView.Location = JazzEvent.JazzVenue.Name;
+            jazzTableView.Band = JazzEvent.JazzArtist;
 
             if (JazzEvent.Price == 0)
             {
-                view.Price = "Free";
+                jazzTableView.Price = "Free";
             }
             else
             {
-                view.Price = "€" + JazzEvent.Price + ".00";
+                jazzTableView.Price = "€" + JazzEvent.Price + ".00";
             }
 
-            return view;
+            return jazzTableView;
         }
 
-        public void MakeSlideshowList(IEnumerable<JazzEvent> events)
+        public ActionResult JazzSlideShow()
         {
-            ViewBag.SlideShowViews = null;
-            ViewBag.SlideShowViews = new List<SlideShowView>();
+            IEnumerable<JazzEvent> events = repository.GetAllJazzEvents();
+
+            List<SlideShowView> SlideShowViews = new List<SlideShowView>();
 
             foreach (JazzEvent jEvent in events)
             {
@@ -147,9 +174,11 @@ namespace Haarlem_Festival.Controllers
                     slideShowView.Description = jEvent.Description;
                     slideShowView.ImageLink = jEvent.PictureLocation;
 
-                    ViewBag.SlideShowViews.Add(slideShowView);
+                    SlideShowViews.Add(slideShowView);
                 }
             }
+
+            return PartialView(SlideShowViews);
         }
     }
 }

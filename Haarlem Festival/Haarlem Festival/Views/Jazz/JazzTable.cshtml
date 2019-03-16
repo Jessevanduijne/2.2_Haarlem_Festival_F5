@@ -1,93 +1,45 @@
 ﻿@using Haarlem_Festival.Models.View_Models.Jazz;
+@model List<List<JazzTableView>>
 
-<button type="button" onclick="reset(); thursday()" class="tableButton ButtonActive">Thursday<br />25 July</button>
-<button type="button" onclick="friday()" class="tableButton ButtonInactive">Friday<br />26 July</button>
-<button type="button" onclick="saturday()" class="tableButton ButtonInactive">Saturday<br />27 July</button>
-<button type="button" onclick="sunday()" class="tableButton ButtonInactive">Sunday<br />28 July</button>
+@{ string functionName = Model[0][0].StartTime.DayOfWeek.ToString().ToLower() + "();";}
+<button type="button" onclick="reset(); @functionName" class="tableButton ButtonActive">@Model[0][0].StartTime.DayOfWeek<br />@Model[0][0].StartTime.Day @Model[0][0].StartTime.ToString("MMMM")</button>
 
-<table class="table tableInactive">
-    <tr>
-        <th>Time</th>
-        <th>Location</th>
-        <th>Band</th>
-        <th>Price</th>
-        <th></th>
-    </tr>
 
-    @foreach (JazzTableView JEvent in ViewBag.JThursday)
-    {
+@for (int i = 1; i < Model.Count(); i++)
+{
+    string function = Model[i][0].StartTime.DayOfWeek.ToString().ToLower() + "();";
+    <button type="button" onclick="@function" class="tableButton ButtonInactive">@Model[i][0].StartTime.DayOfWeek<br />@Model[i][0].StartTime.Day @Model[i][0].StartTime.ToString("MMMM")</button>
+}
+
+@foreach (List<JazzTableView> jazzTables in Model)
+{
+    <table class="table tableInactive">
         <tr>
-            <td>@JEvent.Time</td>
-            <td>@JEvent.Location</td>
-            <td>@JEvent.Band</td>
-            <td>@JEvent.Price</td>
-            <td>
-                <img class="cart" src="@Url.Content("~/Content/General/img/cart.png")" onclick="PopUp(@JEvent.Id, '@JEvent.Band')" />
-            </td>
+            <th>Time</th>
+            <th>Location</th>
+            <th>Band</th>
+            <th>Price</th>
+            <th></th>
         </tr>
-    }
-</table>
 
-<table class="table tableInactive">
-    <tr>
-        <th>Time</th>
-        <th>Location</th>
-        <th>Band</th>
-        <th>Price</th>
-        <th></th>
-    </tr>
+        @foreach (JazzTableView JEvent in jazzTables)
+        {
+            <tr>
+                <td>@JEvent.Time</td>
+                <td>@JEvent.Location</td>
+                <td>@JEvent.Band</td>
+                <td>@JEvent.Price</td>
+                <td>
+                    @if (JEvent.Price != "Free"){
+                        <img class="cart" src="@Url.Content("~/Content/General/img/cart.png")" onclick="PopUp(@JEvent.Id, '@JEvent.Band')" />
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}
 
-    @foreach (JazzTableView JEvent in ViewBag.JFriday)
-    {
-        <tr>
-            <td>@JEvent.Time</td>
-            <td>@JEvent.Location</td>
-            <td>@JEvent.Band</td>
-            <td>@JEvent.Price</td>
-            <td><img class="cart" src="@Url.Content("~/Content/General/img/cart.png")" onclick="PopUp(@JEvent.Id, '@JEvent.Band')" /></td>
-        </tr>
-    }
-</table>
 
-<table class="table tableInactive">
-    <tr>
-        <th>Time</th>
-        <th>Location</th>
-        <th>Band</th>
-        <th>Price</th>
-        <th></th>
-    </tr>
-
-    @foreach (JazzTableView JEvent in ViewBag.JSaturday)
-    {
-        <tr>
-            <td>@JEvent.Time</td>
-            <td>@JEvent.Location</td>
-            <td>@JEvent.Band</td>
-            <td>@JEvent.Price</td>
-            <td><img class="cart" src="@Url.Content("~/Content/General/img/cart.png")" onclick="PopUp(@JEvent.Id, '@JEvent.Band')" /></td>
-        </tr>
-    }
-</table>
-
-<table class="table tableInactive">
-    <tr>
-        <th>Time</th>
-        <th>Location</th>
-        <th>Band</th>
-        <th>Price</th>
-    </tr>
-
-    @foreach (JazzTableView JEvent in ViewBag.JSunday)
-    {
-        <tr>
-            <td>@JEvent.Time</td>
-            <td>@JEvent.Location</td>
-            <td>@JEvent.Band</td>
-            <td>@JEvent.Price</td>
-        </tr>
-    }
-</table>
 <p>With the passepartouts you can visit every band on that day. <br />Access for sunday is free, no reservation needed</p>
 
 <script src="~/Scripts/JazzTable.js"></script>
@@ -111,7 +63,7 @@
 </script>
 
 <div id="Popup" class="Container">
-    <button class ="close" onclick="Close()"> X </button>
+    <button class="close" onclick="Close()"> X </button>
     <div>
         @using (Html.BeginForm("JazzOrder", "Jazz", FormMethod.Post))
         {
