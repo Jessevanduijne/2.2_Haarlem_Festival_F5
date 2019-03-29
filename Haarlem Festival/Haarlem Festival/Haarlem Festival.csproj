@@ -212,12 +212,12 @@
     <Compile Include="Models\Domain Models\Historic\HistoricEvent.cs" />
     <Compile Include="Models\Domain Models\Jazz\JazzEvent.cs" />
     <Compile Include="Models\Input Models\Tickets\Payment.cs" />
+    <Compile Include="Models\View Models\Dance\DanceView.cs" />
     <Compile Include="Models\View Models\Food\BookingResult.cs" />
     <Compile Include="Models\Input Models\Jazz\JazzOrder.cs" />
     <Compile Include="Models\View Models\Food\RestaurantBooking.cs" />
     <Compile Include="Models\View Models\Dance\ArtistView.cs" />
     <Compile Include="Models\View Models\Dance\TicketdayView.cs" />
-    <Compile Include="Models\View Models\Dance\Ticketview.cs" />
     <Compile Include="Models\View Models\Food\RestaurantView.cs" />
     <Compile Include="Models\View Models\Historic\HistoricView.cs" />
     <Compile Include="Models\View Models\Historic\TourBooking.cs" />
@@ -402,8 +402,6 @@
     <Content Include="Views\Ticket\Index.cshtml" />
     <Content Include="Views\Food\BookEvent.cshtml" />
     <Content Include="Views\Ticket\Payment.cshtml" />
-    <Content Include="Views\Dance\Artists.cshtml" />
-    <Content Include="Views\Dance\DanceTickets.cshtml" />
     <Content Include="Views\Historic\BookTour.cshtml" />
     <Content Include="Views\Jazz\JazzSlideShow.cshtml" />
     <Content Include="Views\Jazz\JazzTable.cshtml" />

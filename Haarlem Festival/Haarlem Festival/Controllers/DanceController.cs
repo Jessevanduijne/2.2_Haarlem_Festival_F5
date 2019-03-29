@@ -15,29 +15,36 @@ namespace Haarlem_Festival.Controllers
     {
         readonly IDanceRepository repo = new DanceRepository();
         readonly IEventRepository eventRepo = new EventRepository();
+        DanceView DanceView = new DanceView();
+        TicketdayView t = new TicketdayView();
         IEnumerable<DanceEvent> DanceEvents;
-        IEnumerable<Artist> Artist;
-        ArtistView a = new ArtistView();
-        IList<ArtistView> Artistlist;
-        Ticketview Tickets = new Ticketview();        
         
         public ActionResult Index()
         {
-            return View();
-        }
-        public ActionResult DanceTickets()
-        {
-            // get dance events
+            DanceView.Artists = repo.GetAllArtists().ToList();
             DanceEvents = repo.GetAllDanceEvents();
-            Tickets = Tickets.DomainToView(DanceEvents);
-            return PartialView(Tickets);
-        }
-        public ActionResult Artists()
-        {
-            // get artists
-            Artist = repo.GetAllArtists();
-            Artistlist = a.DomainToView(Artist);
-            return PartialView(Artistlist);
+            foreach (DanceEvent d in DanceEvents)
+            {
+                if (d.StartTime.Day == 26)
+                {
+                    DanceView.Friday.Add(t.DomainToView(d));
+                }
+                else if (d.StartTime.Day == 27)
+                {
+                    DanceView.Saturday.Add(t.DomainToView(d));
+                }
+                else if (d.StartTime.Day == 28)
+                {
+                    DanceView.Sunday.Add(t.DomainToView(d));
+                }
+                else
+                {
+                    DanceView.Friday.Add(t.DomainToView(d));
+                    DanceView.Saturday.Add(t.DomainToView(d));
+                    DanceView.Sunday.Add(t.DomainToView(d));
+                }
+            }
+            return View(DanceView);
         }
 
         [HttpPost]
