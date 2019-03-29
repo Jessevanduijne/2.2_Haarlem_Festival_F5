@@ -33,7 +33,7 @@
         </section>
 
         <section class="TicketsSection">
-            @Html.Partial("JazzTable")
+            @Html.Action("JazzTable", "Jazz")
         </section>
 
         <section class="title">
@@ -41,7 +41,7 @@
             <h1>Line up</h1>
             <span>---------------------------------------------------</span>
         </section>
-        @Html.Partial("JazzSlideShow")
+        @Html.Action("JazzSlideShow", "Jazz")
     </section>
 
 </body>

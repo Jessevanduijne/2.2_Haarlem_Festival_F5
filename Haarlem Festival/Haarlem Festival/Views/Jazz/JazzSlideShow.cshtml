@@ -1,7 +1,8 @@
-﻿@using Haarlem_Festival.Models.View_Models.Jazz;
+﻿@model List<Haarlem_Festival.Models.View_Models.Jazz.SlideShowView>
+@using Haarlem_Festival.Models.View_Models.Jazz;
 
 <section class="SlideShow">
-    @foreach (SlideShowView artist in ViewBag.slideshowViews)
+    @foreach (SlideShowView artist in Model)
     {
         <section class="Slide SlideCenter">
             <h1>@artist.BandName</h1>
