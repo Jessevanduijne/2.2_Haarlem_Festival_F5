@@ -275,6 +275,7 @@
     <Content Include="Content\General\img\fb.png" />
     <Content Include="Content\General\img\insta.png" />
     <Content Include="Content\General\img\logo.png" />
+    <Content Include="Content\General\SlideShow.css" />
     <Content Include="Content\General\img\twitter.png" />
     <Content Include="Content\General\Table.css" />
     <Content Include="Content\Historic\HistoricStyle.css" />
@@ -310,7 +311,6 @@
     <Content Include="Content\Jazz\img\twitter.png" />
     <Content Include="Content\Jazz\img\UncleSue.png" />
     <Content Include="Content\Jazz\img\WickedJazzSounds.png" />
-    <Content Include="Content\Jazz\JazzStyle.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
