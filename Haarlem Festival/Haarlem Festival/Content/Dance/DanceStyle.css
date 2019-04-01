@@ -1,33 +1,40 @@
 ﻿p {
     font-family: Arial;
     font-size: 13px;
-    width: 900px;
-    height: 96px;
+    width: 90%;
+    height: 90%;
     margin: 0 auto;
 }
+
 #InfoTiles {
-    width:90%;
-    height:50%;
-    overflow:hidden;
-    margin:auto;
-    background: linear-gradient(135deg, #8ad183 0%,#c3e395 100%);    
+    width: 90%;
+    height: 50%;
+    overflow: hidden;
+    margin: auto;
+    background: linear-gradient(135deg, #8ad183 0%,#c3e395 100%);
 }
-#InfoTiles table{
-    margin-top:0;
-}
-#InfoTiles td{
-    width:50%;
-}
-#InfoTiles img{
-    width:100%;
-}
+
+    #InfoTiles table {
+        margin-top: 0;
+    }
+
+    #InfoTiles td {
+        width: 50%;
+    }
+
+    #InfoTiles img {
+        width: 100%;
+    }
+
 #Width {
     background-size: 80% 100%;
     background-position-x: 100px;
 }
+
 #Popup {
     background-color: lightblue;
     z-index: 50;
+    margin-left: 10%;
     position: absolute;
     width: 500px;
     height: 200px;
@@ -36,11 +43,13 @@
     visibility: none;
     display: none;
 }
+
 .close {
     position: absolute;
     left: 480px;
     top: 5px;
 }
-#wtf{
+
+#wtf {
     height: 60%;
 }
