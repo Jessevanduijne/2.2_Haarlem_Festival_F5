@@ -5,49 +5,75 @@
 <head>
     @Styles.Render("~/Content/General/GeneralStyle.css")
     @Styles.Render("~/Content/Dance/DanceStyle.css")
+    @Styles.Render("~/Content/General/Table.css")
+    @Styles.Render("~/Content/General/SlideShow.css")
 </head>
 
 <section class="intro">
     <h1>Visit Haarlem Dance</h1>
-    <p>Haarlem is one of the oldest cities in The Netherlands. 
-    At this festival you will find more about the city, the things only locals know. 
-    Discover Haarlem through many festival each located at a different part of the city. 
-    Discover Haarlem with a historic walk and combine it with a nice dinner at one of many restaurants. 
-    Enjoy dance parties from popular Dj's like Afrojack, Hardwell and Martin Garrix. 
-    You could also attend one of the nicest jazz performances. </p>
+    <p>
+        Haarlem is one of the oldest cities in The Netherlands.
+        At this festival you will find more about the city, the things only locals know.
+        Discover Haarlem through many festival each located at a different part of the city.
+        Discover Haarlem with a historic walk and combine it with a nice dinner at one of many restaurants.
+        Enjoy dance parties from popular Dj's like Afrojack, Hardwell and Martin Garrix.
+        You could also attend one of the nicest jazz performances.
+    </p>
 </section>
 
-<section id="events">
+<section class="title">
     <span>---------------------------------------------------</span>
     <h1>Tickets</h1>
     <span>---------------------------------------------------</span>
     <br />
-    <section class="TicketsSection">
-        <!--Agenda-->
-        @foreach (List<Haarlem_Festival.Models.View_Models.Dance.TicketdayView> list in Model.tabs)
-        {
-        <button>@list[0].Start.Value.ToString("dddd dd MMMM")</button>
-        }
+</section>
 
-        @foreach (List<Haarlem_Festival.Models.View_Models.Dance.TicketdayView> list in Model.tabs)
-        {
-            <table class="table tableInactive">
-                <tr>
-                    <th>Time</th>
-                    <th>Location</th>
-                    <th>Artist</th>
-                    <th>Session</th>
-                    <th>Price</th>
-                    <th>Add</th>
-                </tr>
+<section class="TicketsSection">
+    <!--Day before event button-->
+    @{  DateTime dayBefore = Model.tabs[0][0].Start.Value.AddDays(-1);
+        string functionName = dayBefore.ToString("dddd").ToLower() + "();";}
+    <button type="button" onclick="reset(); @functionName" class="tableButton ButtonActive"> @dayBefore.ToString("dddd")<br/>@dayBefore.ToString("dd MMMM")</button>
 
-                @foreach (Haarlem_Festival.Models.View_Models.Dance.TicketdayView DanceEvent in list)
-                {
+    <!-- Event days buttons-->
+    @foreach (List<Haarlem_Festival.Models.View_Models.Dance.TicketdayView> list in Model.tabs)
+    {
+        string function = list[0].Start.Value.ToString("dddd").ToLower() + "();";
+        <button type="button" onclick="@function" class="tableButton ButtonInactive">@list[0].Start.Value.ToString("dddd")<br />@list[0].Start.Value.ToString("dd MMMM")</button>
+
+    }
+
+    <!-- Sunday table, script houdt rekening met 4 dagen, design ook -->
+    <table class="table tableInactive">
+        <tr>
+            <th>Time</th>
+            <th>Location</th>
+            <th>Artist</th>
+            <th>Session</th>
+            <th>Price</th>
+            <th>Add</th>
+        </tr>
+    </table>
+
+    @foreach (List<Haarlem_Festival.Models.View_Models.Dance.TicketdayView> list in Model.tabs)
+    {
+        <table class="table tableInactive">
+            <tr>
+                <th>Time</th>
+                <th>Location</th>
+                <th>Artist</th>
+                <th>Session</th>
+                <th>Price</th>
+                <th>Add</th>
+            </tr>
+
+            @foreach (Haarlem_Festival.Models.View_Models.Dance.TicketdayView DanceEvent in list)
+            {
                 <tr>
                     @if (DanceEvent.Start != null)
                     {
                         <td>@DanceEvent.Start.Value.ToString("HH:mm")</td>
                     }
+                    else { <td></td>}
                     <td>@DanceEvent.Location</td>
                     <td>@DanceEvent.Name</td>
                     <td>@DanceEvent.Session</td>
@@ -56,10 +82,10 @@
                         <img class="cart" src="@Url.Content("~/Content/General/img/cart.png")" />
                     </td>
                 </tr>
-                }
-            </table>
-        }
-    </section>
+            }
+        </table>
+    }
+    <script src="~/Scripts/JazzTable.js"></script>
     <p>
         * The capacity of the Club sessions is very limited. Availability for All-Access pas holders can not be garanteed due to safety regulations.
         <br />** TiëstoWorld is a special session spannig his careers work. There will also be some special guests.
@@ -91,24 +117,29 @@
                 Want to see them all? Check our <b>all-access</b> tickets!
             </td>
         </tr>
-    </table>    
+    </table>
 </section>
 
-<section id="events">
+<section class="title">
     <span>---------------------------------------------------</span>
     <h1>Line Up</h1>
     <span>---------------------------------------------------</span>
-    <br />
-    <section>
-        @foreach(Haarlem_Festival.Models.Domain_Models.Dance.Artist a in Model.Artists)
+</section>
+
+<section class="SlideShow">
+        @foreach (Haarlem_Festival.Models.Domain_Models.Dance.Artist a in Model.Artists)
         {
-            <section>
-                <h2>@a.Name</h2>
-                <p>@a.Description</p>
-                <img src="@a.ImgUrl"/>
+            <section class="Slide SlideCenter">
+                <h1>@a.Name</h1>
+
+                <section class="SlidesTextBox">
+                    <p>@a.Description</p>
+                </section>
+
+                <img class="SlideImage" src="~/Content/Dance/img/@a.ImgUrl" />
             </section>
         }
-        <button></button>
-        <button></button>
-    </section>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
 </section>
+<script src="~/Scripts/JazzSlideShow.js"></script>
