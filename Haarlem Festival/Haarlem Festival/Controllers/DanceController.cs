@@ -44,6 +44,10 @@ namespace Haarlem_Festival.Controllers
                     DanceView.Sunday.Add(t.DomainToView(d));
                 }
             }
+            DanceView.tabs.Add(DanceView.Friday);
+            DanceView.tabs.Add(DanceView.Saturday);
+            DanceView.tabs.Add(DanceView.Sunday);
+
             return View(DanceView);
         }
 

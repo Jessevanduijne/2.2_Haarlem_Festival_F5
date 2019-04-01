@@ -12,12 +12,15 @@ namespace Haarlem_Festival.Models.View_Models.Dance
         public List<TicketdayView> Saturday { get; set; }
         public List<TicketdayView> Sunday { get; set; }
         public List<Artist> Artists { get; set; }
+        public List<List<TicketdayView>> tabs { get; set; }
         
         public DanceView()
         {
             Friday = new List<TicketdayView>();
             Saturday = new List<TicketdayView>();
             Sunday = new List<TicketdayView>();
+            tabs = new List<List<TicketdayView>>();
+
         }
     }
 }

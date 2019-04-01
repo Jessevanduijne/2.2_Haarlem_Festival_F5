@@ -3,10 +3,8 @@
     ViewBag.Title = "Index";
 }
 <head>
-    @Styles.Render("~/Content/Home/HomeStyle.css")
     @Styles.Render("~/Content/General/GeneralStyle.css")
     @Styles.Render("~/Content/Dance/DanceStyle.css")
-    @Styles.Render("~/Content/Jazz/style.css")
 </head>
 
 <section class="intro">
@@ -25,7 +23,42 @@
     <span>---------------------------------------------------</span>
     <br />
     <section class="TicketsSection">
-       <!--Agenda-->
+        <!--Agenda-->
+        @foreach (List<Haarlem_Festival.Models.View_Models.Dance.TicketdayView> list in Model.tabs)
+        {
+        <button>@list[0].Start.Value.ToString("dddd dd MMMM")</button>
+        }
+
+        @foreach (List<Haarlem_Festival.Models.View_Models.Dance.TicketdayView> list in Model.tabs)
+        {
+            <table class="table tableInactive">
+                <tr>
+                    <th>Time</th>
+                    <th>Location</th>
+                    <th>Artist</th>
+                    <th>Session</th>
+                    <th>Price</th>
+                    <th>Add</th>
+                </tr>
+
+                @foreach (Haarlem_Festival.Models.View_Models.Dance.TicketdayView DanceEvent in list)
+                {
+                <tr>
+                    @if (DanceEvent.Start != null)
+                    {
+                        <td>@DanceEvent.Start.Value.ToString("HH:mm")</td>
+                    }
+                    <td>@DanceEvent.Location</td>
+                    <td>@DanceEvent.Name</td>
+                    <td>@DanceEvent.Session</td>
+                    <td>@DanceEvent.Price</td>
+                    <td>
+                        <img class="cart" src="@Url.Content("~/Content/General/img/cart.png")" />
+                    </td>
+                </tr>
+                }
+            </table>
+        }
     </section>
     <p>
         * The capacity of the Club sessions is very limited. Availability for All-Access pas holders can not be garanteed due to safety regulations.
@@ -67,6 +100,15 @@
     <span>---------------------------------------------------</span>
     <br />
     <section>
-       <!--Line-up-->
+        @foreach(Haarlem_Festival.Models.Domain_Models.Dance.Artist a in Model.Artists)
+        {
+            <section>
+                <h2>@a.Name</h2>
+                <p>@a.Description</p>
+                <img src="@a.ImgUrl"/>
+            </section>
+        }
+        <button></button>
+        <button></button>
     </section>
 </section>
