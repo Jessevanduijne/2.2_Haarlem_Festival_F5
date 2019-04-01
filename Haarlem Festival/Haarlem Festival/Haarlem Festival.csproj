@@ -365,8 +365,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\DanceLineUpScript.js" />
-    <Content Include="Scripts\DanceTableScript.js" />
     <Content Include="Scripts\FoodScript.js" />
     <Content Include="Scripts\JazzSlideShow.js" />
     <Content Include="Scripts\JazzTable.js" />

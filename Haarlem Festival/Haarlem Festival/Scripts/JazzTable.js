@@ -30,3 +30,19 @@ function sunday() {
     document.getElementsByClassName("tableButton")[3].className = "tableButton ButtonActive";
     document.getElementsByClassName("table")[3].className = "table tableActive";
 }
+
+function PopUp(eventId, Name) {
+    var x = document.getElementById("title");
+    x.innerText = Name;
+    var z = document.getElementsByName("EventId")[0];
+    z.value = eventId;
+    var y = document.getElementById("Popup");
+    y.style.visibility = "visible";
+    y.style.display = "block";
+}
+
+function Close() {
+    var x = document.getElementById("Popup");
+    x.style.visibility = "hidden";
+    x.style.display = "none";
+}

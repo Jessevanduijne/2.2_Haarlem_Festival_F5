@@ -3,10 +3,13 @@
     ViewBag.Title = "Index";
 }
 <head>
+    @Styles.Render("~/Content/Home/HomeStyle.css")
     @Styles.Render("~/Content/General/GeneralStyle.css")
     @Styles.Render("~/Content/Dance/DanceStyle.css")
     @Styles.Render("~/Content/General/Table.css")
     @Styles.Render("~/Content/General/SlideShow.css")
+    <script type="text/javascript" src="~/Scripts/JazzSlideShow.js"></script>
+    <script type="text/javascript" src="~/Scripts/JazzTable.js"></script>
 </head>
 
 <section class="intro">
@@ -27,35 +30,21 @@
     <span>---------------------------------------------------</span>
     <br />
 </section>
+    <section class="TicketsSection" id="Width">
+        <!--Day before event button-->
+        @{ DateTime dayBefore = Model.tabs[0][0].Start.Value.AddDays(-1);
+            string functionName = dayBefore.ToString("dddd").ToLower() + "();";}
+        <button type="button" onclick="reset(); @functionName" class="tableButton ButtonActive"> @dayBefore.ToString("dddd")<br />@dayBefore.ToString("dd MMMM")</button>
 
-<section class="TicketsSection">
-    <!--Day before event button-->
-    @{  DateTime dayBefore = Model.tabs[0][0].Start.Value.AddDays(-1);
-        string functionName = dayBefore.ToString("dddd").ToLower() + "();";}
-    <button type="button" onclick="reset(); @functionName" class="tableButton ButtonActive"> @dayBefore.ToString("dddd")<br/>@dayBefore.ToString("dd MMMM")</button>
+        <!-- Event days buttons-->
+        @foreach (List<Haarlem_Festival.Models.View_Models.Dance.TicketdayView> list in Model.tabs)
+        {
+            string function = list[0].Start.Value.ToString("dddd").ToLower() + "();";
+            <button type="button" onclick="@function" class="tableButton ButtonInactive">@list[0].Start.Value.ToString("dddd")<br />@list[0].Start.Value.ToString("dd MMMM")</button>
 
-    <!-- Event days buttons-->
-    @foreach (List<Haarlem_Festival.Models.View_Models.Dance.TicketdayView> list in Model.tabs)
-    {
-        string function = list[0].Start.Value.ToString("dddd").ToLower() + "();";
-        <button type="button" onclick="@function" class="tableButton ButtonInactive">@list[0].Start.Value.ToString("dddd")<br />@list[0].Start.Value.ToString("dd MMMM")</button>
+        }
 
-    }
-
-    <!-- Sunday table, script houdt rekening met 4 dagen, design ook -->
-    <table class="table tableInactive">
-        <tr>
-            <th>Time</th>
-            <th>Location</th>
-            <th>Artist</th>
-            <th>Session</th>
-            <th>Price</th>
-            <th>Add</th>
-        </tr>
-    </table>
-
-    @foreach (List<Haarlem_Festival.Models.View_Models.Dance.TicketdayView> list in Model.tabs)
-    {
+        <!-- Sunday table, script houdt rekening met 4 dagen, design ook -->
         <table class="table tableInactive">
             <tr>
                 <th>Time</th>
@@ -65,33 +54,66 @@
                 <th>Price</th>
                 <th>Add</th>
             </tr>
-
-            @foreach (Haarlem_Festival.Models.View_Models.Dance.TicketdayView DanceEvent in list)
-            {
-                <tr>
-                    @if (DanceEvent.Start != null)
-                    {
-                        <td>@DanceEvent.Start.Value.ToString("HH:mm")</td>
-                    }
-                    else { <td></td>}
-                    <td>@DanceEvent.Location</td>
-                    <td>@DanceEvent.Name</td>
-                    <td>@DanceEvent.Session</td>
-                    <td>@DanceEvent.Price</td>
-                    <td>
-                        <img class="cart" src="@Url.Content("~/Content/General/img/cart.png")" />
-                    </td>
-                </tr>
-            }
         </table>
-    }
-    <script src="~/Scripts/JazzTable.js"></script>
-    <p>
-        * The capacity of the Club sessions is very limited. Availability for All-Access pas holders can not be garanteed due to safety regulations.
-        <br />** TiëstoWorld is a special session spannig his careers work. There will also be some special guests.
-    </p>
-</section>
 
+        @foreach (List<Haarlem_Festival.Models.View_Models.Dance.TicketdayView> list in Model.tabs)
+        {
+            <table class="table tableInactive">
+                <tr>
+                    <th>Time</th>
+                    <th>Location</th>
+                    <th>Artist</th>
+                    <th>Session</th>
+                    <th>Price</th>
+                    <th>Add</th>
+                </tr>
+
+                @foreach (Haarlem_Festival.Models.View_Models.Dance.TicketdayView DanceEvent in list)
+                {
+                    <tr>
+                        @if (DanceEvent.Start != null)
+                        {
+                            <td>@DanceEvent.Start.Value.ToString("HH:mm")</td>
+                        }
+                        else
+                        {
+                            <td></td>}
+                        <td>@DanceEvent.Location</td>
+                        <td>@DanceEvent.Name</td>
+                        <td>@DanceEvent.Session</td>
+                        <td>@DanceEvent.Price</td>
+                        <td>
+                            <img class="cart" onclick="PopUp(@DanceEvent.EventId, '@DanceEvent.Name')" src="@Url.Content("~/Content/General/img/cart.png")" />
+                        </td>
+                    </tr>
+                }
+            </table>
+
+        }
+        <script src="~/Scripts/JazzTable.js"></script>
+        <p>
+            * The capacity of the Club sessions is very limited. Availability for All-Access pas holders can not be garanteed due to safety regulations.
+            <br />** TiëstoWorld is a special session spannig his careers work. There will also be some special guests.
+        </p>
+        <div id="Popup" class="Container">
+            <button class="close" onclick="Close()"> X </button>
+            <div>
+                @using (Html.BeginForm("AddTickets", "Dance", FormMethod.Post))
+                {
+                    <h1 id="title"></h1>
+                    <p>Amount of tickets</p>
+                    <select name="ticketAmount">
+                        @for (int i = 1; i < 20; i++)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    </select>
+                    <input name="EventId" type="number" value="" style="display:none" />
+                    <button type="submit">Add</button>
+                }
+            </div>
+        </div>
+    </section>
 <section id="InfoTiles">
     <table>
         <tr>
@@ -136,7 +158,7 @@
                     <p>@a.Description</p>
                 </section>
 
-                <img class="SlideImage" src="~/Content/Dance/img/@a.ImgUrl" />
+                <img class="SlideImage" id="wtf" src="~/Content/Dance/img/@a.ImgUrl" />
             </section>
         }
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
