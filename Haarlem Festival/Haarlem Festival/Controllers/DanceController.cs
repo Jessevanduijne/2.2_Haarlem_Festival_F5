@@ -74,6 +74,7 @@ namespace Haarlem_Festival.Controllers
             }
             else
             {
+
                 // Create session if it doesn't exist or add ticket to existing session
                 if (Session["currentTickets"] == null)
                 {
@@ -83,6 +84,13 @@ namespace Haarlem_Festival.Controllers
                 else
                 {
                     List<Ticket> sessionTickets = (List<Ticket>)Session["currentTickets"];
+                    Ticket t = sessionTickets.SingleOrDefault(ti => ti.EventId == EventId);
+                    if (t != null)
+                    {
+                        ticket.Amount = ticket.Amount+t.Amount;
+                        ticket.Price = e.Price * ticket.Amount;
+                        sessionTickets.Remove(t);
+                    }
                     sessionTickets.Add(ticket);
                 }
                 return RedirectToAction("Index", "Ticket");
