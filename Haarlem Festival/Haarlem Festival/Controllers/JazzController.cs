@@ -90,48 +90,6 @@ namespace Haarlem_Festival.Controllers
 
             tableViews.Add(temp);
 
-            /*// Thursday
-            IEnumerable<JazzEvent> thursday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 25));
-
-            List<JazzTableView> tempThursday = new List<JazzTableView>();
-
-            foreach (JazzEvent jEvent in thursday)
-            {
-                tempThursday.Add(ToJazzTableView(jEvent));
-            }
-
-            // Friday
-            IEnumerable<JazzEvent> friday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 26));
-
-            List<JazzTableView> tempFriday = new List<JazzTableView>();
-
-            foreach (JazzEvent jEvent in friday)
-            {
-                tempFriday.Add(ToJazzTableView(jEvent));
-            }
-
-            // Saturday
-            IEnumerable<JazzEvent> saturday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 27));
-
-            List<JazzTableView> tempSaturday = new List<JazzTableView>();
-
-            foreach (JazzEvent jEvent in saturday)
-            {
-                tempSaturday.Add(ToJazzTableView(jEvent));
-            }
-
-            // Sunday
-            IEnumerable<JazzEvent> sunday = repository.GetJazzEventsByDate(new DateTime(2019, 7, 28));
-
-            List < JazzTableView > tempSunday = new List<JazzTableView>();
-
-            foreach (JazzEvent jEvent in sunday)
-            {
-                tempSunday.Add(ToJazzTableView(jEvent));
-            }
-
-            JazzTables jazzTables = new JazzTables(tempThursday, tempFriday, tempSaturday, tempSunday); */
-
             return PartialView(tableViews);
         }
 
