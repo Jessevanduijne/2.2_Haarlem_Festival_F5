@@ -44,24 +44,6 @@
 
 <script src="~/Scripts/JazzTable.js"></script>
 
-<script>
-    function PopUp(eventId, Name) {
-        var x = document.getElementById("title");
-        x.innerText = Name;
-        var z = document.getElementsByName("EventId")[0];
-        z.value = eventId;
-        var y = document.getElementById("Popup");
-        y.style.visibility = "visible";
-        y.style.display = "block";
-    }
-
-    function Close() {
-        var x = document.getElementById("Popup");
-        x.style.visibility = "hidden";
-        x.style.display = "none";
-    }
-</script>
-
 <div id="Popup" class="Container">
     <button class="close" onclick="Close()"> X </button>
     <div>

@@ -54,6 +54,13 @@ namespace Haarlem_Festival.Controllers
                 else
                 {
                     List<Ticket> sessionTickets = (List<Ticket>)Session["currentTickets"];
+                    Ticket t = sessionTickets.SingleOrDefault(ti => ti.EventId == EventId);
+                    if (t != null)
+                    {
+                        ticket.Amount = ticket.Amount + t.Amount;
+                        ticket.Price = (float)e.Price * ticket.Amount;
+                        sessionTickets.Remove(t);
+                    }
                     sessionTickets.Add(ticket);
                 }
                 return RedirectToAction("Index", "Ticket");
@@ -79,7 +86,8 @@ namespace Haarlem_Festival.Controllers
                 if (current.StartTime.Date == previous.StartTime.Date)
                 {
                     temp.Add(ToJazzTableView(current));
-                } else
+                }
+                else
                 {
                     temp = temp.OrderBy(t => t.Location).ThenBy(t => t.StartTime).ToList();
                     tableViews.Add(temp);
